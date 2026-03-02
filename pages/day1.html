@@ -6,32 +6,9 @@
     <title>Day 1 - AI 技术趋势与 Agentic AI 基础</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-            line-height: 1.8;
-            color: #333;
-            background: #f5f7fa;
-            padding: 20px;
-        }
-        .container {
-            max-width: 900px;
-            margin: 0 auto;
-            background: white;
-            padding: 40px;
-            border-radius: 15px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-        }
-        .back-btn {
-            display: inline-block;
-            margin-bottom: 20px;
-            padding: 10px 20px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            text-decoration: none;
-            border-radius: 20px;
-            transition: transform 0.3s;
-        }
-        .back-btn:hover { transform: translateY(-2px); }
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; line-height: 1.8; color: #333; background: #f5f7fa; padding: 20px; }
+        .container { max-width: 900px; margin: 0 auto; background: white; padding: 40px; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.1); }
+        .back-btn { display: inline-block; margin-bottom: 20px; padding: 10px 20px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; text-decoration: none; border-radius: 20px; }
         h1 { color: #667eea; margin-bottom: 10px; }
         h2 { color: #764ba2; margin: 30px 0 15px; padding-bottom: 10px; border-bottom: 2px solid #667eea; }
         h3 { color: #667eea; margin: 25px 0 12px; }
@@ -39,79 +16,36 @@
         p { margin: 15px 0; }
         ul, ol { margin: 15px 0 15px 25px; }
         li { margin: 8px 0; }
-        .info-box {
-            background: #f0f4ff;
-            padding: 20px;
-            border-radius: 10px;
-            border-left: 4px solid #667eea;
-            margin: 20px 0;
-        }
+        .info-box { background: #f0f4ff; padding: 20px; border-radius: 10px; border-left: 4px solid #667eea; margin: 20px 0; }
         .timeline { position: relative; padding: 20px 0; }
-        .timeline-item {
-            display: flex;
-            gap: 20px;
-            margin-bottom: 25px;
-            padding-left: 30px;
-            position: relative;
-        }
-        .timeline-item:before {
-            content: "";
-            position: absolute;
-            left: 0;
-            top: 0;
-            width: 3px;
-            height: 100%;
-            background: #667eea;
-        }
-        .timeline-item:after {
-            content: "";
-            position: absolute;
-            left: -6px;
-            top: 5px;
-            width: 15px;
-            height: 15px;
-            border-radius: 50%;
-            background: #764ba2;
-        }
-        .timeline-time {
-            font-weight: bold;
-            color: #667eea;
-            min-width: 100px;
-        }
-        .timeline-content {
-            flex: 1;
-            background: #f8f9fa;
-            padding: 15px;
-            border-radius: 8px;
-        }
-        .code-block {
-            background: #2d3748;
-            color: #e2e8f0;
-            padding: 20px;
-            border-radius: 8px;
-            overflow-x: auto;
-            margin: 15px 0;
-            font-family: "Courier New", monospace;
-            font-size: 0.9em;
-        }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 20px 0;
-        }
-        th, td {
-            padding: 12px;
-            border: 1px solid #e2e8f0;
-            text-align: left;
-        }
+        .timeline-item { display: flex; gap: 20px; margin-bottom: 25px; padding-left: 30px; position: relative; }
+        .timeline-item:before { content: ""; position: absolute; left: 0; top: 0; width: 3px; height: 100%; background: #667eea; }
+        .timeline-item:after { content: ""; position: absolute; left: -6px; top: 5px; width: 15px; height: 15px; border-radius: 50%; background: #764ba2; }
+        .timeline-time { font-weight: bold; color: #667eea; min-width: 100px; }
+        .timeline-content { flex: 1; background: #f8f9fa; padding: 15px; border-radius: 8px; }
+        table { width: 100%; border-collapse: collapse; margin: 20px 0; }
+        th, td { padding: 12px; border: 1px solid #e2e8f0; text-align: left; }
         th { background: #667eea; color: white; }
         tr:nth-child(even) { background: #f8f9fa; }
-        .highlight { background: #fff3cd; padding: 2px 6px; border-radius: 3px; }
+        .code-block { background: #2d3748; color: #e2e8f0; padding: 20px; border-radius: 8px; margin: 15px 0; font-family: "Courier New", monospace; font-size: 0.9em; white-space: pre-wrap; word-wrap: break-word; line-height: 1.6; }
+        .btn { display: inline-block; padding: 10px 20px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; text-decoration: none; border-radius: 20px; margin: 5px; }
+        
+        /* 流程图样式 */
+        .flow-container { background: #f8f9fa; padding: 25px; border-radius: 12px; margin: 20px 0; overflow-x: auto; }
+        .flow-title { color: #667eea; font-size: 1.1em; font-weight: bold; margin-bottom: 15px; padding-bottom: 8px; border-bottom: 2px solid #e2e8f0; }
+        .flow-row { display: flex; align-items: center; justify-content: center; gap: 8px; margin: 12px 0; flex-wrap: wrap; }
+        .flow-node { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 12px 20px; border-radius: 8px; font-size: 0.9em; white-space: nowrap; box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3); }
+        .flow-node-alt { background: linear-gradient(135deg, #10b981 0%, #059669 100%); }
+        .flow-arrow { color: #667eea; font-size: 1.4em; font-weight: bold; }
+        .flow-branch-container { display: flex; flex-direction: column; gap: 10px; background: rgba(102, 126, 234, 0.1); padding: 15px; border-radius: 10px; border-left: 4px solid #667eea; margin: 10px 0; }
+        .flow-branch-row { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+        .flow-branch-label { background: #764ba2; color: white; padding: 4px 10px; border-radius: 12px; font-size: 0.75em; }
+        .flow-label { background: #e2e8f0; color: #4a5568; padding: 4px 10px; border-radius: 4px; font-size: 0.8em; }
     </style>
 </head>
 <body>
     <div class="container">
-        <a href="../index.html" class="back-btn">← 返回课程概览</a>
+        <a href="../index.html" class="back-btn">← 返回课程主页</a>
         
         <h1>📅 Day 1：AI 技术趋势与 Agentic AI 基础</h1>
         
@@ -125,181 +59,220 @@
                 <li>完成项目选题与技术方案设计</li>
             </ul>
         </div>
-
+        
         <h2>上午课程：AI 趋势与 Agentic AI 理论</h2>
         
         <h3>课时 1：近期 AI 技术发展趋势（40 分钟）</h3>
         
-        <h4>1. 2023-2024 AI 技术大事件回顾</h4>
+        <h4>2023-2024 AI 技术大事件</h4>
         <ul>
-            <li><strong>2023.03</strong> - GPT-4 发布（多模态能力、推理能力提升）</li>
-            <li><strong>2023.07</strong> - Llama 2 开源（推动开源生态发展）</li>
-            <li><strong>2023.11</strong> - GPT-4 Turbo + GPTs 发布（128K 上下文）</li>
-            <li><strong>2024.02</strong> - Sora 视频生成（文本生成视频突破）</li>
-            <li><strong>2024 全年</strong> - Agentic AI 崛起（从对话到行动的转变）</li>
+            <li><strong>2023.03</strong> - GPT-4 发布（多模态能力）</li>
+            <li><strong>2023.07</strong> - Llama 2 开源</li>
+            <li><strong>2023.11</strong> - GPT-4 Turbo + GPTs</li>
+            <li><strong>2024.02</strong> - Sora 视频生成</li>
+            <li><strong>2024 全年</strong> - Agentic AI 崛起</li>
         </ul>
-
-        <h4>2. AI 技术发展的五大方向</h4>
-        <table>
-            <tr>
-                <th>方向</th>
-                <th>说明</th>
-                <th>电力行业应用</th>
-            </tr>
-            <tr>
-                <td>多模态融合</td>
-                <td>文本 + 图像 + 音频 + 视频</td>
-                <td>设备照片缺陷识别、巡检视频分析</td>
-            </tr>
-            <tr>
-                <td>长上下文处理</td>
-                <td>上下文窗口 4K→100K+</td>
-                <td>技术规范文档理解、历史故障分析</td>
-            </tr>
-            <tr>
-                <td>Agent 化 ⭐</td>
-                <td>从对话到行动，能使用工具</td>
-                <td>智能问数、智能写作、工单处理</td>
-            </tr>
-            <tr>
-                <td>小模型</td>
-                <td>端侧部署，隐私保护</td>
-                <td>现场设备实时诊断、离线问答</td>
-            </tr>
-            <tr>
-                <td>垂直应用</td>
-                <td>行业大模型、领域专精</td>
-                <td>电力知识大模型、故障诊断专家</td>
-            </tr>
-        </table>
-
-        <h3>课时 2-3：Agentic AI 概述与演进（80 分钟）</h3>
         
-        <h4>1. AI 发展的三个阶段</h4>
-        <ul>
-            <li><strong>Rule-Based AI</strong>（基于规则）- if-else 逻辑，无法处理复杂场景</li>
-            <li><strong>Machine Learning AI</strong>（机器学习）- 从数据中学习，需要大量标注数据</li>
-            <li><strong>Agentic AI</strong>（智能体 AI）⭐ - 自主决策、工具使用、持续学习</li>
-        </ul>
-
-        <h4>2. Agent 四大核心特征</h4>
+        <h4>AI 技术发展五大方向</h4>
+        <table>
+            <tr><th>方向</th><th>说明</th><th>电力行业应用</th></tr>
+            <tr><td>多模态融合</td><td>文本 + 图像 + 音频 + 视频</td><td>设备照片识别、巡检视频分析</td></tr>
+            <tr><td>长上下文</td><td>上下文窗口 100K+</td><td>长文档处理、完整代码库理解</td></tr>
+            <tr><td>Agent 化</td><td>从对话到行动</td><td>智能问数、智能写作、工单处理</td></tr>
+            <tr><td>小模型</td><td>端侧部署、低成本</td><td>现场设备实时故障诊断</td></tr>
+            <tr><td>垂直应用</td><td>行业大模型</td><td>电力知识大模型、安规问答</td></tr>
+        </table>
+        
+        <h3>课时 2-3：Agentic AI 概述（80 分钟）</h3>
+        
+        <h4>Agent 四大核心特征</h4>
         <div class="info-box">
             <ul>
                 <li><strong>自主性（Autonomy）</strong> - 独立决策，无需人工逐步指令</li>
-                <li><strong>规划能力（Planning）</strong> - 任务分解、步骤规划、动态调整</li>
+                <li><strong>规划能力（Planning）</strong> - 任务分解，步骤规划，动态调整</li>
                 <li><strong>工具使用（Tool Use）</strong> - 调用 API、数据库、搜索引擎等</li>
-                <li><strong>记忆能力（Memory）</strong> - 短期记忆（上下文）、长期记忆（历史对话）</li>
+                <li><strong>记忆能力（Memory）</strong> - 上下文管理，历史记录，知识积累</li>
             </ul>
         </div>
-
-        <h4>3. ReAct 模式详解</h4>
-        <div class="code-block">
-ReAct 循环：Thought → Action → Observation → Thought → ...
-
-案例：智能问数
-Thought 1: "用户需要查询成都高新区最近 7 天的用电负荷数据"
-Action 1: 调用 query_power_data(region="成都高新区", date_range="7days")
-Observation 1: 获取数据 [{date, load}, ...]
-Thought 2: "分析数据趋势，发现 2/28 出现异常峰值 920MW"
-Action 2: 调用 query_context_info(date="2028-02-28")
-Observation 2: 获取上下文（招聘会 5 万 + 人流）
-Thought 3: "结合上下文分析，负荷峰值由大型活动导致"
-Final Answer: 输出分析报告
-        </div>
-
+        
         <h3>课时 4：深入 ReAct 模式（40 分钟）</h3>
         
-        <h4>ReAct vs 传统方法对比</h4>
-        <table>
-            <tr>
-                <th>维度</th>
-                <th>传统 Prompt</th>
-                <th>ReAct</th>
-            </tr>
-            <tr>
-                <td>思考过程</td>
-                <td>黑盒</td>
-                <td>白盒/透明</td>
-            </tr>
-            <tr>
-                <td>工具使用</td>
-                <td>无法使用</td>
-                <td>主动调用</td>
-            </tr>
-            <tr>
-                <td>复杂任务</td>
-                <td>容易出错</td>
-                <td>分步处理</td>
-            </tr>
-            <tr>
-                <td>可解释性</td>
-                <td>差</td>
-                <td>强</td>
-            </tr>
-            <tr>
-                <td>调试难度</td>
-                <td>高</td>
-                <td>低</td>
-            </tr>
-        </table>
+        <h4>ReAct 循环流程</h4>
+        
+        <div class="flow-container">
+            <div class="flow-title">ReAct 循环流程图</div>
+            <div class="flow-row">
+                <div class="flow-node">Thought<br><span style="font-size:0.8em">思考</span></div>
+                <span class="flow-arrow">→</span>
+                <div class="flow-node">Action<br><span style="font-size:0.8em">行动</span></div>
+                <span class="flow-arrow">→</span>
+                <div class="flow-node">Observation<br><span style="font-size:0.8em">观察</span></div>
+                <span class="flow-arrow">→</span>
+                <div class="flow-node flow-node-alt">Answer<br><span style="font-size:0.8em">回答</span></div>
+            </div>
+            <p style="margin-top:15px;font-size:0.9em;color:#666;">
+                <strong>循环机制：</strong>Thought → Action → Observation → Thought → ... 直到任务完成
+            </p>
+        </div>
+        
+        <h4>案例：天气查询与生活建议</h4>
+        
+        <div class="flow-container">
+            <div class="flow-title">ReAct 执行过程</div>
+            <div class="flow-row">
+                <div class="flow-label">第 1 轮</div>
+                <span class="flow-arrow">→</span>
+                <div class="flow-node">Thought</div>
+                <span class="flow-arrow">→</span>
+                <div class="flow-node">Action: get_weather</div>
+                <span class="flow-arrow">→</span>
+                <div class="flow-node">Observation</div>
+            </div>
+            <div class="flow-row">
+                <div class="flow-label">第 2 轮</div>
+                <span class="flow-arrow">→</span>
+                <div class="flow-node">Thought</div>
+                <span class="flow-arrow">→</span>
+                <div class="flow-node">Action: provide_advice</div>
+            </div>
+            <div class="flow-row">
+                <div class="flow-label">最终</div>
+                <span class="flow-arrow">→</span>
+                <div class="flow-node flow-node-alt">Final Answer</div>
+            </div>
+        </div>
+        
+        <div class="code-block">【第 1 轮循环】
+Thought: 用户想了解成都今天的天气和穿衣建议。
+        我需要先查询成都今天的天气信息。
 
+Action: {
+  "action": "get_weather",
+  "parameters": {"city": "成都", "date": "today"}
+}
+
+Observation: {
+  "city": "成都",
+  "weather": "多云",
+  "temperature": "15-22°C"
+}
+
+【第 2 轮循环】
+Thought: 已经获取到天气信息：多云，15-22°C。
+        这个温度范围比较舒适，建议穿可脱的外套。
+
+Action: 生成穿衣建议
+
+【最终回答】
+"成都今天多云，气温 15-22°C，微风。
+  天气比较舒适，建议穿长袖 T 恤搭配薄外套。"</div>
+        
         <h2>下午课程</h2>
         
         <div class="timeline">
             <div class="timeline-item">
                 <div class="timeline-time">课时 1</div>
                 <div class="timeline-content">
-                    <strong>队伍成立大会</strong>
+                    <h4>队伍成立大会</h4>
                     <ul>
-                        <li>开班致辞（10 分钟）</li>
-                        <li>培训目标和纪律（10 分钟）</li>
-                        <li>团队分组宣布（10 分钟）</li>
-                        <li>破冰与组长选举（10 分钟）</li>
+                        <li>开班致辞</li>
+                        <li>团队分组宣布</li>
+                        <li>团队破冰与组长选举</li>
                     </ul>
                 </div>
             </div>
             <div class="timeline-item">
                 <div class="timeline-time">课时 2-3</div>
                 <div class="timeline-content">
-                    <strong>MCP 协议与 Skills 体系</strong>
+                    <h4>MCP 协议与 Skills 体系</h4>
                     <ul>
-                        <li>MCP 协议简介（标准化 Agent 与外部交互）</li>
+                        <li>MCP 协议简介（模型上下文协议）</li>
                         <li>Skills 技能体系（可复用的能力单元）</li>
-                        <li>灵知平台实现方式</li>
+                        <li>灵知平台中的实现方式</li>
                     </ul>
                 </div>
             </div>
             <div class="timeline-item">
                 <div class="timeline-time">课时 4</div>
                 <div class="timeline-content">
-                    <strong>项目选题与分组</strong>
+                    <h4>项目选题与分组</h4>
                     <ul>
-                        <li>三大选题方向介绍（智能问数、智能写作、工单处理）</li>
-                        <li>各组讨论并确定选题</li>
-                        <li>组内分工（产品经理、Agent 开发者、前端开发者）</li>
+                        <li>三大选题方向介绍</li>
+                        <li>各组确定选题</li>
+                        <li>组内分工明确</li>
                     </ul>
                 </div>
             </div>
         </div>
-
-        <h2>晚自习（2 课时）</h2>
+        
+        <h2>晚自习：答疑与准备</h2>
         <div class="info-box">
             <ul>
-                <li><strong>课时 1：</strong>技术答疑、各组展示技术方案初稿</li>
-                <li><strong>课时 2：</strong>预习准备（ReAct 论文、灵知平台操作指南）</li>
+                <li><strong>课时 1：</strong>技术答疑 - 各组展示技术方案初稿</li>
+                <li><strong>课时 2：</strong>预习准备 - 复习 ReAct 和 MCP 概念</li>
             </ul>
         </div>
-
-        <h2>课后作业</h2>
-        <ol>
-            <li>完成项目方案文档（选题名称、业务流程、ReAct 流程图、Skills 清单、界面原型）</li>
-            <li>预习灵知平台操作手册</li>
-            <li>前端组预习 React 基础教程</li>
-        </ol>
-
+        
+        <h2>项目选题方向</h2>
+        
+        <div class="flow-container">
+            <div class="flow-title">📊 智能问数</div>
+            <div class="flow-row">
+                <div class="flow-node">用户提问</div>
+                <span class="flow-arrow">→</span>
+                <div class="flow-node">信息提取</div>
+                <span class="flow-arrow">→</span>
+                <div class="flow-node">HTTP 调用</div>
+                <span class="flow-arrow">→</span>
+                <div class="flow-node">智能对话</div>
+            </div>
+            <p style="margin-top:10px;font-size:0.9em;color:#666;">自然语言查询电力数据、生成报表、数据可视化</p>
+        </div>
+        
+        <div class="flow-container">
+            <div class="flow-title">📝 智能写作</div>
+            <div class="flow-row">
+                <div class="flow-node">用户提问</div>
+                <span class="flow-arrow">→</span>
+                <div class="flow-node">信息分类</div>
+                <span class="flow-arrow">→</span>
+                <div class="flow-node">知识库搜索</div>
+                <span class="flow-arrow">→</span>
+                <div class="flow-node">智能对话</div>
+            </div>
+            <p style="margin-top:10px;font-size:0.9em;color:#666;">公文生成、报告撰写、内容润色</p>
+        </div>
+        
+        <div class="flow-container">
+            <div class="flow-title">🎫 工单处理</div>
+            <div class="flow-row">
+                <div class="flow-node">用户提问</div>
+                <span class="flow-arrow">→</span>
+                <div class="flow-node">信息分类</div>
+            </div>
+            <div class="flow-branch-container">
+                <div class="flow-branch-row">
+                    <div class="flow-branch-label">故障报修</div>
+                    <span class="flow-arrow">→</span>
+                    <div class="flow-node">知识库搜索</div>
+                </div>
+                <div class="flow-branch-row">
+                    <div class="flow-branch-label">业务咨询</div>
+                    <span class="flow-arrow">→</span>
+                    <div class="flow-node">知识库搜索</div>
+                </div>
+                <div class="flow-branch-row">
+                    <div class="flow-branch-label">投诉建议</div>
+                    <span class="flow-arrow">→</span>
+                    <div class="flow-node">信息提取</div>
+                </div>
+            </div>
+            <p style="margin-top:10px;font-size:0.9em;color:#666;">工单自动分类、智能分派、处理建议生成</p>
+        </div>
+        
         <div style="margin-top: 40px; text-align: center;">
-            <a href="../index.html" class="back-btn">返回课程概览</a>
-            <a href="day2.html" class="back-btn">下一天：Day 2 →</a>
+            <a href="prelesson.html" class="btn">← Pre-Lesson</a>
+            <a href="day2.html" class="btn">Day 2 →</a>
         </div>
     </div>
 </body>
