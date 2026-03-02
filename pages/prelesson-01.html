@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>第1次直播 - 灵知平台入门</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; line-height: 1.8; color: #333; background: #f5f7fa; padding: 20px; }
+        .container { max-width: 900px; margin: 0 auto; background: white; padding: 40px; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.1); }
+        .back-btn { display: inline-block; margin-bottom: 20px; padding: 10px 20px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; text-decoration: none; border-radius: 20px; }
+        h1 { color: #667eea; margin-bottom: 10px; }
+        h2 { color: #764ba2; margin: 30px 0 15px; padding-bottom: 10px; border-bottom: 2px solid #667eea; }
+        h3 { color: #667eea; margin: 25px 0 12px; }
+        h4 { color: #764ba2; margin: 20px 0 10px; }
+        p { margin: 15px 0; }
+        ul, ol { margin: 15px 0 15px 25px; }
+        li { margin: 8px 0; }
+        .info-box { background: #f0f4ff; padding: 20px; border-radius: 10px; border-left: 4px solid #667eea; margin: 20px 0; }
+        .module-card { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 20px; border-radius: 10px; margin: 15px 0; }
+        .module-card h4 { color: white; margin-top: 0; }
+        table { width: 100%; border-collapse: collapse; margin: 20px 0; }
+        th, td { padding: 12px; border: 1px solid #e2e8f0; text-align: left; }
+        th { background: #667eea; color: white; }
+        tr:nth-child(even) { background: #f8f9fa; }
+        .node-type { display: inline-block; padding: 4px 12px; border-radius: 12px; font-size: 0.85em; margin: 5px; }
+        .node-yellow { background: #fef3c7; color: #92400e; }
+        .node-blue { background: #dbeafe; color: #1e40af; }
+        .node-purple { background: #ede9fe; color: #5b21b6; }
+        .node-red { background: #fee2e2; color: #991b1b; }
+        .btn { display: inline-block; padding: 10px 20px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; text-decoration: none; border-radius: 20px; margin: 5px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="prelesson.html" class="back-btn">← 返回 Pre-Lesson</a>
+        
+        <h1>📹 第1次直播：灵知平台入门</h1>
+        
+        <div class="info-box">
+            <strong>时间：</strong>Day 1 前3天<br>
+            <strong>总时长：</strong>90分钟（授课60分钟 + 交流30分钟）
+        </div>
+        
+        <h2>Part 1：平台介绍与账号准备（15分钟）</h2>
+        
+        <h3>灵知平台定位</h3>
+        <div class="info-box">
+            <ul>
+                <li>企业级AI应用开发平台</li>
+                <li>低代码/无代码方式构建Agent</li>
+                <li>支持知识库、工具调用、API发布</li>
+            </ul>
+        </div>
+        
+        <h3>账号注册流程</h3>
+        <ol>
+            <li>访问灵知平台地址</li>
+            <li>点击"注册"按钮</li>
+            <li>填写企业邮箱/手机号</li>
+            <li>设置密码</li>
+            <li>完成验证</li>
+            <li>登录平台</li>
+        </ol>
+        
+        <h2>Part 2：规划页面与模块架构（25分钟）</h2>
+        
+        <h3>规划页面三大区域</h3>
+        <table>
+            <tr><th>区域</th><th>功能</th></tr>
+            <tr><td>功能区</td><td>导入/导出、试运行、分享、保存、发布</td></tr>
+            <tr><td>模块区</td><td>系统模块、智能体、工具、MCP</td></tr>
+            <tr><td>画布区</td><td>拖拽组件、连线编排的设计区域</td></tr>
+        </table>
+        
+        <h3>系统模块</h3>
+        <div class="module-card">
+            <h4>常用模块</h4>
+            <ul>
+                <li>用户提问 - 获取用户输入，所有Agent入口</li>
+                <li>智能对话 - 调用大模型生成回复</li>
+                <li>信息分类 - 将用户问题分类</li>
+                <li>信息提取 - 从输入中提取结构化信息</li>
+                <li>知识库搜索 - 在知识库中检索相关内容</li>
+            </ul>
+        </div>
+        
+        <h2>Part 3：节点类型与连接原则（20分钟）</h2>
+        
+        <h3>四种节点类型</h3>
+        <div>
+            <span class="node-type node-yellow">● 黄色 - 布尔型（True/False）</span>
+            <span class="node-type node-blue">● 蓝色 - 字符串</span>
+            <span class="node-type node-purple">● 紫色 - 知识库结果</span>
+            <span class="node-type node-red">● 红色 - 任意类型</span>
+        </div>
+        
+        <div class="info-box" style="margin-top: 20px;">
+            <strong>核心原则：</strong>同类型节点互相连接，不同类型节点不可连接
+        </div>
+        
+        <h2>验收标准</h2>
+        <ul>
+            <li>✅ 能够成功登录灵知平台</li>
+            <li>✅ 理解规划页面三大区域</li>
+            <li>✅ 理解四种节点类型</li>
+            <li>✅ 能够正确连接模块</li>
+        </ul>
+        
+        <div style="margin-top: 30px;">
+            <a href="../Pre-Lesson/Pre-Lesson-01-灵知平台入门.md" class="btn">查看详细文档</a>
+            <a href="prelesson-02.html" class="btn">下一次直播 →</a>
+        </div>
+    </div>
+</body>
+</html>

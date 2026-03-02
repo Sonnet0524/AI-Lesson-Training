@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>第3次直播 - Vibe Coding环境准备</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; line-height: 1.8; color: #333; background: #f5f7fa; padding: 20px; }
+        .container { max-width: 900px; margin: 0 auto; background: white; padding: 40px; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.1); }
+        .back-btn { display: inline-block; margin-bottom: 20px; padding: 10px 20px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; text-decoration: none; border-radius: 20px; }
+        h1 { color: #667eea; margin-bottom: 10px; }
+        h2 { color: #764ba2; margin: 30px 0 15px; padding-bottom: 10px; border-bottom: 2px solid #667eea; }
+        h3 { color: #667eea; margin: 25px 0 12px; }
+        h4 { color: #764ba2; margin: 20px 0 10px; }
+        p { margin: 15px 0; }
+        ul, ol { margin: 15px 0 15px 25px; }
+        li { margin: 8px 0; }
+        .info-box { background: #f0f4ff; padding: 20px; border-radius: 10px; border-left: 4px solid #667eea; margin: 20px 0; }
+        .module-card { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 20px; border-radius: 10px; margin: 15px 0; }
+        .module-card h4 { color: white; margin-top: 0; }
+        table { width: 100%; border-collapse: collapse; margin: 20px 0; }
+        th, td { padding: 12px; border: 1px solid #e2e8f0; text-align: left; }
+        th { background: #667eea; color: white; }
+        tr:nth-child(even) { background: #f8f9fa; }
+        .btn { display: inline-block; padding: 10px 20px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; text-decoration: none; border-radius: 20px; margin: 5px; }
+        .code-block { background: #2d3748; color: #e2e8f0; padding: 20px; border-radius: 8px; margin: 15px 0; font-family: "Courier New", monospace; font-size: 0.9em; white-space: pre-wrap; word-wrap: break-word; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="prelesson.html" class="back-btn">← 返回 Pre-Lesson</a>
+        
+        <h1>📹 第3次直播：Vibe Coding环境准备</h1>
+        
+        <div class="info-box">
+            <strong>时间：</strong>Day 1 前1天<br>
+            <strong>总时长：</strong>90分钟（授课60分钟 + 交流30分钟）
+        </div>
+        
+        <h2>Part 1：环境准备概述（10分钟）</h2>
+        
+        <h3>必装工具</h3>
+        <table>
+            <tr><th>工具</th><th>版本要求</th><th>用途</th></tr>
+            <tr><td>Node.js</td><td>LTS版本（18+）</td><td>JavaScript运行环境</td></tr>
+            <tr><td>opencode</td><td>最新版</td><td>AI编程助手</td></tr>
+            <tr><td>VS Code</td><td>最新版</td><td>代码编辑器（推荐）</td></tr>
+            <tr><td>Git</td><td>最新版</td><td>版本控制（可选）</td></tr>
+        </table>
+        
+        <h3>什么是Vibe Coding？</h3>
+        <div class="info-box">
+            <strong>传统编程：</strong>程序员手动编写每一行代码<br>
+            <strong>Vibe Coding：</strong>用自然语言描述需求，AI生成代码，程序员审核调整
+        </div>
+        
+        <h2>Part 2：Node.js安装与验证（15分钟）</h2>
+        
+        <h3>下载安装</h3>
+        <ol>
+            <li>访问 https://nodejs.org</li>
+            <li>下载 LTS 版本安装包</li>
+            <li>运行安装，确认勾选 "Add to PATH"</li>
+            <li>完成安装</li>
+        </ol>
+        
+        <h3>环境验证</h3>
+        <div class="code-block">node -v
+# 预期输出：v18.x.x 或更高
+
+npm -v
+# 预期输出：9.x.x 或更高</div>
+        
+        <h3>配置npm镜像</h3>
+        <div class="code-block">npm config set registry https://registry.npmmirror.com</div>
+        
+        <h2>Part 3：opencode安装与配置（20分钟）</h2>
+        
+        <h3>安装方式</h3>
+        <div class="module-card">
+            <h4>方式1：官网下载</h4>
+            <p>访问 opencode 官网，下载对应系统版本</p>
+        </div>
+        
+        <div class="module-card">
+            <h4>方式2：命令行安装</h4>
+            <div class="code-block" style="background: rgba(0,0,0,0.3);"># macOS/Linux
+curl -fsSL https://opencode.ai/install.sh | sh
+
+# Windows (PowerShell)
+irm https://opencode.ai/install.ps1 | iex</div>
+        </div>
+        
+        <h3>快速体验</h3>
+        <div class="info-box">
+            <strong>第一次对话：</strong><br>
+            用户：帮我创建一个简单的HTML页面，标题是"Hello World"<br><br>
+            opencode 会自动创建文件并展示代码
+        </div>
+        
+        <h2>Part 4：React项目创建（15分钟）</h2>
+        
+        <h3>创建项目</h3>
+        <div class="code-block"># 创建项目
+npm create vite@latest my-first-app -- --template react
+
+# 进入项目目录
+cd my-first-app
+
+# 安装依赖
+npm install
+
+# 启动开发服务器
+npm run dev</div>
+        
+        <h3>访问页面</h3>
+        <p>打开浏览器，访问 http://localhost:5173</p>
+        <p>看到 Vite + React 页面表示成功</p>
+        
+        <h2>验收标准</h2>
+        <ul>
+            <li>✅ Node.js安装成功（node -v 显示版本号）</li>
+            <li>✅ opencode安装并配置</li>
+            <li>✅ 能够创建React项目</li>
+            <li>✅ 能够运行React项目</li>
+            <li>✅ 浏览器能访问 localhost:5173</li>
+        </ul>
+        
+        <div style="margin-top: 30px;">
+            <a href="prelesson-02.html" class="btn">← 上一次直播</a>
+            <a href="day1.html" class="btn">开始 Day 1 →</a>
+        </div>
+    </div>
+</body>
+</html>
