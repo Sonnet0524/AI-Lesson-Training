@@ -68,16 +68,95 @@
         }
         th { background: #667eea; color: white; }
         tr:nth-child(even) { background: #f8f9fa; }
-        .code-block {
-            background: #2d3748;
-            color: #e2e8f0;
-            padding: 20px;
-            border-radius: 8px;
+        
+        /* 编排模式可视化样式 */
+        .flow-container {
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 12px;
+            margin: 20px 0;
             overflow-x: auto;
-            margin: 15px 0;
-            font-family: "Courier New", monospace;
-            font-size: 0.9em;
         }
+        
+        .flow-title {
+            color: #667eea;
+            font-size: 1.1em;
+            font-weight: bold;
+            margin-bottom: 15px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #e2e8f0;
+        }
+        
+        .flow-row {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            margin: 12px 0;
+            flex-wrap: wrap;
+        }
+        
+        .flow-node {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 12px 20px;
+            border-radius: 8px;
+            font-size: 0.9em;
+            white-space: nowrap;
+            box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
+            min-width: 80px;
+            text-align: center;
+        }
+        
+        .flow-node-alt {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+        }
+        
+        .flow-node-warning {
+            background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+        }
+        
+        .flow-arrow {
+            color: #667eea;
+            font-size: 1.4em;
+            font-weight: bold;
+        }
+        
+        .flow-branch-container {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            background: rgba(102, 126, 234, 0.1);
+            padding: 15px;
+            border-radius: 10px;
+            border-left: 4px solid #667eea;
+            margin: 10px 0;
+        }
+        
+        .flow-branch-row {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .flow-branch-label {
+            background: #764ba2;
+            color: white;
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 0.75em;
+            min-width: 60px;
+            text-align: center;
+        }
+        
+        .flow-label {
+            background: #e2e8f0;
+            color: #4a5568;
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-size: 0.8em;
+        }
+        
         .node-type { display: inline-block; padding: 4px 12px; border-radius: 12px; font-size: 0.85em; margin: 5px; }
         .node-yellow { background: #fef3c7; color: #92400e; }
         .node-blue { background: #dbeafe; color: #1e40af; }
@@ -87,130 +166,150 @@
 </head>
 <body>
     <div class="container">
-        <a href="../index.html" class="back-btn">← 返回课程概览</a>
+        <a href="../index.html" class="back-btn">← 返回课程主页</a>
         
         <h1>📅 Day 2：灵知平台 Agent 开发实战</h1>
         
         <div class="info-box">
-            <strong>课时：</strong>8 课时（上午 4 课时 + 下午 4 课时 + 晚自习 2 课时）<br>
-            <strong>目标：</strong>
+            <strong>前置条件：</strong>学员已完成 Pre-Lesson，熟悉灵知平台基本操作、规划页面和核心模块
+        </div>
+        
+        <h2>上午课程</h2>
+        
+        <h3>课时 1：Catch up 快速回顾（40 分钟）</h3>
+        
+        <h4>1. Pre-Lesson 内容回顾</h4>
+        <div class="info-box">
+            <strong>规划页面三大区域：</strong>
             <ul>
-                <li>掌握灵知平台规划页面的核心功能</li>
-                <li>理解各基础模块的功能与使用场景</li>
-                <li>完成各组 Agent 的初步规划与搭建</li>
-                <li>实现知识库与 Agent 的对接</li>
+                <li><strong>功能区</strong>：导入/导出、试运行、保存、发布</li>
+                <li><strong>模块区</strong>：系统模块、智能体、工具、MCP</li>
+                <li><strong>画布区</strong>：拖拽编排、连线设计</li>
             </ul>
         </div>
-
-        <h2>上午课程：Agent 设计原理与模块详解</h2>
         
-        <h3>课时 1：规划页面与模块架构（40 分钟）</h3>
-        
-        <h4>1. 规划页面三大区域</h4>
-        <ul>
-            <li><strong>模块区（左侧）</strong> - 系统模块、智能体、工具、MCP 四类组件</li>
-            <li><strong>画布区（中央）</strong> - 拖拽组件、连线编排的设计区域</li>
-            <li><strong>功能区（上方）</strong> - 导入/导出、试运行、分享、发布</li>
-        </ul>
-
-        <h4>2. 节点类型与连接原则</h4>
+        <h4>节点类型</h4>
         <div>
             <span class="node-type node-yellow">● 黄色 - 布尔型</span>
             <span class="node-type node-blue">● 蓝色 - 字符串</span>
             <span class="node-type node-purple">● 紫色 - 知识库结果</span>
             <span class="node-type node-red">● 红色 - 任意类型</span>
         </div>
-        <p style="margin-top: 10px;"><strong>连接原则：</strong>同类型节点互相连接，不同类型节点不可连接</p>
-
-        <h4>3. 模块结构</h4>
+        <p><strong>连接原则：</strong>同类型节点互相连接，不同类型节点不可连接</p>
+        
+        <h4>2. 本日任务</h4>
         <div class="info-box">
-            <ul>
-                <li><strong>左上角 - 模块输入区</strong>：连接节点将信息输入</li>
-                <li><strong>中间 - 模块设置区</strong>：设置参数、提示词等</li>
-                <li><strong>右下角 - 模块输出区</strong>：将模块执行后的信息输出</li>
-            </ul>
+            <strong>上午：</strong>完成 Agent 基础配置、搭建核心流程、实现基本功能
+            <br>
+            <strong>下午：</strong>功能完善与测试、多场景测试、效果优化
         </div>
-
-        <h3>课时 2-3：核心模块详解（80 分钟）</h3>
         
-        <div class="module-card">
-            <h4>1. 用户提问模块（入口）</h4>
-            <ul>
-                <li>获取用户提问/选择内容</li>
-                <li>支持文本输入、上传文档（9 个，50MB/个）、上传图片（9 个，30M/个）</li>
-                <li>可添加按钮作为明确执行节点</li>
-            </ul>
-        </div>
-
-        <div class="module-card">
-            <h4>2. 智能对话模块</h4>
-            <ul>
-                <li>通过大语言模型处理并回复</li>
-                <li>参数：聊天上下文（0-6 条）、回复创意性（0-1）、回复字数上限（100-8192）</li>
-                <li>可连接知识库搜索结果</li>
-            </ul>
-        </div>
-
-        <div class="module-card">
-            <h4>3. 信息分类模块</h4>
-            <ul>
-                <li>将用户问题分类（如"咨询""投诉""建议""其他"）</li>
-                <li>输出：标签节点（布尔型）、分类结果（JSON）</li>
-                <li>场景：工单分类、问题类型识别</li>
-            </ul>
-        </div>
-
-        <div class="module-card">
-            <h4>4. 信息提取模块</h4>
-            <ul>
-                <li>从输入信息中提取目标字段</li>
-                <li>配置字段 key、描述、是否必填</li>
-                <li>输出：全部提取结果（JSON 字符串）</li>
-            </ul>
-        </div>
-
-        <div class="module-card">
-            <h4>5. 知识库搜索模块</h4>
-            <ul>
-                <li>在知识库中搜索相关问题与解答</li>
-                <li>参数：相似度阈值（0.6-0.9）、召回数（5-10）、重排序</li>
-                <li>输出：搜索到/未搜索到相关知识（布尔型）</li>
-            </ul>
-        </div>
-
-        <h3>课时 4：模块组合与流程设计（40 分钟）</h3>
+        <h3>课时 2-4：Agent 搭建实战（120 分钟）</h3>
         
-        <h4>常见编排模式</h4>
-        <div class="code-block">
-模式 1：简单问答
-用户提问 → 智能对话 → 回复用户
-
-模式 2：知识库问答
-用户提问 → 知识库搜索 → 
-  ├─ 搜索到 → 智能对话（结合知识库） → 回复
-  └─ 未搜索到 → 确定回复（默认回答）
-
-模式 3：分类处理
-用户提问 → 信息分类 → 
-  ├─ 类型 A → 处理流程 A → 回复
-  ├─ 类型 B → 处理流程 B → 回复
-  └─ 其他 → 引导重新描述
-
-模式 4：提取+API 调用
-用户提问 → 信息提取 → HTTP 调用 → 信息加工 → 回复
-        </div>
-
-        <h2>下午课程：分组开发实战</h2>
+        <h4>实践步骤</h4>
+        <ol>
+            <li><strong>基础配置（15 分钟）</strong> - 设置 Agent 名称、描述、头像、开场白、问题建议</li>
+            <li><strong>创建知识库（25 分钟）</strong> - 上传文档、设置解析、检索测试</li>
+            <li><strong>搭建流程（80 分钟）</strong> - 拖入模块、连接、设置参数、试运行</li>
+        </ol>
         
-        <div class="info-box">
-            <h4>实践任务</h4>
-            <ol>
-                <li><strong>基础配置（15 分钟）</strong> - Agent 名称、描述、头像、开场白、问题建议</li>
-                <li><strong>创建知识库（25 分钟）</strong> - 上传文档、设置解析、检索测试</li>
-                <li><strong>搭建流程（40 分钟）</strong> - 拖入模块、连接、设置参数、试运行</li>
-            </ol>
+        <h4>各选题流程设计</h4>
+        
+        <!-- 智能问数 -->
+        <div class="flow-container">
+            <div class="flow-title">📊 智能问数流程</div>
+            <div class="flow-row">
+                <div class="flow-node">用户提问</div>
+                <span class="flow-arrow">→</span>
+                <div class="flow-node">信息提取</div>
+                <span class="flow-arrow">→</span>
+                <div class="flow-node">HTTP调用</div>
+                <span class="flow-arrow">→</span>
+                <div class="flow-node">信息加工</div>
+                <span class="flow-arrow">→</span>
+                <div class="flow-node">智能对话</div>
+            </div>
+            <p style="margin-top: 10px; font-size: 0.9em; color: #666;">
+                <strong>关键点：</strong>信息提取（时间、指标、维度）、HTTP调用（数据接口）、可视化
+            </p>
         </div>
-
+        
+        <!-- 智能写作 -->
+        <div class="flow-container">
+            <div class="flow-title">📝 智能写作流程</div>
+            <div class="flow-row">
+                <div class="flow-node">用户提问</div>
+                <span class="flow-arrow">→</span>
+                <div class="flow-node">信息分类</div>
+            </div>
+            <div class="flow-branch-container">
+                <div class="flow-branch-row">
+                    <div class="flow-branch-label">报告类</div>
+                    <span class="flow-arrow">→</span>
+                    <div class="flow-node">知识库搜索</div>
+                    <span class="flow-arrow">→</span>
+                    <div class="flow-node">智能对话</div>
+                </div>
+                <div class="flow-branch-row">
+                    <div class="flow-branch-label">公文类</div>
+                    <span class="flow-arrow">→</span>
+                    <div class="flow-node">知识库搜索</div>
+                    <span class="flow-arrow">→</span>
+                    <div class="flow-node">智能对话</div>
+                </div>
+            </div>
+            <p style="margin-top: 10px; font-size: 0.9em; color: #666;">
+                <strong>关键点：</strong>分类准确、模板管理、内容质量
+            </p>
+        </div>
+        
+        <!-- 工单处理 -->
+        <div class="flow-container">
+            <div class="flow-title">🎫 工单处理流程</div>
+            <div class="flow-row">
+                <div class="flow-node">用户提问</div>
+                <span class="flow-arrow">→</span>
+                <div class="flow-node">信息分类</div>
+            </div>
+            <div class="flow-branch-container">
+                <div class="flow-branch-row">
+                    <div class="flow-branch-label">故障报修</div>
+                    <span class="flow-arrow">→</span>
+                    <div class="flow-node">知识库搜索</div>
+                    <span class="flow-arrow">→</span>
+                    <div class="flow-node flow-node-alt">智能对话</div>
+                </div>
+                <div class="flow-branch-row">
+                    <div class="flow-branch-label">业务咨询</div>
+                    <span class="flow-arrow">→</span>
+                    <div class="flow-node">知识库搜索</div>
+                    <span class="flow-arrow">→</span>
+                    <div class="flow-node flow-node-alt">智能对话</div>
+                </div>
+                <div class="flow-branch-row">
+                    <div class="flow-branch-label">投诉建议</div>
+                    <span class="flow-arrow">→</span>
+                    <div class="flow-node">信息提取</div>
+                    <span class="flow-arrow">→</span>
+                    <div class="flow-node flow-node-warning">确定回复</div>
+                </div>
+            </div>
+            <p style="margin-top: 10px; font-size: 0.9em; color: #666;">
+                <strong>关键点：</strong>分类准确率、知识库完善、多分支流程
+            </p>
+        </div>
+        
+        <h2>下午课程：功能完善与测试</h2>
+        
+        <h3>功能完善（80 分钟）</h3>
+        <ol>
+            <li><strong>异常处理流程（30 分钟）</strong> - 添加"未搜索到知识"分支、"提取失败"引导、"API调用失败"处理</li>
+            <li><strong>提示词优化（30 分钟）</strong> - 优化系统提示词、调整分类提示词、完善提取提示词</li>
+            <li><strong>参数调优（20 分钟）</strong> - 调整回复创意性、知识库召回数、相似度阈值</li>
+        </ol>
+        
+        <h3>测试与优化（80 分钟）</h3>
+        
         <h4>测试清单</h4>
         <table>
             <tr>
@@ -219,22 +318,22 @@
             </tr>
             <tr>
                 <td>功能测试</td>
-                <td>正常输入回复、知识库检索、分类识别、信息提取</td>
+                <td>正常输入回复、知识库检索、分类识别、信息提取、HTTP调用</td>
             </tr>
             <tr>
                 <td>体验测试</td>
-                <td>回复清晰、响应时间&lt;5 秒、错误提示友好、问题建议有引导性</td>
+                <td>回复清晰、响应时间&lt;5秒、错误提示友好、问题建议有引导性</td>
             </tr>
         </table>
-
+        
         <h2>晚自习：进度推进与答疑</h2>
         <div class="info-box">
             <ul>
-                <li><strong>课时 1：</strong>各组展示（3 分钟/组）- 功能演示、遇到的问题</li>
-                <li><strong>课时 2：</strong>集中答疑、优化时间</li>
+                <li><strong>课时 1：进度检查</strong> - 各组展示（3分钟/组），Agent功能演示、遇到的问题、需要的支持</li>
+                <li><strong>课时 2：问题答疑与优化</strong> - 集中答疑、根据反馈调整、完善Agent功能</li>
             </ul>
         </div>
-
+        
         <h2>模块速查表</h2>
         <table>
             <tr>
@@ -273,7 +372,7 @@
                 <td>引导、提示</td>
             </tr>
         </table>
-
+        
         <div style="margin-top: 40px; text-align: center;">
             <a href="day1.html" class="back-btn">← 前一天：Day 1</a>
             <a href="day3.html" class="back-btn">下一天：Day 3 →</a>

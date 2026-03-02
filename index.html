@@ -235,6 +235,69 @@
             color: #667eea;
         }
 
+        /* 编排模式可视化样式 */
+        .flow-diagram {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            overflow-x: auto;
+        }
+
+        .flow-row {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin: 10px 0;
+            flex-wrap: wrap;
+        }
+
+        .flow-node {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 12px 20px;
+            border-radius: 8px;
+            font-size: 0.9em;
+            white-space: nowrap;
+            box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
+        }
+
+        .flow-arrow {
+            color: #667eea;
+            font-size: 1.5em;
+            font-weight: bold;
+        }
+
+        .flow-branch {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            background: rgba(102, 126, 234, 0.1);
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid #667eea;
+        }
+
+        .flow-branch-label {
+            color: #764ba2;
+            font-size: 0.8em;
+            font-weight: bold;
+        }
+
+        .pattern-card {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+            border-left: 4px solid #667eea;
+        }
+
+        .pattern-card h4 {
+            color: #667eea;
+            margin-bottom: 15px;
+        }
+
         .btn {
             display: inline-block;
             padding: 12px 24px;
@@ -287,11 +350,13 @@
 
         <nav class="nav-tabs">
             <div class="nav-tab active" onclick="showSection('overview')">课程概览</div>
+            <div class="nav-tab" onclick="showSection('prelesson')">Pre-Lesson</div>
             <div class="nav-tab" onclick="showSection('day1')">Day 1</div>
             <div class="nav-tab" onclick="showSection('day2')">Day 2</div>
             <div class="nav-tab" onclick="showSection('day3')">Day 3</div>
             <div class="nav-tab" onclick="showSection('day4')">Day 4</div>
             <div class="nav-tab" onclick="showSection('day5')">Day 5</div>
+            <div class="nav-tab" onclick="showSection('resources')">资料</div>
         </nav>
 
         <!-- 课程概览 -->
@@ -391,6 +456,47 @@
             </div>
         </section>
 
+        <!-- Pre-Lesson -->
+        <section id="prelesson" class="content-section">
+            <h2>📚 Pre-Lesson：预授课（线上直播）</h2>
+            
+            <div class="info-grid">
+                <div class="info-card">
+                    <h4>📍 授课方式</h4>
+                    <p>线上直播，共3次</p>
+                </div>
+                <div class="info-card">
+                    <h4>⏱️ 单次时长</h4>
+                    <p>90分钟（授课60分钟 + 交流30分钟）</p>
+                </div>
+                <div class="info-card">
+                    <h4>🎯 目标</h4>
+                    <p>完成环境和账号准备，确保正式培训快速进入实操</p>
+                </div>
+            </div>
+
+            <h3>📹 第1次直播：灵知平台入门</h3>
+            <div class="info-card" style="margin-bottom: 20px;">
+                <p><strong>时间：</strong>Day 1 前3天</p>
+                <p><strong>内容：</strong>平台介绍与账号准备、规划页面与模块架构、节点类型与连接原则</p>
+                <a href="Pre-Lesson/Pre-Lesson-01-灵知平台入门.md" class="btn">查看详细文档</a>
+            </div>
+
+            <h3>📹 第2次直播：核心模块与编排</h3>
+            <div class="info-card" style="margin-bottom: 20px;">
+                <p><strong>时间：</strong>Day 1 前2天</p>
+                <p><strong>内容：</strong>5个核心模块详解、常见编排模式、实操练习</p>
+                <a href="Pre-Lesson/Pre-Lesson-02-核心模块与编排.md" class="btn">查看详细文档</a>
+            </div>
+
+            <h3>📹 第3次直播：Vibe Coding环境准备</h3>
+            <div class="info-card" style="margin-bottom: 20px;">
+                <p><strong>时间：</strong>Day 1 前1天</p>
+                <p><strong>内容：</strong>Node.js安装、opencode配置、React项目创建</p>
+                <a href="Pre-Lesson/Pre-Lesson-03-VibeCoding环境准备.md" class="btn">查看详细文档</a>
+            </div>
+        </section>
+
         <!-- Day 1 -->
         <section id="day1" class="content-section">
             <h2>📅 Day 1：AI 技术趋势与 Agentic AI 基础</h2>
@@ -475,57 +581,45 @@
                 <div class="timeline-item">
                     <div class="timeline-time">上午 课时 1</div>
                     <div class="timeline-content">
-                        <h4>规划页面与模块架构</h4>
+                        <h4>Catch up 快速回顾</h4>
                         <ul>
-                            <li>规划页面三大区域（模块区、画布区、功能区）</li>
-                            <li>节点类型与连接原则</li>
-                            <li>模块结构详解</li>
+                            <li>Pre-Lesson 内容回顾（规划页面、核心模块、节点类型）</li>
+                            <li>预授课问题解答</li>
+                            <li>本日任务说明</li>
                         </ul>
                     </div>
                 </div>
                 <div class="timeline-item">
-                    <div class="timeline-time">上午 课时 2-3</div>
+                    <div class="timeline-time">上午 课时 2-4</div>
                     <div class="timeline-content">
-                        <h4>核心模块详解</h4>
+                        <h4>Agent 搭建实战</h4>
                         <ul>
-                            <li>用户提问模块（入口）</li>
-                            <li>智能对话模块（AI 回复）</li>
-                            <li>信息分类模块（问题分类）</li>
-                            <li>信息提取模块（字段提取）</li>
-                            <li>知识库搜索模块（RAG）</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-time">上午 课时 4</div>
-                    <div class="timeline-content">
-                        <h4>模块组合与流程设计</h4>
-                        <ul>
-                            <li>常见编排模式</li>
-                            <li>设计技巧</li>
-                            <li>各组开始规划</li>
+                            <li>基础配置（名称、描述、开场白）</li>
+                            <li>创建知识库</li>
+                            <li>搭建核心流程</li>
+                            <li>各选题指导（智能问数/智能写作/工单处理）</li>
                         </ul>
                     </div>
                 </div>
                 <div class="timeline-item">
                     <div class="timeline-time">下午 课时 5-6</div>
                     <div class="timeline-content">
-                        <h4>Agent 搭建实战</h4>
+                        <h4>功能完善</h4>
                         <ul>
-                            <li>基础配置</li>
-                            <li>创建知识库</li>
-                            <li>搭建流程</li>
+                            <li>异常处理流程</li>
+                            <li>提示词优化</li>
+                            <li>参数调优</li>
                         </ul>
                     </div>
                 </div>
                 <div class="timeline-item">
                     <div class="timeline-time">下午 课时 7-8</div>
                     <div class="timeline-content">
-                        <h4>功能完善与测试</h4>
+                        <h4>测试与优化</h4>
                         <ul>
-                            <li>异常处理流程</li>
                             <li>多场景测试</li>
                             <li>效果优化</li>
+                            <li>准备晚自习展示</li>
                         </ul>
                     </div>
                 </div>
@@ -708,21 +802,11 @@
                     </div>
                 </div>
                 <div class="timeline-item">
-                    <div class="timeline-time">13:30-14:30</div>
-                    <div class="timeline-content">
-                        <h4>交流与分享</h4>
-                        <ul>
-                            <li>自由交流</li>
-                            <li>优秀项目分享</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="timeline-item">
                     <div class="timeline-time">14:30-15:00</div>
                     <div class="timeline-content">
                         <h4>培训总结</h4>
                         <ul>
-                            <li>5 天培训回顾</li>
+                            <li>交流与回顾</li>
                             <li>学习成果总结</li>
                             <li>后续学习建议</li>
                         </ul>
@@ -757,6 +841,52 @@
             </div>
 
             <a href="pages/day5.html" class="btn">查看 Day 5 详细文档</a>
+        </section>
+
+        <!-- 资料中心 -->
+        <section id="resources" class="content-section">
+            <h2>📚 资料中心</h2>
+
+            <h3>🔧 技术栈与关键信息</h3>
+            <div class="info-card" style="margin-bottom: 20px;">
+                <p>包含：灵知平台模块速查、节点类型、参数建议值、提示词模板、API调用方式、Vibe Coding工具等</p>
+                <a href="docs/技术栈与关键信息.md" class="btn">查看文档</a>
+            </div>
+
+            <h3>📁 项目设计文档</h3>
+            <div class="day-grid">
+                <div class="day-card">
+                    <h4>智能问数</h4>
+                    <p>电力数据智能问答系统设计</p>
+                    <a href="projects/智能问数-项目设计.md" class="btn" style="margin-top: 10px; font-size: 0.9em;">查看设计</a>
+                </div>
+                <div class="day-card">
+                    <h4>智能写作</h4>
+                    <p>公文报告智能生成系统设计</p>
+                    <p style="margin-top: 10px; opacity: 0.8; font-size: 0.9em;">待补充</p>
+                </div>
+                <div class="day-card">
+                    <h4>工单处理</h4>
+                    <p>工单智能分类与处理系统设计</p>
+                    <p style="margin-top: 10px; opacity: 0.8; font-size: 0.9em;">待补充</p>
+                </div>
+            </div>
+
+            <h3>📖 Pre-Lesson 文档</h3>
+            <ul class="module-list">
+                <li><a href="Pre-Lesson/Pre-Lesson-01-灵知平台入门.md">第1次直播：灵知平台入门</a></li>
+                <li><a href="Pre-Lesson/Pre-Lesson-02-核心模块与编排.md">第2次直播：核心模块与编排</a></li>
+                <li><a href="Pre-Lesson/Pre-Lesson-03-VibeCoding环境准备.md">第3次直播：Vibe Coding环境准备</a></li>
+            </ul>
+
+            <h3>📖 课程详细文档</h3>
+            <ul class="module-list">
+                <li><a href="Lesson-01/Day1-AgenticAI与ReAct模式.md">Day 1：AI 技术趋势与 Agentic AI 基础</a></li>
+                <li><a href="Lesson-01/Day2-Agent开发实战.md">Day 2：灵知平台 Agent 开发实战</a></li>
+                <li><a href="Lesson-01/Day3-Agent优化与发布.md">Day 3：Agent 完善与优化</a></li>
+                <li><a href="Lesson-01/Day4-前端开发.md">Day 4：前端开发</a></li>
+                <li><a href="Lesson-01/Day5-项目展示与总结.md">Day 5：项目展示与总结</a></li>
+            </ul>
         </section>
 
         <footer>
