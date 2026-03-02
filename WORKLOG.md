@@ -64,11 +64,28 @@
   - 未来Lesson-02、Lesson-03等
 - **原因**：便于管理多次培训课程
 
+### 决策6：增加预授课模块
+- **决定**：在Lesson-01前增加Pre-Lesson
+- **内容**：灵知平台基础使用 + Vibe Coding环境准备
+- **方式**：线上直播
+- **原因**：确保学员在正式培训前完成环境准备，提高培训效率
+
 ---
 
 ## 已完成工作
 
 ### ✅ 2024-03-02：项目初始化
+
+#### 0. 创建Pre-Lesson预授课模块
+- **文件**：`Pre-Lesson/README.md`
+- **内容**：
+  - 灵知平台基础使用（账号注册、界面操作、Agent概念）
+  - Vibe Coding环境准备（Trae/opencode、React开发环境）
+  - 准备清单（学员准备、讲师准备）
+  - 课程安排建议
+  - 预习资源
+  - 验收标准
+- **状态**：框架已创建，内容待用户补充
 
 #### 1. 创建AGENT.md
 - **文件**：`AGENT.md`
@@ -227,6 +244,8 @@ D:\AI-Lesson\
 ├── AGENT.md              # Agent行为指南
 ├── README.md             # 项目说明
 ├── WORKLOG.md            # 本工作日志
+├── Pre-Lesson/           # 预授课模块
+│   └── README.md         # 预授课说明
 └── Lesson-01/
     ├── README.md         # Lesson-01说明
     └── Day1-AgenticAI与ReAct模式.md  # Day 1课程内容
@@ -335,4 +354,4 @@ D:\AI-Lesson\
 ---
 
 **日志维护者**：AI Assistant  
-**最后更新**：2024年3月2日 17:10
+**最后更新**：2024年3月2日 17:20
