@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>工单处理 - 项目设计</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; line-height: 1.8; color: #333; background: #f5f7fa; padding: 20px; }
+        .container { max-width: 900px; margin: 0 auto; background: white; padding: 40px; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.1); }
+        .back-btn { display: inline-block; margin-bottom: 20px; padding: 10px 20px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; text-decoration: none; border-radius: 20px; }
+        h1 { color: #667eea; margin-bottom: 10px; }
+        h2 { color: #764ba2; margin: 30px 0 15px; padding-bottom: 10px; border-bottom: 2px solid #667eea; }
+        h3 { color: #667eea; margin: 25px 0 12px; }
+        h4 { color: #764ba2; margin: 20px 0 10px; }
+        p { margin: 15px 0; }
+        ul, ol { margin: 15px 0 15px 25px; }
+        li { margin: 8px 0; }
+        .info-box { background: #f0f4ff; padding: 20px; border-radius: 10px; border-left: 4px solid #667eea; margin: 20px 0; }
+        .module-card { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 20px; border-radius: 10px; margin: 15px 0; }
+        .module-card h4 { color: white; margin-top: 0; }
+        table { width: 100%; border-collapse: collapse; margin: 20px 0; }
+        th, td { padding: 12px; border: 1px solid #e2e8f0; text-align: left; }
+        th { background: #667eea; color: white; }
+        tr:nth-child(even) { background: #f8f9fa; }
+        .btn { display: inline-block; padding: 10px 20px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; text-decoration: none; border-radius: 20px; margin: 5px; }
+        .code-block { background: #2d3748; color: #e2e8f0; padding: 20px; border-radius: 8px; margin: 15px 0; font-family: "Courier New", monospace; font-size: 0.9em; white-space: pre-wrap; word-wrap: break-word; }
+        .flow-container { background: #f8f9fa; padding: 25px; border-radius: 12px; margin: 20px 0; overflow-x: auto; }
+        .flow-title { color: #667eea; font-size: 1.1em; font-weight: bold; margin-bottom: 15px; padding-bottom: 8px; border-bottom: 2px solid #e2e8f0; }
+        .flow-row { display: flex; align-items: center; justify-content: center; gap: 8px; margin: 12px 0; flex-wrap: wrap; }
+        .flow-node { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 12px 20px; border-radius: 8px; font-size: 0.9em; white-space: nowrap; box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3); }
+        .flow-arrow { color: #667eea; font-size: 1.4em; font-weight: bold; }
+        .scenario-box { background: #fef3c7; padding: 15px; border-radius: 8px; border-left: 4px solid #f59e0b; margin: 15px 0; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="../index.html" class="back-btn">← 返回课程主页</a>
+        
+        <h1>🎫 项目设计：工单处理</h1>
+        
+        <div class="info-box">
+            <strong>项目名称：</strong>电力工单智能处理系统<br>
+            <strong>项目目标：</strong>自动分析工单内容，智能分配处理部门，生成处理建议<br>
+            <strong>目标用户：</strong>电力公司客服人员、工单处理人员、管理人员<br>
+            <strong>复杂度：</strong>⭐⭐⭐⭐
+        </div>
+        
+        <h2>一、业务场景</h2>
+        
+        <h3>典型需求</h3>
+        <div class="scenario-box">
+            <strong>场景1：故障报修</strong><br>
+            用户来电："我们家停电了，地址是XX小区XX栋XX号"<br>
+            → 自动识别：故障报修、地址提取、派发给运维班组
+        </div>
+        <div class="scenario-box">
+            <strong>场景2：业务咨询</strong><br>
+            用户咨询："我想申请新装电表，需要什么材料？"<br>
+            → 自动识别：业务咨询、回复标准答案
+        </div>
+        <div class="scenario-box">
+            <strong>场景3：投诉建议</strong><br>
+            用户投诉："上个月电费突然变高很多，我要投诉"<br>
+            → 自动识别：投诉类型、生成处理方案、升级优先级
+        </div>
+        <div class="scenario-box">
+            <strong>场景4：信息查询</strong><br>
+            用户查询："我想查一下上个月的用电量"<br>
+            → 自动识别：信息查询、调用系统接口、返回数据
+        </div>
+        
+        <h2>二、技术架构</h2>
+        
+        <h3>Agent流程设计（ReAct + 循环模式）</h3>
+        
+        <div class="flow-container">
+            <div class="flow-title">工单处理流程</div>
+            <div class="flow-row">
+                <div class="flow-node">用户提交工单</div>
+                <span class="flow-arrow">→</span>
+                <div class="flow-node">分类识别</div>
+                <span class="flow-arrow">→</span>
+                <div class="flow-node">信息提取</div>
+            </div>
+            <div class="flow-row">
+                <div class="flow-node">查询责任部门</div>
+                <span class="flow-arrow">→</span>
+                <div class="flow-node">知识库检索</div>
+                <span class="flow-arrow">→</span>
+                <div class="flow-node">生成处理建议</div>
+            </div>
+        </div>
+        
+        <h3>ReAct执行过程示例</h3>
+        <div class="code-block">【Thought】分析工单类型
+"用户反馈停电问题，可能是故障报修类型"
+
+【Action】调用分类识别
+分类结果：{ "type": "故障报修", "confidence": 0.95 }
+
+【Observation】分类成功
+
+【Thought】提取关键信息
+"需要提取地址、联系方式、故障描述等关键信息"
+
+【Action】调用信息提取
+提取结果：{
+  "address": "XX小区XX栋XX号",
+  "phone": "138****1234",
+  "description": "家里突然停电",
+  "urgency": "高"
+}
+
+【Thought】查询处理部门
+"故障报修需要分配给运维班组"
+
+【Action】调用HTTP接口查询责任部门
+查询结果：{ "department": "城东运维班", "contact": "李工" }
+
+【Final Answer】返回完整处理结果
+{
+  "工单编号": "GD20240303001",
+  "分类": "故障报修-停电",
+  "处理部门": "城东运维班",
+  "处理建议": "1. 核实停电范围 2. 安排现场勘查..."
+}</div>
+        
+        <h2>三、灵知平台模块配置</h2>
+        
+        <h3>模块流程</h3>
+        <div class="flow-container">
+            <div class="flow-row">
+                <div class="flow-node">用户提问</div>
+                <span class="flow-arrow">→</span>
+                <div class="flow-node">信息分类</div>
+                <span class="flow-arrow">→</span>
+                <div class="flow-node">信息提取</div>
+                <span class="flow-arrow">→</span>
+                <div class="flow-node">HTTP调用</div>
+            </div>
+            <div class="flow-row">
+                <div class="flow-node">知识库搜索</div>
+                <span class="flow-arrow">→</span>
+                <div class="flow-node">智能对话</div>
+            </div>
+        </div>
+        
+        <h3>模块1：信息分类</h3>
+        <div class="info-box">
+            <strong>分类选项：</strong>
+            <ul>
+                <li>故障报修：停电、线路故障、设备故障等</li>
+                <li>业务咨询：新装、增容、过户、缴费等</li>
+                <li>投诉建议：服务投诉、电费争议、质量投诉等</li>
+                <li>信息查询：电量查询、账单查询、进度查询等</li>
+                <li>其他</li>
+            </ul>
+        </div>
+        
+        <h3>模块2：信息提取</h3>
+        <div class="module-card">
+            <h4>提取字段</h4>
+            <ul>
+                <li>address - 地址（详细到门牌号）</li>
+                <li>contact - 联系电话</li>
+                <li>description - 问题描述</li>
+                <li>time - 发生时间</li>
+                <li>urgency - 紧急程度（高/中/低）</li>
+            </ul>
+        </div>
+        
+        <h3>模块3：HTTP调用（查询责任部门）</h3>
+        <div class="info-box">
+            <strong>请求体模板：</strong>
+            <div class="code-block" style="background: rgba(0,0,0,0.3); margin-top: 10px;">{
+  "type": "{{信息分类.type}}",
+  "address": "{{信息提取.address}}",
+  "urgency": "{{信息提取.urgency}}"
+}</div>
+        </div>
+        
+        <h2>四、前端界面设计</h2>
+        
+        <h3>页面结构</h3>
+        <div class="code-block">┌─────────────────────────────────────────────┐
+│  工单处理系统     [待处理:23] [已处理:156] │
+├─────────────────────────────────────────────┤
+│  ┌─────────────┐  ┌───────────────────────┐ │
+│  │  工单列表   │  │   工单详情            │ │
+│  │ ┌─────────┐ │  │ 工单编号：GD****      │ │
+│  │ │🔴故障报修│ │  │ 分类：故障报修-停电   │ │
+│  │ │ 停电     │ │  │                       │ │
+│  │ │ 高新区   │ │  │ 📍 地址：高新区XX号   │ │
+│  │ └─────────┘ │  │ 📞 联系方式：138****  │ │
+│  │ ┌─────────┐ │  │                       │ │
+│  │ │🟡业务咨询│ │  │ 🏢 处理部门：城东运维 │ │
+│  │ │ 新装电表 │ │  │                       │ │
+│  │ └─────────┘ │  │ 💡 处理建议：          │ │
+│  │             │  │ 1. 核实停电范围       │ │
+│  │ [加载更多]  │  │ 2. 安排现场勘查       │ │
+│  └─────────────┘  └───────────────────────┘ │
+│                    [一键处理] [转派] [关闭]  │
+└─────────────────────────────────────────────┘</div>
+        
+        <h2>五、知识库设计</h2>
+        
+        <h3>工单处理案例库结构</h3>
+        <table>
+            <tr>
+                <th>分类</th>
+                <th>案例文档示例</th>
+            </tr>
+            <tr>
+                <td>故障报修</td>
+                <td>停电故障处理规范、线路故障处理流程、设备故障维修指南</td>
+            </tr>
+            <tr>
+                <td>业务咨询</td>
+                <td>新装业务办理指南、增容业务说明、过户业务流程</td>
+            </tr>
+            <tr>
+                <td>投诉建议</td>
+                <td>服务投诉处理流程、电费争议处理规范</td>
+            </tr>
+            <tr>
+                <td>信息查询</td>
+                <td>电量查询操作指南、账单查询回复模板</td>
+            </tr>
+        </table>
+        
+        <h2>六、项目分工建议</h2>
+        
+        <table>
+            <tr>
+                <th>角色</th>
+                <th>人数</th>
+                <th>职责</th>
+            </tr>
+            <tr>
+                <td>产品经理</td>
+                <td>1</td>
+                <td>业务流程梳理、验收标准、统计需求</td>
+            </tr>
+            <tr>
+                <td>Agent开发者</td>
+                <td>2-3</td>
+                <td>灵知平台配置、分类模型、API对接</td>
+            </tr>
+            <tr>
+                <td>知识库建设</td>
+                <td>1</td>
+                <td>案例整理、规范文档</td>
+            </tr>
+            <tr>
+                <td>前端开发者</td>
+                <td>2</td>
+                <td>React界面、工单管理、统计图表</td>
+            </tr>
+        </table>
+        
+        <h2>七、扩展方向</h2>
+        
+        <div class="info-box">
+            <strong>功能扩展：</strong>
+            <ul>
+                <li>语音工单录入</li>
+                <li>图片识别（现场照片分析）</li>
+                <li>工单进度实时追踪</li>
+                <li>智能回访</li>
+                <li>移动端推送</li>
+            </ul>
+            <br>
+            <strong>技术优化：</strong>
+            <ul>
+                <li>工单预测分析</li>
+                <li>自动预警机制</li>
+                <li>处理效率统计</li>
+                <li>知识库自动更新</li>
+            </ul>
+        </div>
+        
+        <p style="text-align: center; margin-top: 40px;">
+            <a href="../projects/工单处理-项目设计.md" class="btn">查看完整设计文档</a>
+        </p>
+    </div>
+</body>
+</html>
