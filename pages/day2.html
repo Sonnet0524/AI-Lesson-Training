@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day 2 - 灵知平台 Agent 开发实战</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            line-height: 1.8;
+            color: #333;
+            background: #f5f7fa;
+            padding: 20px;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+        .back-btn {
+            display: inline-block;
+            margin-bottom: 20px;
+            padding: 10px 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 20px;
+            transition: transform 0.3s;
+        }
+        .back-btn:hover { transform: translateY(-2px); }
+        h1 { color: #667eea; margin-bottom: 10px; }
+        h2 { color: #764ba2; margin: 30px 0 15px; padding-bottom: 10px; border-bottom: 2px solid #667eea; }
+        h3 { color: #667eea; margin: 25px 0 12px; }
+        h4 { color: #764ba2; margin: 20px 0 10px; }
+        p { margin: 15px 0; }
+        ul, ol { margin: 15px 0 15px 25px; }
+        li { margin: 8px 0; }
+        .info-box {
+            background: #f0f4ff;
+            padding: 20px;
+            border-radius: 10px;
+            border-left: 4px solid #667eea;
+            margin: 20px 0;
+        }
+        .module-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 15px 0;
+        }
+        .module-card h4 { color: white; margin-top: 0; }
+        .module-card ul { list-style: none; margin-left: 0; }
+        .module-card li:before { content: "✓ "; font-weight: bold; }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        th, td {
+            padding: 12px;
+            border: 1px solid #e2e8f0;
+            text-align: left;
+        }
+        th { background: #667eea; color: white; }
+        tr:nth-child(even) { background: #f8f9fa; }
+        .code-block {
+            background: #2d3748;
+            color: #e2e8f0;
+            padding: 20px;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 15px 0;
+            font-family: "Courier New", monospace;
+            font-size: 0.9em;
+        }
+        .node-type { display: inline-block; padding: 4px 12px; border-radius: 12px; font-size: 0.85em; margin: 5px; }
+        .node-yellow { background: #fef3c7; color: #92400e; }
+        .node-blue { background: #dbeafe; color: #1e40af; }
+        .node-purple { background: #ede9fe; color: #5b21b6; }
+        .node-red { background: #fee2e2; color: #991b1b; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="../index.html" class="back-btn">← 返回课程概览</a>
+        
+        <h1>📅 Day 2：灵知平台 Agent 开发实战</h1>
+        
+        <div class="info-box">
+            <strong>课时：</strong>8 课时（上午 4 课时 + 下午 4 课时 + 晚自习 2 课时）<br>
+            <strong>目标：</strong>
+            <ul>
+                <li>掌握灵知平台规划页面的核心功能</li>
+                <li>理解各基础模块的功能与使用场景</li>
+                <li>完成各组 Agent 的初步规划与搭建</li>
+                <li>实现知识库与 Agent 的对接</li>
+            </ul>
+        </div>
+
+        <h2>上午课程：Agent 设计原理与模块详解</h2>
+        
+        <h3>课时 1：规划页面与模块架构（40 分钟）</h3>
+        
+        <h4>1. 规划页面三大区域</h4>
+        <ul>
+            <li><strong>模块区（左侧）</strong> - 系统模块、智能体、工具、MCP 四类组件</li>
+            <li><strong>画布区（中央）</strong> - 拖拽组件、连线编排的设计区域</li>
+            <li><strong>功能区（上方）</strong> - 导入/导出、试运行、分享、发布</li>
+        </ul>
+
+        <h4>2. 节点类型与连接原则</h4>
+        <div>
+            <span class="node-type node-yellow">● 黄色 - 布尔型</span>
+            <span class="node-type node-blue">● 蓝色 - 字符串</span>
+            <span class="node-type node-purple">● 紫色 - 知识库结果</span>
+            <span class="node-type node-red">● 红色 - 任意类型</span>
+        </div>
+        <p style="margin-top: 10px;"><strong>连接原则：</strong>同类型节点互相连接，不同类型节点不可连接</p>
+
+        <h4>3. 模块结构</h4>
+        <div class="info-box">
+            <ul>
+                <li><strong>左上角 - 模块输入区</strong>：连接节点将信息输入</li>
+                <li><strong>中间 - 模块设置区</strong>：设置参数、提示词等</li>
+                <li><strong>右下角 - 模块输出区</strong>：将模块执行后的信息输出</li>
+            </ul>
+        </div>
+
+        <h3>课时 2-3：核心模块详解（80 分钟）</h3>
+        
+        <div class="module-card">
+            <h4>1. 用户提问模块（入口）</h4>
+            <ul>
+                <li>获取用户提问/选择内容</li>
+                <li>支持文本输入、上传文档（9 个，50MB/个）、上传图片（9 个，30M/个）</li>
+                <li>可添加按钮作为明确执行节点</li>
+            </ul>
+        </div>
+
+        <div class="module-card">
+            <h4>2. 智能对话模块</h4>
+            <ul>
+                <li>通过大语言模型处理并回复</li>
+                <li>参数：聊天上下文（0-6 条）、回复创意性（0-1）、回复字数上限（100-8192）</li>
+                <li>可连接知识库搜索结果</li>
+            </ul>
+        </div>
+
+        <div class="module-card">
+            <h4>3. 信息分类模块</h4>
+            <ul>
+                <li>将用户问题分类（如"咨询""投诉""建议""其他"）</li>
+                <li>输出：标签节点（布尔型）、分类结果（JSON）</li>
+                <li>场景：工单分类、问题类型识别</li>
+            </ul>
+        </div>
+
+        <div class="module-card">
+            <h4>4. 信息提取模块</h4>
+            <ul>
+                <li>从输入信息中提取目标字段</li>
+                <li>配置字段 key、描述、是否必填</li>
+                <li>输出：全部提取结果（JSON 字符串）</li>
+            </ul>
+        </div>
+
+        <div class="module-card">
+            <h4>5. 知识库搜索模块</h4>
+            <ul>
+                <li>在知识库中搜索相关问题与解答</li>
+                <li>参数：相似度阈值（0.6-0.9）、召回数（5-10）、重排序</li>
+                <li>输出：搜索到/未搜索到相关知识（布尔型）</li>
+            </ul>
+        </div>
+
+        <h3>课时 4：模块组合与流程设计（40 分钟）</h3>
+        
+        <h4>常见编排模式</h4>
+        <div class="code-block">
+模式 1：简单问答
+用户提问 → 智能对话 → 回复用户
+
+模式 2：知识库问答
+用户提问 → 知识库搜索 → 
+  ├─ 搜索到 → 智能对话（结合知识库） → 回复
+  └─ 未搜索到 → 确定回复（默认回答）
+
+模式 3：分类处理
+用户提问 → 信息分类 → 
+  ├─ 类型 A → 处理流程 A → 回复
+  ├─ 类型 B → 处理流程 B → 回复
+  └─ 其他 → 引导重新描述
+
+模式 4：提取+API 调用
+用户提问 → 信息提取 → HTTP 调用 → 信息加工 → 回复
+        </div>
+
+        <h2>下午课程：分组开发实战</h2>
+        
+        <div class="info-box">
+            <h4>实践任务</h4>
+            <ol>
+                <li><strong>基础配置（15 分钟）</strong> - Agent 名称、描述、头像、开场白、问题建议</li>
+                <li><strong>创建知识库（25 分钟）</strong> - 上传文档、设置解析、检索测试</li>
+                <li><strong>搭建流程（40 分钟）</strong> - 拖入模块、连接、设置参数、试运行</li>
+            </ol>
+        </div>
+
+        <h4>测试清单</h4>
+        <table>
+            <tr>
+                <th>类型</th>
+                <th>测试项</th>
+            </tr>
+            <tr>
+                <td>功能测试</td>
+                <td>正常输入回复、知识库检索、分类识别、信息提取</td>
+            </tr>
+            <tr>
+                <td>体验测试</td>
+                <td>回复清晰、响应时间&lt;5 秒、错误提示友好、问题建议有引导性</td>
+            </tr>
+        </table>
+
+        <h2>晚自习：进度推进与答疑</h2>
+        <div class="info-box">
+            <ul>
+                <li><strong>课时 1：</strong>各组展示（3 分钟/组）- 功能演示、遇到的问题</li>
+                <li><strong>课时 2：</strong>集中答疑、优化时间</li>
+            </ul>
+        </div>
+
+        <h2>模块速查表</h2>
+        <table>
+            <tr>
+                <th>模块</th>
+                <th>功能</th>
+                <th>典型场景</th>
+            </tr>
+            <tr>
+                <td>用户提问</td>
+                <td>获取输入</td>
+                <td>所有 Agent 入口</td>
+            </tr>
+            <tr>
+                <td>智能对话</td>
+                <td>AI 回复</td>
+                <td>问答、创作</td>
+            </tr>
+            <tr>
+                <td>信息分类</td>
+                <td>问题分类</td>
+                <td>工单处理</td>
+            </tr>
+            <tr>
+                <td>信息提取</td>
+                <td>提取字段</td>
+                <td>API 调用前处理</td>
+            </tr>
+            <tr>
+                <td>知识库搜索</td>
+                <td>检索知识</td>
+                <td>知识库问答</td>
+            </tr>
+            <tr>
+                <td>确定回复</td>
+                <td>固定回复</td>
+                <td>引导、提示</td>
+            </tr>
+        </table>
+
+        <div style="margin-top: 40px; text-align: center;">
+            <a href="day1.html" class="back-btn">← 前一天：Day 1</a>
+            <a href="day3.html" class="back-btn">下一天：Day 3 →</a>
+        </div>
+    </div>
+</body>
+</html>

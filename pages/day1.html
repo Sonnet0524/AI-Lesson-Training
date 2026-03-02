@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day 1 - AI 技术趋势与 Agentic AI 基础</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            line-height: 1.8;
+            color: #333;
+            background: #f5f7fa;
+            padding: 20px;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+        .back-btn {
+            display: inline-block;
+            margin-bottom: 20px;
+            padding: 10px 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 20px;
+            transition: transform 0.3s;
+        }
+        .back-btn:hover { transform: translateY(-2px); }
+        h1 { color: #667eea; margin-bottom: 10px; }
+        h2 { color: #764ba2; margin: 30px 0 15px; padding-bottom: 10px; border-bottom: 2px solid #667eea; }
+        h3 { color: #667eea; margin: 25px 0 12px; }
+        h4 { color: #764ba2; margin: 20px 0 10px; }
+        p { margin: 15px 0; }
+        ul, ol { margin: 15px 0 15px 25px; }
+        li { margin: 8px 0; }
+        .info-box {
+            background: #f0f4ff;
+            padding: 20px;
+            border-radius: 10px;
+            border-left: 4px solid #667eea;
+            margin: 20px 0;
+        }
+        .timeline { position: relative; padding: 20px 0; }
+        .timeline-item {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 25px;
+            padding-left: 30px;
+            position: relative;
+        }
+        .timeline-item:before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 3px;
+            height: 100%;
+            background: #667eea;
+        }
+        .timeline-item:after {
+            content: "";
+            position: absolute;
+            left: -6px;
+            top: 5px;
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            background: #764ba2;
+        }
+        .timeline-time {
+            font-weight: bold;
+            color: #667eea;
+            min-width: 100px;
+        }
+        .timeline-content {
+            flex: 1;
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+        }
+        .code-block {
+            background: #2d3748;
+            color: #e2e8f0;
+            padding: 20px;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 15px 0;
+            font-family: "Courier New", monospace;
+            font-size: 0.9em;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        th, td {
+            padding: 12px;
+            border: 1px solid #e2e8f0;
+            text-align: left;
+        }
+        th { background: #667eea; color: white; }
+        tr:nth-child(even) { background: #f8f9fa; }
+        .highlight { background: #fff3cd; padding: 2px 6px; border-radius: 3px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="../index.html" class="back-btn">← 返回课程概览</a>
+        
+        <h1>📅 Day 1：AI 技术趋势与 Agentic AI 基础</h1>
+        
+        <div class="info-box">
+            <strong>课时：</strong>8 课时（上午 4 课时 + 下午 4 课时 + 晚自习 2 课时）<br>
+            <strong>目标：</strong>
+            <ul>
+                <li>了解近期 AI 技术发展趋势和前沿动态</li>
+                <li>深入理解 Agentic AI 技术体系</li>
+                <li>重点掌握 ReAct（推理 + 行动）模式</li>
+                <li>完成项目选题与技术方案设计</li>
+            </ul>
+        </div>
+
+        <h2>上午课程：AI 趋势与 Agentic AI 理论</h2>
+        
+        <h3>课时 1：近期 AI 技术发展趋势（40 分钟）</h3>
+        
+        <h4>1. 2023-2024 AI 技术大事件回顾</h4>
+        <ul>
+            <li><strong>2023.03</strong> - GPT-4 发布（多模态能力、推理能力提升）</li>
+            <li><strong>2023.07</strong> - Llama 2 开源（推动开源生态发展）</li>
+            <li><strong>2023.11</strong> - GPT-4 Turbo + GPTs 发布（128K 上下文）</li>
+            <li><strong>2024.02</strong> - Sora 视频生成（文本生成视频突破）</li>
+            <li><strong>2024 全年</strong> - Agentic AI 崛起（从对话到行动的转变）</li>
+        </ul>
+
+        <h4>2. AI 技术发展的五大方向</h4>
+        <table>
+            <tr>
+                <th>方向</th>
+                <th>说明</th>
+                <th>电力行业应用</th>
+            </tr>
+            <tr>
+                <td>多模态融合</td>
+                <td>文本 + 图像 + 音频 + 视频</td>
+                <td>设备照片缺陷识别、巡检视频分析</td>
+            </tr>
+            <tr>
+                <td>长上下文处理</td>
+                <td>上下文窗口 4K→100K+</td>
+                <td>技术规范文档理解、历史故障分析</td>
+            </tr>
+            <tr>
+                <td>Agent 化 ⭐</td>
+                <td>从对话到行动，能使用工具</td>
+                <td>智能问数、智能写作、工单处理</td>
+            </tr>
+            <tr>
+                <td>小模型</td>
+                <td>端侧部署，隐私保护</td>
+                <td>现场设备实时诊断、离线问答</td>
+            </tr>
+            <tr>
+                <td>垂直应用</td>
+                <td>行业大模型、领域专精</td>
+                <td>电力知识大模型、故障诊断专家</td>
+            </tr>
+        </table>
+
+        <h3>课时 2-3：Agentic AI 概述与演进（80 分钟）</h3>
+        
+        <h4>1. AI 发展的三个阶段</h4>
+        <ul>
+            <li><strong>Rule-Based AI</strong>（基于规则）- if-else 逻辑，无法处理复杂场景</li>
+            <li><strong>Machine Learning AI</strong>（机器学习）- 从数据中学习，需要大量标注数据</li>
+            <li><strong>Agentic AI</strong>（智能体 AI）⭐ - 自主决策、工具使用、持续学习</li>
+        </ul>
+
+        <h4>2. Agent 四大核心特征</h4>
+        <div class="info-box">
+            <ul>
+                <li><strong>自主性（Autonomy）</strong> - 独立决策，无需人工逐步指令</li>
+                <li><strong>规划能力（Planning）</strong> - 任务分解、步骤规划、动态调整</li>
+                <li><strong>工具使用（Tool Use）</strong> - 调用 API、数据库、搜索引擎等</li>
+                <li><strong>记忆能力（Memory）</strong> - 短期记忆（上下文）、长期记忆（历史对话）</li>
+            </ul>
+        </div>
+
+        <h4>3. ReAct 模式详解</h4>
+        <div class="code-block">
+ReAct 循环：Thought → Action → Observation → Thought → ...
+
+案例：智能问数
+Thought 1: "用户需要查询成都高新区最近 7 天的用电负荷数据"
+Action 1: 调用 query_power_data(region="成都高新区", date_range="7days")
+Observation 1: 获取数据 [{date, load}, ...]
+Thought 2: "分析数据趋势，发现 2/28 出现异常峰值 920MW"
+Action 2: 调用 query_context_info(date="2028-02-28")
+Observation 2: 获取上下文（招聘会 5 万 + 人流）
+Thought 3: "结合上下文分析，负荷峰值由大型活动导致"
+Final Answer: 输出分析报告
+        </div>
+
+        <h3>课时 4：深入 ReAct 模式（40 分钟）</h3>
+        
+        <h4>ReAct vs 传统方法对比</h4>
+        <table>
+            <tr>
+                <th>维度</th>
+                <th>传统 Prompt</th>
+                <th>ReAct</th>
+            </tr>
+            <tr>
+                <td>思考过程</td>
+                <td>黑盒</td>
+                <td>白盒/透明</td>
+            </tr>
+            <tr>
+                <td>工具使用</td>
+                <td>无法使用</td>
+                <td>主动调用</td>
+            </tr>
+            <tr>
+                <td>复杂任务</td>
+                <td>容易出错</td>
+                <td>分步处理</td>
+            </tr>
+            <tr>
+                <td>可解释性</td>
+                <td>差</td>
+                <td>强</td>
+            </tr>
+            <tr>
+                <td>调试难度</td>
+                <td>高</td>
+                <td>低</td>
+            </tr>
+        </table>
+
+        <h2>下午课程</h2>
+        
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="timeline-time">课时 1</div>
+                <div class="timeline-content">
+                    <strong>队伍成立大会</strong>
+                    <ul>
+                        <li>开班致辞（10 分钟）</li>
+                        <li>培训目标和纪律（10 分钟）</li>
+                        <li>团队分组宣布（10 分钟）</li>
+                        <li>破冰与组长选举（10 分钟）</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-time">课时 2-3</div>
+                <div class="timeline-content">
+                    <strong>MCP 协议与 Skills 体系</strong>
+                    <ul>
+                        <li>MCP 协议简介（标准化 Agent 与外部交互）</li>
+                        <li>Skills 技能体系（可复用的能力单元）</li>
+                        <li>灵知平台实现方式</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-time">课时 4</div>
+                <div class="timeline-content">
+                    <strong>项目选题与分组</strong>
+                    <ul>
+                        <li>三大选题方向介绍（智能问数、智能写作、工单处理）</li>
+                        <li>各组讨论并确定选题</li>
+                        <li>组内分工（产品经理、Agent 开发者、前端开发者）</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <h2>晚自习（2 课时）</h2>
+        <div class="info-box">
+            <ul>
+                <li><strong>课时 1：</strong>技术答疑、各组展示技术方案初稿</li>
+                <li><strong>课时 2：</strong>预习准备（ReAct 论文、灵知平台操作指南）</li>
+            </ul>
+        </div>
+
+        <h2>课后作业</h2>
+        <ol>
+            <li>完成项目方案文档（选题名称、业务流程、ReAct 流程图、Skills 清单、界面原型）</li>
+            <li>预习灵知平台操作手册</li>
+            <li>前端组预习 React 基础教程</li>
+        </ol>
+
+        <div style="margin-top: 40px; text-align: center;">
+            <a href="../index.html" class="back-btn">返回课程概览</a>
+            <a href="day2.html" class="back-btn">下一天：Day 2 →</a>
+        </div>
+    </div>
+</body>
+</html>

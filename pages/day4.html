@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day 4 - React 前端开发</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            line-height: 1.8;
+            color: #333;
+            background: #f5f7fa;
+            padding: 20px;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+        .back-btn {
+            display: inline-block;
+            margin-bottom: 20px;
+            padding: 10px 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 20px;
+            transition: transform 0.3s;
+        }
+        .back-btn:hover { transform: translateY(-2px); }
+        h1 { color: #667eea; margin-bottom: 10px; }
+        h2 { color: #764ba2; margin: 30px 0 15px; padding-bottom: 10px; border-bottom: 2px solid #667eea; }
+        h3 { color: #667eea; margin: 25px 0 12px; }
+        h4 { color: #764ba2; margin: 20px 0 10px; }
+        p { margin: 15px 0; }
+        ul, ol { margin: 15px 0 15px 25px; }
+        li { margin: 8px 0; }
+        .info-box {
+            background: #f0f4ff;
+            padding: 20px;
+            border-radius: 10px;
+            border-left: 4px solid #667eea;
+            margin: 20px 0;
+        }
+        .code-block {
+            background: #2d3748;
+            color: #e2e8f0;
+            padding: 20px;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 15px 0;
+            font-family: "Courier New", monospace;
+            font-size: 0.9em;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        th, td {
+            padding: 12px;
+            border: 1px solid #e2e8f0;
+            text-align: left;
+        }
+        th { background: #667eea; color: white; }
+        tr:nth-child(even) { background: #f8f9fa; }
+        .step {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px 20px;
+            border-radius: 8px;
+            margin: 15px 0;
+        }
+        .step h4 { color: white; margin-top: 0; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="../index.html" class="back-btn">← 返回课程概览</a>
+        
+        <h1>📅 Day 4：React 前端开发</h1>
+        
+        <div class="info-box">
+            <strong>课时：</strong>8 课时（上午 4 课时 + 下午 4 课时 + 晚自习 2 课时）<br>
+            <strong>目标：</strong>
+            <ul>
+                <li>掌握 React 基础开发</li>
+                <li>完成前端界面开发</li>
+                <li>实现 API 集成</li>
+                <li>完成端到端联调</li>
+            </ul>
+        </div>
+
+        <h2>上午课程：React 界面开发</h2>
+        
+        <h3>课时 1：React 快速入门（40 分钟）</h3>
+        
+        <h4>1. 核心概念</h4>
+        <div class="code-block">
+// 函数组件
+function Welcome({ name }) {
+  return &lt;h1&gt;你好，{name}&lt;/h1&gt;;
+}
+
+// State
+import { useState } from 'react';
+
+function Counter() {
+  const [count, setCount] = useState(0);
+  return (
+    &lt;button onClick={() =&gt; setCount(count + 1)}&gt;
+      点击次数：{count}
+    &lt;/button&gt;
+  );
+}
+        </div>
+
+        <h4>2. 项目结构</h4>
+        <div class="code-block">
+my-app/
+├── src/
+│   ├── components/    # 可复用组件
+│   ├── pages/         # 页面组件
+│   ├── services/      # API 服务
+│   ├── App.js         # 根组件
+│   └── index.js       # 入口文件
+├── public/
+└── package.json
+        </div>
+
+        <h3>课时 2-3：聊天界面开发（80 分钟）</h3>
+        
+        <div class="step">
+            <h4>步骤 1：创建项目</h4>
+            <div class="code-block">
+npm create vite@latest my-chat-app -- --template react
+cd my-chat-app
+npm install
+npm run dev
+            </div>
+        </div>
+
+        <div class="step">
+            <h4>步骤 2：聊天界面布局</h4>
+            <div class="code-block">
+function ChatPage() {
+  const [messages, setMessages] = useState([
+    { id: 1, type: 'bot', content: '你好，我是智能助手' }
+  ]);
+  const [input, setInput] = useState('');
+  
+  return (
+    &lt;div className="chat-container"&gt;
+      &lt;header className="chat-header"&gt;
+        &lt;h1&gt;智能助手&lt;/h1&gt;
+      &lt;/header&gt;
+      
+      &lt;div className="message-list"&gt;
+        {messages.map(msg =&gt; (
+          &lt;div key={msg.id} className={`message ${msg.type}`}&gt;
+            &lt;div className="message-content"&gt;
+              {msg.content}
+            &lt;/div&gt;
+          &lt;/div&gt;
+        ))}
+      &lt;/div&gt;
+      
+      &lt;div className="chat-input"&gt;
+        &lt;input
+          value={input}
+          onChange={(e) =&gt; setInput(e.target.value)}
+          placeholder="输入您的问题..."
+        /&gt;
+        &lt;button onClick={handleSend}&gt;发送&lt;/button&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  );
+}
+            </div>
+        </div>
+
+        <div class="step">
+            <h4>步骤 3：问题建议功能</h4>
+            <div class="code-block">
+const suggestions = ['查询用电量', '故障报修', '业务咨询'];
+
+{messages.length === 1 && (
+  &lt;div className="suggestions"&gt;
+    {suggestions.map((s, i) =&gt; (
+      &lt;button onClick={() =&gt; handleSuggestionClick(s)}&gt;
+        {s}
+      &lt;/button&gt;
+    ))}
+  &lt;/div&gt;
+)}
+            </div>
+        </div>
+
+        <h3>课时 4：加载状态与错误处理（40 分钟）</h3>
+        
+        <h4>加载状态</h4>
+        <div class="code-block">
+const [loading, setLoading] = useState(false);
+
+const handleSend = async () => {
+  setLoading(true);
+  try {
+    const answer = await callAgent(input);
+    // 添加回复
+  } catch (error) {
+    // 错误处理
+  } finally {
+    setLoading(false);
+  }
+};
+
+// 加载指示器
+{loading && (
+  &lt;div className="loading"&gt;
+    &lt;span className="loading-dot"&gt;&lt;/span&gt;
+    &lt;span className="loading-dot"&gt;&lt;/span&gt;
+    &lt;span className="loading-dot"&gt;&lt;/span&gt;
+  &lt;/div&gt;
+)}
+        </div>
+
+        <h2>下午课程：API 集成与调试</h2>
+        
+        <h3>课时 5-6：API 集成（80 分钟）</h3>
+        
+        <h4>1. API 服务封装</h4>
+        <div class="code-block">
+// src/services/api.js
+const API_CONFIG = {
+  baseUrl: 'https://api.xxx.com/agent',
+  uuid: 'your-uuid',
+  authKey: 'your-auth-key'
+};
+
+export const callAgent = async (question) => {
+  const response = await fetch(`${API_CONFIG.baseUrl}/${API_CONFIG.uuid}`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${API_CONFIG.authKey}`
+    },
+    body: JSON.stringify({ query: question })
+  });
+  const result = await response.json();
+  return result.data.answer;
+};
+        </div>
+
+        <h4>2. 完整对话流程</h4>
+        <div class="code-block">
+const handleSend = async () => {
+  // 添加用户消息
+  const userMessage = { 
+    id: Date.now(), 
+    type: 'user', 
+    content: input 
+  };
+  setMessages(prev => [...prev, userMessage]);
+  
+  setLoading(true);
+  try {
+    const answer = await callAgent(input);
+    const botMessage = { 
+      id: Date.now() + 1, 
+      type: 'bot', 
+      content: answer 
+    };
+    setMessages(prev => [...prev, botMessage]);
+  } catch (error) {
+    const errorMessage = { 
+      id: Date.now() + 1, 
+      type: 'bot', 
+      content: '服务暂时不可用' 
+    };
+    setMessages(prev => [...prev, errorMessage]);
+  } finally {
+    setLoading(false);
+  }
+};
+        </div>
+
+        <h4>3. 可选功能扩展</h4>
+        <ul>
+            <li><strong>清除对话：</strong>setMessages([初始消息])</li>
+            <li><strong>复制回复：</strong>navigator.clipboard.writeText(content)</li>
+            <li><strong>Markdown 渲染：</strong>react-markdown 库</li>
+        </ul>
+
+        <h3>课时 7-8：联调测试（80 分钟）</h3>
+        
+        <h4>功能测试清单</h4>
+        <table>
+            <tr>
+                <th>类型</th>
+                <th>测试项</th>
+            </tr>
+            <tr>
+                <td>功能测试</td>
+                <td>发送消息、Agent 回复、加载状态、错误处理、问题建议</td>
+            </tr>
+            <tr>
+                <td>性能测试</td>
+                <td>快速连续发送、长文本回复、特殊字符</td>
+            </tr>
+            <tr>
+                <td>兼容性测试</td>
+                <td>不同浏览器、不同分辨率</td>
+            </tr>
+        </table>
+
+        <h4>打包部署</h4>
+        <div class="code-block">
+npm run build
+npm run preview
+
+# 部署选项
+- Vercel、Netlify（静态托管）
+- 公司内网服务器
+- 阿里云、腾讯云
+        </div>
+
+        <h2>晚自习：项目完善</h2>
+        <div class="info-box">
+            <h4>课时 1：功能完善</h4>
+            <ul>
+                <li>修复测试发现的 bug</li>
+                <li>添加额外功能（历史记录、主题切换等）</li>
+                <li>优化界面样式</li>
+            </ul>
+            
+            <h4>课时 2：文档准备</h4>
+            <ul>
+                <li>项目说明文档</li>
+                <li>演示脚本准备</li>
+                <li>代码整理</li>
+            </ul>
+        </div>
+
+        <h2>React 核心概念速查</h2>
+        <table>
+            <tr>
+                <th>概念</th>
+                <th>说明</th>
+                <th>示例</th>
+            </tr>
+            <tr>
+                <td>Props</td>
+                <td>父组件传递给子组件的数据</td>
+                <td>&lt;Welcome name="张三" /&gt;</td>
+            </tr>
+            <tr>
+                <td>State</td>
+                <td>组件内部的状态</td>
+                <td>const [count, setCount] = useState(0)</td>
+            </tr>
+            <tr>
+                <td>useEffect</td>
+                <td>副作用处理</td>
+                <td>useEffect(() =&gt; {...}, [deps])</td>
+            </tr>
+            <tr>
+                <td>事件处理</td>
+                <td>响应用户交互</td>
+                <td>onClick={() =&gt; handleClick()}</td>
+            </tr>
+        </table>
+
+        <div style="margin-top: 40px; text-align: center;">
+            <a href="day3.html" class="back-btn">← 前一天：Day 3</a>
+            <a href="day5.html" class="back-btn">下一天：Day 5 →</a>
+        </div>
+    </div>
+</body>
+</html>
