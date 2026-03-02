@@ -32,11 +32,11 @@
 - 完成智能应用端到端开发
 
 **课程安排**：
-- [Day 1](./Lesson-01/Day1-AgenticAI与ReAct模式.md)：AI趋势与Agentic AI基础
-- [Day 2](./Lesson-01/Day2-灵知平台Agent开发实战.md)：灵知平台Agent开发实战
-- [Day 3](./Lesson-01/Day3-Agent优化与API暴露.md)：Agent优化与API暴露
-- [Day 4](./Lesson-01/Day4-VibeCoding与前端开发.md)：Vibe Coding与前端开发
-- [Day 5](./Lesson-01/Day5-项目展示与评审.md)：项目展示与评审
+- [Day 1](./Lesson-01/Day1-AgenticAI 与 ReAct 模式.md)：AI 趋势与 Agentic AI 基础
+- [Day 2](./Lesson-01/Day2-Agent 开发实战.md)：灵知平台 Agent 开发实战
+- [Day 3](./Lesson-01/Day3-Agent 优化与发布.md)：Agent 优化与 API 发布
+- [Day 4](./Lesson-01/Day4-前端开发.md)：React 前端开发
+- [Day 5](./Lesson-01/Day5-项目展示与总结.md)：项目展示与总结
 
 **项目方向**：
 - 智能问数：自然语言查询电力数据
