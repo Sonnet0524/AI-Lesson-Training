@@ -32,11 +32,15 @@
 - 完成智能应用端到端开发
 
 **课程安排**：
-- [Day 1](./Lesson-01/Day1-AgenticAI 与 ReAct 模式.md)：AI 趋势与 Agentic AI 基础
-- [Day 2](./Lesson-01/Day2-Agent 开发实战.md)：灵知平台 Agent 开发实战
-- [Day 3](./Lesson-01/Day3-Agent 优化与发布.md)：Agent 优化与 API 发布
-- [Day 4](./Lesson-01/Day4-前端开发.md)：React 前端开发
+- [Day 1](./Lesson-01/Day1-AgenticAI与ReAct模式.md)：AI趋势与Agentic AI基础
+- [Day 2](./Lesson-01/Day2-Agent开发实战.md)：灵知平台Agent开发实战
+- [Day 3](./Lesson-01/Day3-Agent优化与发布.md)：Agent优化与API发布
+- [Day 4](./Lesson-01/Day4-前端开发.md)：React前端开发
 - [Day 5](./Lesson-01/Day5-项目展示与总结.md)：项目展示与总结
+
+**项目管理**：
+- [TODO任务管理](./Lesson-01/TODO/TODO-总览.md)：任务清单和进度跟踪
+- [资源文件](./Lesson-01/resources/README.md)：模拟接口、知识库、示例代码等
 
 **项目方向**：
 - 智能问数：自然语言查询电力数据
@@ -44,9 +48,9 @@
 - 工单处理：工单智能分类与处理建议
 
 **技术栈**：
-- Agent开发：灵知平台（低代码）
-- 前端开发：React + Vibe Coding（Trae/opencode）
-- 核心技术：Agentic AI、ReAct、MCP、Skills
+- Agent开发：灵知平台（低代码）+ Qwen模型
+- 前端开发：React + Vibe Coding（OpenCode/Trae-cn）
+- 核心技术：Agentic AI、ReAct、编排模式
 
 ---
 
@@ -57,6 +61,12 @@
 ## 培训对象
 
 国网四川电力人工智能种子团队成员（约80人）
+
+## 分组协作
+
+- **分组方案**：12-14组，每组6-7人
+- **学习模式**：全员学习所有内容，执行时角色侧重
+- **角色分工**：产品经理、Agent开发者、前端开发者
 
 ## 培训特色
 
