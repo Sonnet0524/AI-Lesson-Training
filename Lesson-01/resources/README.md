@@ -24,14 +24,8 @@ resources/
 │
 ├── 环境指南/                   # 环境配置和使用指南
 │   ├── OpenCode安装指南.md
-│   ├── OpenCode使用指南.md
-│   ├── OpenCode-FAQ.md
-│   ├── OpenCode测试报告.md
 │   ├── Trae-cn调研报告.md
-│   ├── Trae-cn安装指南.md
-│   ├── 工具对比.md
-│   ├── Qwen模型测试报告.md
-│   └── 灵知平台模型配置.md
+│   └── 工具对比.md
 │
 ├── 示例代码/                   # 示例代码和模板
 │   ├── ReAct编排示例.json      # 灵知平台导出的Agent配置
