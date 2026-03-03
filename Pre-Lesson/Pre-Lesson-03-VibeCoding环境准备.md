@@ -4,10 +4,11 @@
 
 **时间**：Day 1 前1天
 
-**总时长**：90分钟（授课60分钟 + 交流30分钟）
+**总时长**：100分钟（授课70分钟 + 交流30分钟）
 
 **学习目标**：
 - 完成Node.js安装
+- 完成Git与Gitee配置
 - 完成opencode工具安装配置
 - 能够创建和运行React项目
 - 了解Vibe Coding基本概念
@@ -51,17 +52,18 @@
 | 工具 | 版本要求 | 用途 |
 |------|----------|------|
 | Node.js | LTS版本（18+） | JavaScript运行环境 |
+| Git | 最新版 | 版本控制 |
 | opencode | 最新版 | AI编程助手 |
 | VS Code | 最新版 | 代码编辑器（推荐） |
-| Git | 最新版 | 版本控制（可选） |
 
 **安装顺序**：
 ```
 步骤1：安装 Node.js
-步骤2：安装 VS Code
-步骤3：安装 Git（可选）
-步骤4：安装 opencode
-步骤5：验证环境
+步骤2：安装 Git
+步骤3：配置 Gitee
+步骤4：安装 VS Code
+步骤5：安装 opencode
+步骤6：验证环境
 ```
 
 ---
@@ -176,7 +178,190 @@ npm config get registry
 
 ---
 
-### Part 3：Vibe Coding工具安装与配置（20分钟）
+### Part 3：Git与Gitee配置（10分钟）
+
+#### 1. 为什么使用Gitee？（2分钟）
+
+**背景说明**：
+```
+由于网络环境限制，GitHub访问不稳定
+使用Gitee作为代码仓库管理平台，确保培训期间代码协作顺畅
+```
+
+**Gitee优势**：
+- ✅ 国内访问稳定快速
+- ✅ 免费私有仓库
+- ✅ 中文界面友好
+- ✅ 与Git操作完全兼容
+- ✅ 支持团队协作功能
+
+**对比**：
+| 平台 | 访问速度 | 免费私有仓库 | 中文支持 | 培训推荐 |
+|------|----------|--------------|----------|----------|
+| **Gitee** | ⭐⭐⭐⭐⭐ | ✅ 无限制 | ✅ 原生 | ✅ **主推** |
+| GitHub | ⭐⭐ | ✅ 有限制 | ⚠️ 需插件 | ⚠️ 备选 |
+| GitLab | ⭐⭐⭐ | ✅ 有 | ⚠️ 部分 | ❌ 不推荐 |
+
+---
+
+#### 2. Git安装（3分钟）
+
+**Windows安装**：
+```
+方式1：官网下载
+步骤1：访问 https://git-scm.com/download/win
+步骤2：下载安装包
+步骤3：运行安装，使用默认配置即可
+
+方式2：使用Chocolatey（如已安装）
+choco install git
+```
+
+**macOS安装**：
+```bash
+# 方式1：使用Xcode Command Line Tools
+xcode-select --install
+
+# 方式2：使用Homebrew
+brew install git
+```
+
+**Linux安装**：
+```bash
+# Ubuntu/Debian
+sudo apt-get update
+sudo apt-get install git
+
+# CentOS/RHEL
+sudo yum install git
+```
+
+**验证安装**：
+```bash
+git --version
+# 预期输出：git version 2.x.x
+```
+
+---
+
+#### 3. Gitee注册与配置（5分钟）
+
+**注册Gitee账号**：
+```
+步骤1：访问 https://gitee.com
+步骤2：点击"注册"
+步骤3：填写邮箱、密码、用户名
+步骤4：验证邮箱
+步骤5：完成注册
+```
+
+**配置Git用户信息**：
+```bash
+# 配置用户名（建议与Gitee用户名一致）
+git config --global user.name "你的名字"
+
+# 配置邮箱（使用注册邮箱）
+git config --global user.email "你的邮箱"
+
+# 查看配置
+git config --global --list
+```
+
+**配置SSH密钥（推荐）**：
+```bash
+# 生成SSH密钥
+ssh-keygen -t rsa -C "你的邮箱"
+# 一路回车使用默认配置
+
+# 查看公钥
+cat ~/.ssh/id_rsa.pub
+# 复制输出的内容
+
+# 添加到Gitee
+# 1. 登录Gitee
+# 2. 点击头像 -> 设置 -> SSH公钥
+# 3. 粘贴公钥内容
+# 4. 点击确定
+
+# 验证SSH连接
+ssh -T git@gitee.com
+# 预期输出：Hi 用户名! You've successfully authenticated...
+```
+
+**HTTPS方式（备选）**：
+```
+如果SSH配置遇到问题，可以使用HTTPS方式：
+- 克隆仓库时使用HTTPS地址
+- 每次推送需要输入用户名密码
+- 或配置Git凭据缓存：
+  git config --global credential.helper store
+```
+
+---
+
+#### 4. Gitee基本使用（可选扩展）
+
+**创建仓库**：
+```
+步骤1：登录Gitee
+步骤2：点击右上角"+" -> "新建仓库"
+步骤3：填写仓库名称（如：ai-training-project）
+步骤4：选择"私有"或"公开"
+步骤5：点击"创建"
+```
+
+**克隆仓库**：
+```bash
+# SSH方式（推荐）
+git clone git@gitee.com:用户名/仓库名.git
+
+# HTTPS方式
+git clone https://gitee.com/用户名/仓库名.git
+```
+
+**提交代码**：
+```bash
+# 进入项目目录
+cd 仓库名
+
+# 添加文件到暂存区
+git add .
+
+# 提交更改
+git commit -m "提交说明"
+
+# 推送到远程仓库
+git push origin master
+```
+
+**拉取更新**：
+```bash
+# 拉取远程更新
+git pull origin master
+```
+
+**详细使用指南**：
+- [Gitee使用指南](../Lesson-01/resources/环境指南/Gitee使用指南.md)
+
+---
+
+**讲师演示**：
+- 演示Gitee注册流程
+- 演示SSH配置
+- 演示仓库创建和克隆
+
+**学员练习**：
+```
+□ 完成Gitee账号注册
+□ 配置Git用户信息
+□ 配置SSH密钥（可选）
+□ 创建一个测试仓库
+□ 克隆到本地
+```
+
+---
+
+### Part 4：Vibe Coding工具安装与配置（20分钟）
 
 #### 1. 工具选择：OpenCode vs Trae（3分钟）
 
@@ -571,6 +756,8 @@ npm run dev
 ```
 □ node -v 显示版本号
 □ npm -v 显示版本号
+□ git --version 显示版本号
+□ Gitee账号注册完成
 □ opencode 能正常启动
 □ 能创建React项目
 □ 能运行React项目
@@ -589,6 +776,8 @@ npm run dev
 
 **本次直播结束后，学员应能够**：
 - [ ] Node.js安装成功
+- [ ] Git安装成功
+- [ ] Gitee账号注册并配置
 - [ ] opencode安装并配置
 - [ ] 能够创建React项目
 - [ ] 能够运行React项目
@@ -602,6 +791,13 @@ npm run dev
 # Node.js 验证
 node -v          # 显示Node.js版本
 npm -v           # 显示npm版本
+
+# Git 验证
+git --version    # 显示Git版本
+
+# Gitee配置
+git config --global user.name "你的名字"
+git config --global user.email "你的邮箱"
 
 # npm镜像配置
 npm config set registry https://registry.npmmirror.com
