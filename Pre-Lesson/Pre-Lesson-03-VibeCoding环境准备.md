@@ -176,26 +176,258 @@ npm config get registry
 
 ---
 
-### Part 3：opencode安装与配置（20分钟）
+### Part 3：Vibe Coding工具安装与配置（20分钟）
 
-#### 1. 下载安装（8分钟）
+#### 1. 工具选择：OpenCode vs Trae（3分钟）
 
-**安装方式**：
+**两种工具对比**：
 
-**方式1：官网下载**
+| 工具 | 特点 | 适用场景 | 推荐指数 |
+|------|------|----------|----------|
+| **OpenCode** | 开源、功能全面、支持多种模型 | 网络环境良好、对代码质量要求高 | ⭐⭐⭐⭐⭐ |
+| **Trae-cn** | 国内访问稳定、中文优化、上手简单 | 网络环境受限、希望简单快速上手 | ⭐⭐⭐⭐ |
+
+**选择建议**：
 ```
-步骤1：访问 opencode 官网（地址待补充）
-步骤2：下载对应系统版本
-步骤3：运行安装程序
+✅ 如果能稳定访问国际网站 → 推荐 OpenCode
+✅ 如果网络访问不稳定 → 推荐 Trae-cn
+✅ 不确定 → 两种都准备，根据实际情况选择
 ```
 
-**方式2：命令行安装**
-```bash
-# macOS/Linux
-curl -fsSL https://opencode.ai/install.sh | sh
+**本次培训推荐**：OpenCode（主要）+ Trae-cn（备选）
 
-# Windows (PowerShell)
+**详细对比文档**：[工具对比分析](../Lesson-01/resources/环境指南/工具对比.md)
+
+---
+
+#### 2. OpenCode 安装（10分钟）
+
+**官网**：https://opencode.ai  
+**GitHub**：https://github.com/anomalyco/opencode
+
+**Windows安装**：
+
+**方式1：PowerShell安装（推荐）**
+```powershell
+# 以管理员身份运行PowerShell
+# 执行安装命令
 irm https://opencode.ai/install.ps1 | iex
+```
+
+**方式2：手动下载安装**
+```
+步骤1：访问 https://opencode.ai
+步骤2：点击"Download for Windows"
+步骤3：下载安装包（.exe或.msi）
+步骤4：双击运行安装程序
+步骤5：按提示完成安装
+```
+
+**macOS安装**：
+
+**方式1：终端安装（推荐）**
+```bash
+# 打开终端，执行安装命令
+curl -fsSL https://opencode.ai/install.sh | bash
+```
+
+**方式2：Homebrew安装**
+```bash
+# 使用Homebrew安装
+brew install opencode
+```
+
+**方式3：手动下载安装**
+```
+步骤1：访问 https://opencode.ai
+步骤2：点击"Download for macOS"
+步骤3：下载.dmg文件
+步骤4：打开.dmg，拖动到Applications文件夹
+```
+
+**Linux安装**：
+
+```bash
+# 使用curl安装
+curl -fsSL https://opencode.ai/install.sh | bash
+
+# 或使用包管理器（Ubuntu/Debian）
+sudo apt-get update
+sudo apt-get install opencode
+
+# 或（Arch Linux）
+yay -S opencode
+```
+
+**安装验证**：
+```bash
+# 检查版本
+opencode --version
+
+# 查看状态
+opencode status
+```
+
+**国内访问提示**：
+```
+⚠️ 如果opencode.ai访问较慢：
+1. 使用网络加速工具
+2. 或选择Trae-cn作为替代方案
+3. 详细安装指南：[OpenCode安装指南](../Lesson-01/resources/环境指南/OpenCode安装指南.md)
+```
+
+---
+
+#### 3. OpenCode 配置（7分钟）
+
+**首次启动**：
+```bash
+# 在终端中输入
+opencode
+```
+
+**登录方式选择**：
+
+**方式1：GitHub账号登录（推荐）**
+```
+1. 选择"Login with GitHub"
+2. 浏览器自动打开授权页面
+3. 点击授权
+4. 自动完成登录
+
+优势：
+- 免费，无需额外付费
+- 可使用GitHub Copilot额度
+```
+
+**方式2：OpenAI账号登录**
+```
+1. 选择"Login with OpenAI"
+2. 使用ChatGPT Plus/Pro账号登录
+
+优势：
+- 可使用ChatGPT Plus/Pro额度
+- 模型质量高
+```
+
+**方式3：使用API Key（灵活）**
+```
+1. 选择"Use API Key"
+2. 输入模型提供商的API Key
+
+支持的API Key：
+- OpenAI API Key
+- Anthropic API Key（Claude）
+- 阿里云API Key（Qwen）
+- 其他兼容OpenAI格式的API Key
+```
+
+**推荐配置（培训使用）**：
+
+**方案A：GitHub Copilot（免费）**
+```
+登录方式：GitHub账号
+模型：默认（Copilot模型）
+费用：免费（GitHub学生包）或$10/月
+适用：个人学习、小型项目
+```
+
+**方案B：Qwen模型（低成本）**
+```
+登录方式：API Key
+API Key来源：阿里云百炼平台
+            https://bailian.console.aliyun.com/
+模型选择：Qwen-Plus 或 Qwen-Turbo
+费用：免费额度 + 按量付费（约￥0.008/千tokens）
+适用：国内用户、预算有限
+```
+
+**方案C：Claude 3.5（高质量）**
+```
+登录方式：API Key
+API Key来源：Anthropic官网
+模型选择：Claude 3.5 Sonnet
+费用：按量付费（约$3/百万tokens）
+适用：对代码质量要求高
+```
+
+**模型选择建议**：
+```
+培训推荐：
+- 主推：Qwen-Plus（国内、低成本、质量好）
+- 备选：GitHub Copilot（免费）
+- 高质量：Claude 3.5 Sonnet（可选）
+```
+
+**配置示例**：
+```bash
+# 启动OpenCode
+opencode
+
+# 进入设置界面
+# Settings -> Model Configuration
+
+# 配置Qwen模型
+1. 选择"Add Custom Model"
+2. Provider: Alibaba Cloud
+3. Model: qwen-plus
+4. API Key: [你的API Key]
+5. 保存配置
+
+# 测试配置
+# 输入：帮我创建一个简单的React组件
+# 检查是否正常响应
+```
+
+---
+
+#### 4. Trae-cn 安装（备选方案）
+
+**适用情况**：
+- OpenCode访问不稳定
+- 希望更简单的上手流程
+- 主要使用中文场景
+
+**官网**：https://www.trae.ai
+
+**安装步骤**：
+```
+步骤1：访问 https://www.trae.ai
+步骤2：点击"Download TRAE"
+步骤3：选择对应平台（Windows/macOS/Linux）
+步骤4：下载并安装
+```
+
+**登录配置**：
+```
+支持登录方式：
+- 字节跳动账号
+- 手机号注册
+- 第三方登录（如支持）
+```
+
+**Trae-cn特点**：
+```
+✅ 国内访问稳定
+✅ 中文场景优化
+✅ 上手简单
+✅ 无需网络优化
+```
+
+**详细说明**：[Trae-cn调研报告](../Lesson-01/resources/环境指南/Trae-cn调研报告.md)
+
+---
+
+**安装完成检查**：
+```bash
+# 检查OpenCode
+opencode --version
+
+# 或检查Trae
+trae --version
+
+# 测试基本功能
+# 启动工具，输入：帮我创建一个简单的HTML页面
 ```
 
 **讲师演示**：
