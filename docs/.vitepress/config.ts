@@ -52,6 +52,15 @@ export default defineConfig({
           { text: '工单处理', link: '/projects/work-order' }
         ]
       },
+      { 
+        text: '平台指南',
+        items: [
+          { text: '快速开始', link: '/platform-guide/quick-start' },
+          { text: '模块概览', link: '/platform-guide/modules/' },
+          { text: '知识库管理', link: '/platform-guide/advanced/knowledge-base' },
+          { text: 'MCP服务', link: '/platform-guide/advanced/mcp' }
+        ]
+      },
       { text: '资源中心', link: '/resources/' }
     ],
     
@@ -107,6 +116,33 @@ export default defineConfig({
                 { text: 'OpenCode安装', link: '/resources/env-setup/opencode' },
                 { text: 'Trae-cn使用', link: '/resources/env-setup/trae-cn' },
                 { text: 'Git环境配置', link: '/resources/env-setup/git-setup' }
+              ]
+            }
+          ]
+        }
+      ],
+      
+      '/platform-guide/': [
+        {
+          text: '平台指南',
+          items: [
+            { text: '快速开始', link: '/platform-guide/quick-start' },
+            { 
+              text: '基础模块',
+              items: [
+                { text: '模块概览', link: '/platform-guide/modules/' },
+                { text: '用户提问', link: '/platform-guide/modules/user-question' },
+                { text: '智能对话', link: '/platform-guide/modules/smart-dialogue' },
+                { text: '知识库搜索', link: '/platform-guide/modules/knowledge-search' },
+                { text: '信息分类', link: '/platform-guide/modules/info-classification' },
+                { text: '循环模块', link: '/platform-guide/modules/loop' }
+              ]
+            },
+            {
+              text: '高级功能',
+              items: [
+                { text: '知识库管理', link: '/platform-guide/advanced/knowledge-base' },
+                { text: 'MCP服务', link: '/platform-guide/advanced/mcp' }
               ]
             }
           ]
