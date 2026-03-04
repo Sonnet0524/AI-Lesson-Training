@@ -127,6 +127,8 @@ export default defineConfig({
           text: '平台指南',
           items: [
             { text: '快速开始', link: '/platform-guide/quick-start' },
+            { text: '基础配置', link: '/platform-guide/basic-config' },
+            { text: '规划概述', link: '/platform-guide/planning-overview' },
             { 
               text: '基础模块',
               items: [
@@ -135,14 +137,21 @@ export default defineConfig({
                 { text: '智能对话', link: '/platform-guide/modules/smart-dialogue' },
                 { text: '知识库搜索', link: '/platform-guide/modules/knowledge-search' },
                 { text: '信息分类', link: '/platform-guide/modules/info-classification' },
-                { text: '循环模块', link: '/platform-guide/modules/loop' }
+                { text: '信息提取', link: '/platform-guide/modules/info-extraction' },
+                { text: '信息加工', link: '/platform-guide/modules/info-processing' },
+                { text: '确定回复', link: '/platform-guide/modules/fixed-reply' },
+                { text: '循环模块', link: '/platform-guide/modules/loop' },
+                { text: '代码块', link: '/platform-guide/modules/code-block' },
+                { text: '文档提问', link: '/platform-guide/modules/doc-question' },
+                { text: 'Agent对话结束', link: '/platform-guide/modules/agent-end' }
               ]
             },
             {
               text: '高级功能',
               items: [
                 { text: '知识库管理', link: '/platform-guide/advanced/knowledge-base' },
-                { text: 'MCP服务', link: '/platform-guide/advanced/mcp' }
+                { text: 'MCP服务', link: '/platform-guide/advanced/mcp' },
+                { text: '发布智能体', link: '/platform-guide/advanced/publish' }
               ]
             }
           ]
