@@ -142,7 +142,10 @@ export default defineConfig({
                 { text: '确定回复', link: '/platform-guide/modules/fixed-reply' },
                 { text: '循环模块', link: '/platform-guide/modules/loop' },
                 { text: '代码块', link: '/platform-guide/modules/code-block' },
+                { text: '关键词识别', link: '/platform-guide/modules/keyword-recognition' },
                 { text: '文档提问', link: '/platform-guide/modules/doc-question' },
+                { text: '文档审查', link: '/platform-guide/modules/doc-review' },
+                { text: '图片提问', link: '/platform-guide/modules/image-question' },
                 { text: 'Agent对话结束', link: '/platform-guide/modules/agent-end' }
               ]
             },
