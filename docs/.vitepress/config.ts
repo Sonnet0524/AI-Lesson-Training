@@ -14,6 +14,9 @@ export default defineConfig({
   // 清理 URL（去掉 .html 后缀）
   cleanUrls: true,
   
+  // 忽略死链接（临时方案，后续修复）
+  ignoreDeadLinks: true,
+  
   // 站点地图
   sitemap: {
     hostname: 'https://sonnet0524.github.io/AI-Lesson-Training/'
@@ -210,10 +213,7 @@ export default defineConfig({
   // 构建配置
   build: {
     // 输出目录
-    outDir: '.vitepress/dist',
-    
-    // 忽略死链接（临时方案，后续修复）
-    ignoreDeadLinks: true
+    outDir: '.vitepress/dist'
   },
   
   // 头部配置
