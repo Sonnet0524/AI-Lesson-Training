@@ -131,6 +131,7 @@ export default defineConfig({
             { text: '规划概述', link: '/platform-guide/planning-overview' },
             { 
               text: '基础模块',
+              collapsed: false,
               items: [
                 { text: '模块概览', link: '/platform-guide/modules/' },
                 { text: '用户提问', link: '/platform-guide/modules/user-question' },
@@ -151,6 +152,7 @@ export default defineConfig({
             },
             {
               text: '高级功能',
+              collapsed: false,
               items: [
                 { text: '知识库管理', link: '/platform-guide/advanced/knowledge-base' },
                 { text: 'MCP服务', link: '/platform-guide/advanced/mcp' },

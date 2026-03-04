@@ -289,25 +289,6 @@ VPNav .VPNavBarMenuGroup:hover .text {
   text-align: center;
 }
 
-/* 移动端优化 */
-@media (max-width: 768px) {
-  .VPHero {
-    padding: 64px 16px !important;
-  }
-  
-  .VPDoc h1 {
-    font-size: 28px;
-  }
-  
-  .VPDoc h2 {
-    font-size: 22px;
-  }
-  
-  .VPDoc .content {
-    font-size: 15px;
-  }
-}
-
 /* 动画效果 */
 .vp-doc a,
 .VPButton {
@@ -337,4 +318,170 @@ VPNav .VPNavBarMenuGroup:hover .text {
 
 ::-webkit-scrollbar-thumb:hover {
   background: var(--vp-c-brand-2);
+}
+
+/* 平板端优化 */
+@media (max-width: 960px) {
+  .VPNav {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+  }
+  
+  .VPNavBar {
+    height: 56px;
+  }
+  
+  .VPDoc .content {
+    padding: 0 16px;
+  }
+  
+  .VPDoc h1 {
+    font-size: 32px;
+  }
+  
+  .VPDoc h2 {
+    font-size: 26px;
+  }
+  
+  .VPDoc h3 {
+    font-size: 22px;
+  }
+}
+
+/* 移动端优化 */
+@media (max-width: 768px) {
+  .VPHero {
+    padding: 48px 16px !important;
+    margin: -16px -16px 0;
+  }
+  
+  .VPHero .name {
+    font-size: 32px !important;
+  }
+  
+  .VPHero .text {
+    font-size: 20px !important;
+  }
+  
+  .VPHero .tagline {
+    font-size: 16px !important;
+    margin-top: 16px;
+  }
+  
+  .VPHero .VPButton {
+    padding: 10px 20px !important;
+    font-size: 14px !important;
+  }
+  
+  .VPDoc {
+    padding: 0 8px;
+  }
+  
+  .VPDoc h1 {
+    font-size: 28px;
+    padding-bottom: 8px;
+  }
+  
+  .VPDoc h2 {
+    font-size: 22px;
+    margin-top: 36px;
+  }
+  
+  .VPDoc h3 {
+    font-size: 19px;
+    margin-top: 24px;
+  }
+  
+  .VPDoc .content {
+    font-size: 15px;
+    line-height: 1.7;
+  }
+  
+  .VPDoc table {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+    font-size: 14px;
+  }
+  
+  .VPDoc th,
+  .VPDoc td {
+    padding: 8px 12px;
+  }
+  
+  .vp-code {
+    font-size: 13px;
+  }
+  
+  .VPSidebar {
+    width: 280px;
+  }
+  
+  .VPLocalSearchBox .search-input {
+    font-size: 16px;
+  }
+}
+
+/* 小屏幕手机优化 */
+@media (max-width: 480px) {
+  .VPHero {
+    padding: 40px 12px !important;
+  }
+  
+  .VPHero .name {
+    font-size: 28px !important;
+  }
+  
+  .VPHero .text {
+    font-size: 18px !important;
+  }
+  
+  .VPDoc h1 {
+    font-size: 26px;
+  }
+  
+  .VPDoc h2 {
+    font-size: 20px;
+  }
+  
+  .VPDoc h3 {
+    font-size: 18px;
+  }
+  
+  .VPDoc .content {
+    font-size: 14px;
+  }
+  
+  .VPButton,
+  .VPLink {
+    min-height: 44px;
+    min-width: 44px;
+  }
+}
+
+/* 代码块优化 */
+.vp-code {
+  font-family: 'Fira Code', 'Consolas', 'Monaco', monospace;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.vp-code span {
+  font-family: inherit;
+}
+
+.vp-code-copy {
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+
+.vp-code:hover .vp-code-copy {
+  opacity: 1;
+}
+
+@media (max-width: 768px) {
+  .vp-code-copy {
+    opacity: 1;
+    width: 36px;
+    height: 36px;
+  }
 }
