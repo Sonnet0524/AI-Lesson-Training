@@ -274,6 +274,10 @@ export default defineConfig({
     ['meta', { name: 'og:locale', content: 'zh-CN' }],
     ['meta', { name: 'og:site_name', content: 'AI 种子团队培训' }],
     ['meta', { name: 'apple-mobile-web-app-capable', content: 'yes' }],
-    ['meta', { name: 'apple-mobile-web-app-status-bar-style', content: 'black' }]
+    ['meta', { name: 'apple-mobile-web-app-status-bar-style', content: 'black' }],
+    // 缓存控制
+    ['meta', { 'http-equiv': 'Cache-Control', content: 'no-cache, no-store, must-revalidate' }],
+    ['meta', { 'http-equiv': 'Pragma', content: 'no-cache' }],
+    ['meta', { 'http-equiv': 'Expires', content: '0' }]
   ]
 })
