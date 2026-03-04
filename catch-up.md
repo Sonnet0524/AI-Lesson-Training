@@ -7,7 +7,7 @@
 
 ## 一、项目概览
 
-**当前状态**：🔄 培训准备阶段（已完成课件开发和核心培训材料，等待业务定制化）
+**当前状态**：🚀 VitePress 站点重构阶段（正在进行架构升级）
 
 **项目目标**：国网四川电力 AI 种子团队 5 天 Agentic AI 培训课程
 
@@ -18,19 +18,31 @@
 - 🟡 P1：4/5 完成，1 待开始，1 已取消
 - 🟢 P2：1/3 完成，2 待开始
 
-**最新进展**（2026-03-04）：
+**最新进展**（2026-03-05）：
 - ✅ 课程内容设计完成（Day 1-5 + Pre-Lesson）
 - ✅ HTML交互页面开发完成
 - ✅ 项目设计文档完成（智能问数、智能写作、工单处理）
 - ✅ 环境验证完成（OpenCode、Trae-cn、灵知平台）
 - ✅ ReAct实现方案 v2.1 完成（明确5阶段流程，简化Memory设计）
 - ✅ 培训材料完成（协作指导手册、学员手册、Gitee指南）
+- 🚀 **新项目**：VitePress 站点重构启动
+  - 目标：提升可维护性，添加搜索和 Mermaid 流程图
+  - 周期：20天（2026-03-05 至 2026-03-24）
+  - 详细计划：见 `VITEPRESS-MIGRATION-PLAN.md`
 - ⏸️ P0 任务暂缓（等待业务场景确认和外部文档）
 - ⏳ TODO-009 实操手册可立即启动
 
 ---
 
 ## 二、快速开始
+
+### 🚀 VitePress 迁移项目（当前重点）
+
+**如果你是来处理 VitePress 迁移**：
+
+1. **阅读迁移计划**：`VITEPRESS-MIGRATION-PLAN.md`
+2. **确认当前阶段**：查看下方"当前工作重点"
+3. **执行阶段任务**：按计划实施
 
 ### 步骤 1：确认工作目录
 
@@ -54,10 +66,10 @@ ls -la
 ### 步骤 3：了解当前进展
 
 阅读以下文件：
-1. `state.md` - 完整项目状态
-2. `AGENT.md` - AI 助手工作规范
-3. `Lesson-01/TODO/TODO-总览.md` - 任务总览
-4. `Lesson-01/TODO/TODO-P0-高优先级.md` - 高优先级任务详情
+1. `VITEPRESS-MIGRATION-PLAN.md` - **VitePress 迁移详细计划**
+2. `state.md` - 完整项目状态
+3. `AGENT.md` - AI 助手工作规范
+4. `Lesson-01/TODO/TODO-总览.md` - 任务总览
 
 ---
 
@@ -123,7 +135,57 @@ ls -la
 
 ---
 
-## 六、Git 提交规范
+## 六、VitePress 迁移项目（进行中）
+
+### 6.1 项目简介
+
+正在进行站点架构升级，将纯 HTML 站点迁移至 VitePress。
+
+**目标**：
+- ✅ 提升可维护性（Markdown + 自动同步）
+- ✅ 添加全文搜索功能
+- ✅ 支持 Mermaid 流程图
+- ✅ 优化移动端体验
+
+**详细计划**：`VITEPRESS-MIGRATION-PLAN.md`
+
+### 6.2 新文档结构
+
+```
+AI-Lesson/
+├── 📘 docs/              # VitePress 站点（学员访问）
+├── 📁 content/           # 课程内容源文件（保留原名）
+├── 📁 platform-docs/     # 灵知平台原始文档
+└── 🛠️ scripts/          # 同步脚本
+```
+
+### 6.3 文件名映射
+
+| content/ 源文件 | docs/ 目标文件 |
+|----------------|----------------|
+| Pre-Lesson-01-灵知平台入门.md | pre-lesson/01-platform-intro.md |
+| Day1-AgenticAI与ReAct模式.md | lesson-01/day1-ai-trends.md |
+| 智能问数-项目设计.md | projects/smart-query.md |
+
+### 6.4 常用命令
+
+```bash
+# 同步内容到 docs/
+npm run sync
+
+# 本地开发预览
+npm run dev
+
+# 构建站点
+npm run build
+
+# 部署到 GitHub Pages
+# 自动触发：git push 到 main 分支
+```
+
+---
+
+## 七、Git 提交规范
 
 ```bash
 # 添加所有更改
@@ -175,6 +237,17 @@ git push
 - ✅ 灵知平台完整参考文档
 - ✅ GitHub Pages 部署
 - ✅ 所有链接检查完成
+
+### VitePress 重构阶段（🚀 进行中）
+- ⏳ 阶段 1：基础架构搭建（第 1-2 天）
+- ⏳ 阶段 2：内容迁移（第 3-5 天）
+- ⏳ 阶段 3：平台指南重构（第 6-10 天）
+- ⏳ 阶段 4：样式定制（第 11-13 天）
+- ⏳ 阶段 5：测试部署（第 14-16 天）
+- ⏳ 阶段 6：文档完善（第 17-18 天）
+- ⏳ 阶段 7：缓冲期（第 19-20 天）
+
+**详细计划**：`VITEPRESS-MIGRATION-PLAN.md`
 
 ### 环境验证阶段（✅ 已完成）
 - ✅ TODO-004：OpenCode环境验证（2026-03-03）

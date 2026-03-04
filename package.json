@@ -1,0 +1,25 @@
+{
+  "name": "ai-lesson-training",
+  "version": "2.0.0",
+  "description": "国网四川电力AI种子团队培训课程",
+  "type": "module",
+  "scripts": {
+    "sync": "node scripts/sync-content.js",
+    "dev": "npm run sync && vitepress dev docs",
+    "build": "npm run sync && vitepress build docs",
+    "preview": "vitepress preview docs",
+    "check-links": "node scripts/check-links.js"
+  },
+  "devDependencies": {
+    "vitepress": "^1.0.0-rc.44",
+    "mermaid": "^10.8.0"
+  },
+  "keywords": [
+    "AI",
+    "Agentic AI",
+    "培训",
+    "VitePress"
+  ],
+  "author": "国网四川电力AI种子团队",
+  "license": "MIT"
+}

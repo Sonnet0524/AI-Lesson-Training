@@ -1,0 +1,109 @@
+{
+  "mappings": [
+    {
+      "source": "content/pre-lesson/Pre-Lesson-01-灵知平台入门.md",
+      "target": "docs/pre-lesson/01-platform-intro.md",
+      "title": "第1次直播：灵知平台入门",
+      "description": "灵知平台账号注册、基础操作、规划页面与模块架构",
+      "order": 1
+    },
+    {
+      "source": "content/pre-lesson/Pre-Lesson-02-核心模块与编排.md",
+      "target": "docs/pre-lesson/02-core-modules.md",
+      "title": "第2次直播：核心模块与编排",
+      "description": "5个核心模块详解、常见编排模式、实操练习",
+      "order": 2
+    },
+    {
+      "source": "content/pre-lesson/Pre-Lesson-03-VibeCoding环境准备.md",
+      "target": "docs/pre-lesson/03-vibe-coding.md",
+      "title": "第3次直播：VibeCoding环境准备",
+      "description": "Node.js安装、OpenCode配置、React项目创建",
+      "order": 3
+    },
+    {
+      "source": "content/lesson-01/Day1-AgenticAI与ReAct模式.md",
+      "target": "docs/lesson-01/day1-ai-trends.md",
+      "title": "Day 1：AI趋势与Agentic AI基础",
+      "description": "了解近期AI技术发展趋势、深入理解ReAct模式",
+      "order": 1
+    },
+    {
+      "source": "content/lesson-01/Day2-Agent开发实战.md",
+      "target": "docs/lesson-01/day2-agent-dev.md",
+      "title": "Day 2：灵知平台Agent开发实战",
+      "description": "使用灵知平台搭建Agent应用核心流程",
+      "order": 2
+    },
+    {
+      "source": "content/lesson-01/Day3-Agent优化与发布.md",
+      "target": "docs/lesson-01/day3-agent-optimize.md",
+      "title": "Day 3：Agent优化与发布",
+      "description": "Agent性能优化、高级模块使用、API发布",
+      "order": 3
+    },
+    {
+      "source": "content/lesson-01/Day4-前端开发.md",
+      "target": "docs/lesson-01/day4-frontend.md",
+      "title": "Day 4：前端开发",
+      "description": "使用React开发前端界面、API集成",
+      "order": 4
+    },
+    {
+      "source": "content/lesson-01/Day5-项目展示与总结.md",
+      "target": "docs/lesson-01/day5-showcase.md",
+      "title": "Day 5：项目展示与总结",
+      "description": "项目展示、成果评审、培训总结",
+      "order": 5
+    },
+    {
+      "source": "content/projects/智能问数-项目设计.md",
+      "target": "docs/projects/smart-query.md",
+      "title": "智能问数项目设计",
+      "description": "电力数据自然语言查询系统设计方案",
+      "order": 1
+    },
+    {
+      "source": "content/projects/智能写作-项目设计.md",
+      "target": "docs/projects/smart-writing.md",
+      "title": "智能写作项目设计",
+      "description": "公文报告智能生成系统设计方案",
+      "order": 2
+    },
+    {
+      "source": "content/projects/工单处理-项目设计.md",
+      "target": "docs/projects/work-order.md",
+      "title": "工单处理项目设计",
+      "description": "工单智能分类与处理系统设计方案",
+      "order": 3
+    }
+  ],
+  "resourceMappings": [
+    {
+      "source": "content/lesson-01/resources/环境指南/OpenCode安装指南.md",
+      "target": "docs/resources/env-setup/opencode.md",
+      "title": "OpenCode安装指南",
+      "description": "OpenCode安装和配置详细指南"
+    },
+    {
+      "source": "content/lesson-01/resources/环境指南/Trae-cn调研报告.md",
+      "target": "docs/resources/env-setup/trae-cn.md",
+      "title": "Trae-cn使用指南",
+      "description": "Trae-cn调研报告和使用指南"
+    },
+    {
+      "source": "content/lesson-01/resources/环境指南/Gitee使用指南.md",
+      "target": "docs/resources/env-setup/git-setup.md",
+      "title": "Git环境配置",
+      "description": "Gitee和Git使用指南"
+    }
+  ],
+  "excludes": [
+    "content/lesson-01/TODO/**",
+    "content/lesson-01/resources/培训资料/**",
+    "content/lesson-01/resources/示例代码/**",
+    "content/lesson-01/resources/模拟接口/**",
+    "content/lesson-01/resources/知识库文档/**",
+    "**/README.md"
+  ]
+}
