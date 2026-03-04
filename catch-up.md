@@ -1,462 +1,230 @@
 # 快速恢复工作指南 (Catch-Up)
 
-**适用场景**：新会话中快速恢复课程开发工作
-**最后更新**：2026年3月4日
+**适用场景**：新会话中快速恢复课程开发工作  
+**最后更新**：2026-03-04
 
 ---
 
 ## 一、项目概览
 
-**当前状态**：🚀 VitePress 站点重构阶段（正在进行架构升级）
+**当前阶段**：🔄 VitePress 站点重构（阶段 1 进行中）
 
 **项目目标**：国网四川电力 AI 种子团队 5 天 Agentic AI 培训课程
 
 **在线地址**：https://sonnet0524.github.io/AI-Lesson-Training/
 
-**TODO 完成进度**：9/17 (53%)
-- 🔴 P0：4/8 完成，4 暂缓
-- 🟡 P1：4/5 完成，1 待开始，1 已取消
-- 🟢 P2：1/3 完成，2 待开始
-
-**最新进展**（2026-03-05）：
-- ✅ 课程内容设计完成（Day 1-5 + Pre-Lesson）
-- ✅ HTML交互页面开发完成
-- ✅ 项目设计文档完成（智能问数、智能写作、工单处理）
-- ✅ 环境验证完成（OpenCode、Trae-cn、灵知平台）
-- ✅ ReAct实现方案 v2.1 完成（明确5阶段流程，简化Memory设计）
-- ✅ 培训材料完成（协作指导手册、学员手册、Gitee指南）
-- 🚀 **新项目**：VitePress 站点重构启动
-  - 目标：提升可维护性，添加搜索和 Mermaid 流程图
-  - 周期：20天（2026-03-05 至 2026-03-24）
-  - 详细计划：见 `VITEPRESS-MIGRATION-PLAN.md`
-- ⏸️ P0 任务暂缓（等待业务场景确认和外部文档）
-- ⏳ TODO-009 实操手册可立即启动
+**本地预览**：http://localhost:5173 （运行中）
 
 ---
 
-## 二、快速开始
+## 二、VitePress 迁移进度
 
-### 🚀 VitePress 迁移项目（当前重点）
+### ✅ 已完成（90%）
 
-**如果你是来处理 VitePress 迁移**：
+| 任务 | 状态 | 说明 |
+|------|------|------|
+| 目录结构重构 | ✅ 完成 | content/、docs/、platform-docs/、scripts/ |
+| 内容迁移 | ✅ 完成 | 24个 Markdown 迁移到 content/ |
+| 同步脚本 | ✅ 完成 | scripts/sync-content.js |
+| VitePress 配置 | ✅ 完成 | 紫色主题、搜索、导航 |
+| 本地测试 | ✅ 完成 | http://localhost:5173 运行中 |
+| GitHub Actions | ✅ 配置 | .github/workflows/deploy.yml |
+| Git 提交 | ✅ 完成 | 6次提交，265+文件 |
 
-1. **阅读迁移计划**：`VITEPRESS-MIGRATION-PLAN.md`
-2. **确认当前阶段**：查看下方"当前工作重点"
-3. **执行阶段任务**：按计划实施
+### ⚠️ 待解决
 
-### 步骤 1：确认工作目录
+**问题**：GitHub Actions 构建失败  
+**原因**：`day3-agent-optimize.md` 包含 `{{xxxx.index}}` 模板语法，VitePress 解析错误  
+**影响**：无法部署到线上
+
+**解决方案**：
+1. 修复 `docs/lesson-01/day3-agent-optimize.md` 中的模板语法
+2. 将 `{{xxxx.index}}` 改为代码块或 HTML 实体
+3. 提交并推送
+
+---
+
+## 三、核心文件速查
+
+### 关键文档
+
+| 文件 | 用途 |
+|------|------|
+| `VITEPRESS-MIGRATION-PLAN.md` | 迁移详细计划 |
+| `VITEPRESS-STAGE1-REPORT.md` | 阶段1完成报告 |
+| `CONTENT-GUIDE.md` | 内容编写规范 |
+| `GITHUB-PAGES-SETUP.md` | Pages配置说明 |
+| `state.md` | 项目完整状态 |
+
+### 核心命令
 
 ```bash
-cd D:\AI-Lesson
-```
-
-### 步骤 2：查看项目状态
-
-```bash
-# 查看 Git 状态
-git status
-
-# 查看最近提交
-git log --oneline -10
-
-# 查看目录结构
-ls -la
-```
-
-### 步骤 3：了解当前进展
-
-阅读以下文件：
-1. `VITEPRESS-MIGRATION-PLAN.md` - **VitePress 迁移详细计划**
-2. `state.md` - 完整项目状态
-3. `AGENT.md` - AI 助手工作规范
-4. `Lesson-01/TODO/TODO-总览.md` - 任务总览
-
----
-
-## 三、核心约束（必读）
-
-### 3.1 语言规范
-- **所有输出使用中文**
-- 文件命名、代码注释、Git 提交均用中文
-
-### 3.2 技术规范
-- 灵知平台 ≠ Dify（类似但不同）
-- Skills/MCP 是 opencode 概念，不是灵知平台概念
-- API 暴露简单，不安排专门课时
-
-### 3.3 课程安排
-- **Pre-Lesson**：3 次独立直播（每次 90 分钟）
-- **Day 2**：Catch up 模式
-- **Day 4**：全程使用 opencode 进行 Vibe Coding
-- **Day 5**：15:00 结束，无颁奖
-
-### 3.4 HTML 规范
-- 流程图用 CSS/HTML 绘制，不用纯文本
-- 代码块需要正确换行
-- 使用相对路径链接
-
----
-
-## 四、关键文件速查
-
-| 需求 | 文件路径 |
-|------|----------|
-| 查看整体状态 | `state.md` |
-| 查看工作规范 | `AGENT.md` |
-| 查看课程主页 | `index.html` |
-| 查看灵知平台文档 | `reference/docs/灵知平台完整文档.md` |
-| 查看技术栈 | `docs/技术栈与关键信息.md` |
-| 查看项目设计 | `projects/*.md` |
-
----
-
-## 五、常见操作
-
-### 5.1 修改课程内容
-
-1. 找到对应的 Markdown 文件
-2. 同时修改 HTML 页面（`pages/` 目录）
-3. 测试链接有效性
-4. Git commit + push
-
-### 5.2 添加新项目设计
-
-1. 创建 `projects/项目名-项目设计.md`
-2. 创建 `pages/project-xxx.html`
-3. 更新 `index.html` 添加链接
-4. Git commit + push
-
-### 5.3 修改 HTML 页面
-
-1. 找到 `pages/` 下对应文件
-2. 修改内容
-3. 检查所有链接
-4. Git commit + push
-
----
-
-## 六、VitePress 迁移项目（进行中）
-
-### 6.1 项目简介
-
-正在进行站点架构升级，将纯 HTML 站点迁移至 VitePress。
-
-**目标**：
-- ✅ 提升可维护性（Markdown + 自动同步）
-- ✅ 添加全文搜索功能
-- ✅ 支持 Mermaid 流程图
-- ✅ 优化移动端体验
-
-**详细计划**：`VITEPRESS-MIGRATION-PLAN.md`
-
-### 6.2 新文档结构
-
-```
-AI-Lesson/
-├── 📘 docs/              # VitePress 站点（学员访问）
-├── 📁 content/           # 课程内容源文件（保留原名）
-├── 📁 platform-docs/     # 灵知平台原始文档
-└── 🛠️ scripts/          # 同步脚本
-```
-
-### 6.3 文件名映射
-
-| content/ 源文件 | docs/ 目标文件 |
-|----------------|----------------|
-| Pre-Lesson-01-灵知平台入门.md | pre-lesson/01-platform-intro.md |
-| Day1-AgenticAI与ReAct模式.md | lesson-01/day1-ai-trends.md |
-| 智能问数-项目设计.md | projects/smart-query.md |
-
-### 6.4 常用命令
-
-```bash
-# 同步内容到 docs/
+# 同步内容
 npm run sync
 
-# 本地开发预览
+# 本地预览
 npm run dev
 
 # 构建站点
 npm run build
 
-# 部署到 GitHub Pages
-# 自动触发：git push 到 main 分支
+# 提交代码
+git add -A && git commit -m "message" && git push
 ```
 
 ---
 
-## 七、Git 提交规范
+## 四、文档结构
 
+```
+AI-Lesson/
+├── content/              # 源文件（讲师编辑）
+│   ├── pre-lesson/      # 预授课（3次直播）
+│   ├── lesson-01/       # 主课程（5天）
+│   └── projects/        # 项目设计
+│
+├── docs/                 # VitePress 站点（自动同步）
+│   ├── .vitepress/      # 配置和主题
+│   ├── pre-lesson/
+│   ├── lesson-01/
+│   ├── projects/
+│   ├── platform-guide/  # 灵知平台指南
+│   └── resources/       # 资源中心
+│
+├── platform-docs/        # 灵知平台原始文档
+├── scripts/              # 同步脚本
+└── .github/workflows/    # 自动部署
+```
+
+---
+
+## 五、立即行动项
+
+### 🔴 紧急：修复 GitHub Actions 构建
+
+**文件**：`docs/lesson-01/day3-agent-optimize.md`
+
+**问题行**：
+```
+54: │  [元素序号]              │  {{xxxx.index}}
+55: │  [元素值]                │  {{xxxx.item}}
+56: │  [数组长度]              │  {{xxxx.length}}
+```
+
+**修复方法**：
+
+**方法 1**：使用代码块
+```markdown
+\`\`\`
+[元素序号] {{xxxx.index}}
+[元素值] {{xxxx.item}}
+[数组长度] {{xxxx.length}}
+\`\`\`
+```
+
+**方法 2**：使用 HTML 实体（已尝试，失败）
+```markdown
+&#123;&#123;xxxx.index&#125;&#125;
+```
+
+**方法 3**：使用 v-pre 指令
+```html
+<span v-pre>{{xxxx.index}}</span>
+```
+
+**执行步骤**：
+1. 修复文件：编辑 `docs/lesson-01/day3-agent-optimize.md`
+2. 测试：`npm run build`（本地验证）
+3. 提交：`git add -A && git commit -m "fix: 修复模板语法" && git push`
+4. 验证：等待 GitHub Actions 完成（2-3分钟）
+5. 访问：https://sonnet0524.github.io/AI-Lesson-Training/
+
+---
+
+## 六、文件名映射
+
+| content/ 源文件 | docs/ 目标文件 |
+|----------------|----------------|
+| Pre-Lesson-01-灵知平台入门.md | pre-lesson/01-platform-intro.md |
+| Day1-AgenticAI与ReAct模式.md | lesson-01/day1-ai-trends.md |
+| Day2-Agent开发实战.md | lesson-01/day2-agent-dev.md |
+| Day3-Agent优化与发布.md | lesson-01/day3-agent-optimize.md |
+| Day4-前端开发.md | lesson-01/day4-frontend.md |
+| Day5-项目展示与总结.md | lesson-01/day5-showcase.md |
+| 智能问数-项目设计.md | projects/smart-query.md |
+| 智能写作-项目设计.md | projects/smart-writing.md |
+| 工单处理-项目设计.md | projects/work-order.md |
+
+---
+
+## 七、统计数据
+
+```
+Git 提交：6次
+文件变更：265+ 个文件
+代码新增：60,000+ 行
+docs/: 22 个 Markdown
+content/: 24 个 Markdown
+platform-docs/: 206 个文件
+```
+
+---
+
+## 八、常见问题
+
+### Q1: 如何添加新文档？
+
+1. 在 `content/` 目录创建 Markdown 文件
+2. 更新 `scripts/filename-mapping.json`
+3. 运行 `npm run sync`
+4. 提交并推送
+
+### Q2: 本地预览失败？
+
+检查：
+- Node.js 版本 >= 20
+- 运行 `npm install`
+- 端口 5173 未被占用
+
+### Q3: GitHub Actions 失败？
+
+查看日志：
 ```bash
-# 添加所有更改
-git add -A
-
-# 提交（使用中文描述）
-git commit -m "描述本次修改内容"
-
-# 推送
-git push
+gh run view --log-failed
 ```
 
-**提交信息示例**：
-- "更新 Day 3 课程内容"
-- "添加新项目设计文档"
-- "修复页面链接错误"
+常见原因：
+- 模板语法冲突
+- 死链接
+- 配置错误
 
 ---
 
-## 七、灵知平台速查
+## 九、下一步计划
 
-### 核心模块
-```
-用户提问 → 智能对话 → 信息分类 → 信息提取 → 知识库搜索
-```
+### 阶段 2：内容完善（第 3-5 天）
 
-### 节点类型
-- 🟡 黄色 = 布尔型
-- 🔵 蓝色 = 字符串
-- 🟣 紫色 = 知识库结果
-- 🔴 红色 = 任意类型
+- [ ] 修复 GitHub Actions 构建
+- [ ] 验证线上访问
+- [ ] 修复所有死链接
+- [ ] 测试 Mermaid 流程图
+- [ ] 完善首页内容
 
-### 参数建议
-- 相似度阈值：0.5-0.7
-- 召回数：3-10
-- 聊天上下文：2-5 条
-- 回复创意性：0-0.8
+### 阶段 3-7：后续优化
+
+参见：`VITEPRESS-MIGRATION-PLAN.md`
 
 ---
 
-## 八、已完成的里程碑
+## 十、快速参考
 
-### 课件开发阶段（✅ 已完成）
-- ✅ Day 1-5 课程 Markdown 文档
-- ✅ Pre-Lesson 3 次直播文档
-- ✅ 所有 HTML 交互页面
-- ✅ 3 个项目设计文档
-- ✅ 技术栈与关键信息文档
-- ✅ 灵知平台完整参考文档
-- ✅ GitHub Pages 部署
-- ✅ 所有链接检查完成
-
-### VitePress 重构阶段（🚀 进行中）
-- ⏳ 阶段 1：基础架构搭建（第 1-2 天）
-- ⏳ 阶段 2：内容迁移（第 3-5 天）
-- ⏳ 阶段 3：平台指南重构（第 6-10 天）
-- ⏳ 阶段 4：样式定制（第 11-13 天）
-- ⏳ 阶段 5：测试部署（第 14-16 天）
-- ⏳ 阶段 6：文档完善（第 17-18 天）
-- ⏳ 阶段 7：缓冲期（第 19-20 天）
-
-**详细计划**：`VITEPRESS-MIGRATION-PLAN.md`
-
-### 环境验证阶段（✅ 已完成）
-- ✅ TODO-004：OpenCode环境验证（2026-03-03）
-- ✅ TODO-005：Trae-cn信息补充（2026-03-03）
-- ✅ TODO-006：灵知平台Qwen模型验证（2026-03-03）
-- ✅ TODO-008：Pre-Lesson课件完善（2026-03-03）
-
-### 培训材料准备阶段（✅ 已完成）
-- ✅ TODO-010：ReAct设计思路文档 v2.1（2026-03-04）
-  - 明确5阶段流程：Plan → Loop → State → Judge → Continue/Finish
-  - 简化Memory设计（仅需results数组）
-  - 强调可简化错误处理
-- ✅ TODO-011：协作指导文档（2026-03-03）
-  - 协作指导手册、站会模板、Git协作规范
-- ✅ TODO-012：灵知平台账号批量创建（2026-03-03）
-- ✅ TODO-017：Gitee使用指南（2026-03-03）
-- ✅ TODO-016：学员手册（Markdown + PDF + HTML）（2026-03-03）
-
-### 培训准备阶段（🔄 进行中）
-- 🔄 TODO-007：知识库文档收集（等待国网四川提供）
-- ⏳ TODO-001：业务场景重新梳理
-- ⏳ TODO-002：模拟接口设计
-- ⏳ TODO-003：模拟接口开发与部署
-- ⏳ TODO-009：Day 2-3实操手册（依赖TODO-003）
+**本地预览**：http://localhost:5173  
+**线上地址**：https://sonnet0524.github.io/AI-Lesson-Training/  
+**Actions 进度**：https://github.com/Sonnet0524/AI-Lesson-Training/actions  
+**仓库地址**：https://github.com/Sonnet0524/AI-Lesson-Training
 
 ---
 
-## 九、当前工作重点
-
-### 🎯 立即可执行的任务
-
-**TODO-009：Day 2-3实操手册**
-- 状态：⏳ 待开始
-- 优先级：🟡 P1
-- 说明：虽依赖TODO-003，但可先基于现有项目设计文档编写通用部分
-- 建议行动：
-  - Agent开发流程指导
-  - 参数配置建议
-  - 常见问题FAQ
-  - 后续补充接口相关内容
-
-**TODO-014：React项目模板**【可选】
-- 状态：⏳ 待开始
-- 优先级：🟢 P2
-- 说明：可降低Day 4前端开发难度
-- 建议行动：创建基础模板，预置常用组件
-
-**TODO-015：培训PPT制作**【可选】
-- 状态：⏳ 待开始
-- 优先级：🟢 P2
-- 说明：基于现有课程文档制作幻灯片
-
----
-
-### ⏸️ 阻塞中的P0任务
-
-**任务依赖链**：
-```
-TODO-001 (业务场景确认) ← 等待业务决策
-    ↓
-TODO-002 (接口设计)
-    ↓
-TODO-003 (接口开发部署)
-    ↓
-TODO-009 (实操手册完整版)
-```
-
-**外部依赖**：
-- TODO-007：知识库文档收集（等待国网四川提供）
-  - 电力安规文档
-  - 设备手册
-  - 工单案例
-  - 报告模板
-
----
-
-### 📋 详细任务说明
-
-**P0 高优先级（培训前必须完成）**：
-
-1. **TODO-001：业务场景重新梳理**
-   - 细化智能问数、智能写作、工单处理场景
-   - 产出：更新项目设计文档
-
-2. **TODO-002：模拟接口设计**
-   - 设计三个项目的API接口
-   - 产出：API设计文档
-
-3. **TODO-003：模拟接口开发部署**
-   - 开发Mock服务并部署
-   - 产出：可访问的API地址
-
-4. **TODO-007：知识库文档收集**
-   - 收集并脱敏业务文档
-   - 产出：知识库文档
-
-**P1 中优先级**：
-
-5. **TODO-009：Day 2-3实操手册**
-   - Agent开发流程指导
-   - 参数配置建议
-   - 常见问题FAQ
-
-**P2 低优先级（可选）**：
-
-6. **TODO-014：React项目模板**
-7. **TODO-015：培训PPT制作**
-
----
-
-## 十、快速参考链接
-
-- **GitHub 仓库**：https://github.com/Sonnet0524/AI-Lesson-Training
-- **在线课程**：https://sonnet0524.github.io/AI-Lesson-Training/
-- **问题反馈**：提 GitHub Issue
-- **TODO任务总览**：`Lesson-01/TODO/TODO-总览.md`
-
----
-
-## 十一、最新Git提交
-
-```
-[最新] 36f94d5 - 更新README和TODO总览，反映最新项目状态（2026-03-04）
-- 添加项目状态概览到README
-- 更新TODO总览统计数据
-- 添加已完成任务列表
-- 明确阻塞任务链和外部依赖
-
-[前序] b183d19 - 升级ReAct实现方案到v2.1版本（2026-03-04）
-- 明确5阶段流程：Plan → Loop → State → Judge → Continue/Finish
-- 简化Memory设计，强调可简化错误处理
-
-568b460 - 更新ReAct实现方案为简化版（v2.0）
-8f3b647 - 更新TODO-010状态为已完成
-2b49c35 - 创建ReAct在灵知平台实现方案和培训材料
-7799a95 - 创建精美HTML版学员手册
-```
-
----
-
-## 十二、快速操作命令
-
-### 更新项目状态文档
-```bash
-# 更新state.md中的最后更新日期
-# 更新TODO任务状态
-git add -A && git commit -m "更新项目状态和TODO进度" && git push
-```
-
-### 查看TODO任务
-```bash
-# 查看P0高优先级任务
-cat Lesson-01/TODO/TODO-P0-高优先级.md
-
-# 查看TODO总览
-cat Lesson-01/TODO/TODO-总览.md
-```
-
----
-
-## 十三、项目状态总结
-
-### ✅ 已完成核心内容（100%）
-
-**课程设计**：
-- Day 1-5 完整课程内容
-- Pre-Lesson 3次直播内容
-- HTML交互页面
-- 3个项目设计文档
-
-**培训材料**：
-- ReAct实现方案 v2.1
-- 协作指导手册、站会模板、Git协作规范
-- 学员手册（Markdown + PDF + HTML）
-- Gitee使用指南
-
-**环境验证**：
-- OpenCode环境验证
-- Trae-cn调研
-- 灵知平台Qwen模型验证
-
-### ⏳ 剩余工作（47%）
-
-**阻塞任务（4个P0）**：
-- 等待业务场景确认
-- 等待外部文档提供
-
-**可立即启动（1个P1）**：
-- TODO-009：实操手册（可先写通用部分）
-
-**可选任务（2个P2）**：
-- TODO-014：React模板
-- TODO-015：培训PPT
-
-### 🎯 建议行动优先级
-
-**第一优先级**（本周可做）：
-1. ✅ 启动 TODO-009 实操手册编写
-2. ✅ 跟进 TODO-007 知识库文档收集
-3. ✅ 推进 TODO-001 业务场景确认
-
-**第二优先级**（Pre-Lesson前）：
-1. 完成模拟接口设计开发（TODO-002, 003）
-2. 完善实操手册（TODO-009）
-
-**第三优先级**（可选）：
-1. React项目模板（TODO-014）
-2. 培训PPT制作（TODO-015）
-
----
-
-**提示**：开始工作前，先阅读 `AGENT.md` 了解工作规范，然后查看 `Lesson-01/TODO/TODO-总览.md` 了解当前最紧急的任务。
+**状态**：阶段 1 基本完成（90%），阻塞于构建错误  
+**优先级**：🔴 修复 GitHub Actions 构建  
+**预计时间**：修复后 2-3 分钟可访问线上站点
