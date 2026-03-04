@@ -46,6 +46,46 @@
   --vp-c-text-3: rgba(235, 235, 245, 0.38);
 }
 
+/* 深色模式额外优化 */
+.dark .VPDoc h1 {
+  color: #a78bfa;
+  border-bottom-color: #a78bfa;
+}
+
+.dark .VPDoc h2 {
+  color: #c4b5fd;
+  border-bottom-color: rgba(196, 181, 253, 0.3);
+}
+
+.dark .VPDoc blockquote {
+  background: rgba(167, 139, 250, 0.1);
+  border-left-color: #a78bfa;
+}
+
+.dark .mermaid {
+  background: #252529;
+}
+
+.dark .VPDoc th {
+  background: linear-gradient(135deg, #7c3aed 0%, #a78bfa 100%);
+}
+
+.dark .VPDoc tr:hover {
+  background: rgba(167, 139, 250, 0.08);
+}
+
+.dark ::-webkit-scrollbar-track {
+  background: #252529;
+}
+
+.dark ::-webkit-scrollbar-thumb {
+  background: #7c3aed;
+}
+
+.dark ::-webkit-scrollbar-thumb:hover {
+  background: #a78bfa;
+}
+
 /* 首页样式 */
 .VPHero {
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
@@ -483,5 +523,44 @@ VPNav .VPNavBarMenuGroup:hover .text {
     opacity: 1;
     width: 36px;
     height: 36px;
+  }
+}
+
+/* 打印样式优化 */
+@media print {
+  .VPNav,
+  .VPSidebar,
+  .VPDocAside,
+  .VPBackToTop,
+  .VPFooter {
+    display: none !important;
+  }
+  
+  .VPDoc {
+    padding: 0 !important;
+    max-width: 100% !important;
+  }
+  
+  .VPDoc .content {
+    font-size: 12pt;
+    line-height: 1.6;
+  }
+  
+  .vp-code {
+    background: #f5f5f5 !important;
+    border: 1px solid #ddd;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+  }
+  
+  a {
+    text-decoration: underline;
+    color: #000 !important;
+  }
+  
+  a[href]:after {
+    content: " (" attr(href) ")";
+    font-size: 10pt;
+    color: #666;
   }
 }
