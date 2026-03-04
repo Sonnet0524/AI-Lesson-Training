@@ -6,14 +6,14 @@ hero:
   text: "Agentic AI 实战课程"
   tagline: 国网四川电力人工智能种子团队系列培训课程
   image:
-    src: /logo.png
+    src: /logo.svg
     alt: AI 种子团队培训
   actions:
     - theme: brand
       text: 开始学习
       link: /lesson-01/
     - theme: alt
-      text: 项目设计
+      text: 查看项目
       link: /projects/
 
 features:
