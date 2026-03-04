@@ -212,9 +212,13 @@ export default defineConfig({
     // 输出目录
     outDir: '.vitepress/dist',
     
-    // 忽略的死链接
+    // 忽略的死链接（暂时）
     ignoreDeadLinks: [
-      // 如果某些链接暂时不可用，可以在这里配置
+      // 允许相对路径链接到还未创建的文件
+      '**/resources/tech-stack',
+      '**/platform-guide/**',
+      '**/Lesson-01/**',
+      '**/环境指南/**',
     ]
   },
   
