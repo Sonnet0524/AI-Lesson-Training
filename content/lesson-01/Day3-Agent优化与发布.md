@@ -42,9 +42,9 @@
 │  ○ 任一激活              │
 │  ○ 信息输入（数组类型）  │
 │                         │
-│  [元素序号]              │  {{xxxx.index}}
-│  [元素值]                │  {{xxxx.item}}
-│  [数组长度]              │  {{xxxx.length}}
+│  [元素序号]              │  <span v-pre>{{xxxx.index}}</span> │
+│  [元素值]                │  <span v-pre>{{xxxx.item}}</span> │
+│  [数组长度]              │  <span v-pre>{{xxxx.length}}</span> │
 │                         │
 │  ○ 循环单元终点          │
 │                         │
@@ -57,9 +57,9 @@
 | 参数 | 类型 | 说明 |
 |------|------|------|
 | 信息输入 | 任意类型数组 | 循环输入需为数组 |
-| 元素序号 | - | 记录第n次，{{xxxx.index}} |
-| 元素值 | - | 某个元素，{{xxxx.item}} |
-| 数组长度 | - | 数组长度，{{xxxx.length}} |
+| 元素序号 | - | 记录第n次，<span v-pre>{{xxxx.index}}</span> |
+| 元素值 | - | 某个元素，<span v-pre>{{xxxx.item}}</span> |
+| 数组长度 | - | 数组长度，<span v-pre>{{xxxx.length}}</span> |
 | 循环单元终点 | 布尔型 | 连接最后一个模块的"运行结束" |
 | 循环单元起点 | 布尔型 | 触发循环开始 |
 
@@ -76,9 +76,9 @@
   └─ 循环单元终点 → 汇总结果 → 回复
 
 代码块中引用：
-- 当前序号：{{2d3aa4ef.index}}
-- 当前文档：{{2d3aa4ef.item}}
-- 总长度：{{2d3aa4ef.length}}
+- 当前序号：<span v-pre>{{2d3aa4ef.index}}</span>
+- 当前文档：<span v-pre>{{2d3aa4ef.item}}</span>
+- 总长度：<span v-pre>{{2d3aa4ef.length}}</span>
 ```
 
 ---

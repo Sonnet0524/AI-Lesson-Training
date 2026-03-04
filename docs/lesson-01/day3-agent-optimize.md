@@ -51,9 +51,9 @@ next: /lesson-01/day4-frontend
 │  ○ 任一激活              │
 │  ○ 信息输入（数组类型）  │
 │                         │
-│  [元素序号]              │  &#123;&#123;xxxx.index&#125;&#125;
-│  [元素值]                │  &#123;&#123;xxxx.item&#125;&#125;
-│  [数组长度]              │  &#123;&#123;xxxx.length&#125;&#125;
+│  [元素序号]              │  <span v-pre>{{xxxx.index}}</span> │
+│  [元素值]                │  <span v-pre>{{xxxx.item}}</span> │
+│  [数组长度]              │  <span v-pre>{{xxxx.length}}</span> │
 │                         │
 │  ○ 循环单元终点          │
 │                         │
@@ -66,9 +66,9 @@ next: /lesson-01/day4-frontend
 | 参数 | 类型 | 说明 |
 |------|------|------|
 | 信息输入 | 任意类型数组 | 循环输入需为数组 |
-| 元素序号 | - | 记录第n次，&#123;&#123;xxxx.index&#125;&#125; |
-| 元素值 | - | 某个元素，&#123;&#123;xxxx.item&#125;&#125; |
-| 数组长度 | - | 数组长度，&#123;&#123;xxxx.length&#125;&#125; |
+| 元素序号 | - | 记录第n次，<span v-pre>{{xxxx.index}}</span> |
+| 元素值 | - | 某个元素，<span v-pre>{{xxxx.item}}</span> |
+| 数组长度 | - | 数组长度，<span v-pre>{{xxxx.length}}</span> |
 | 循环单元终点 | 布尔型 | 连接最后一个模块的"运行结束" |
 | 循环单元起点 | 布尔型 | 触发循环开始 |
 
@@ -85,9 +85,9 @@ next: /lesson-01/day4-frontend
   └─ 循环单元终点 → 汇总结果 → 回复
 
 代码块中引用：
-- 当前序号：&#123;&#123;2d3aa4ef.index&#125;&#125;
-- 当前文档：&#123;&#123;2d3aa4ef.item&#125;&#125;
-- 总长度：&#123;&#123;2d3aa4ef.length&#125;&#125;
+- 当前序号：<span v-pre>{{2d3aa4ef.index}}</span>
+- 当前文档：<span v-pre>{{2d3aa4ef.item}}</span>
+- 总长度：<span v-pre>{{2d3aa4ef.length}}</span>
 ```
 
 ---
