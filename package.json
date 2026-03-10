@@ -11,8 +11,8 @@
     "check-links": "node scripts/check-links.js"
   },
   "devDependencies": {
-    "vitepress": "^1.0.0-rc.44",
-    "mermaid": "^10.8.0"
+    "mermaid": "^10.8.0",
+    "vitepress": "^1.6.4"
   },
   "keywords": [
     "AI",
@@ -21,5 +21,12 @@
     "VitePress"
   ],
   "author": "国网四川电力AI种子团队",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "esbuild": "^0.27.3",
+    "vite": "^7.3.1"
+  },
+  "overrides": {
+    "esbuild": "^0.27.3"
+  }
 }
