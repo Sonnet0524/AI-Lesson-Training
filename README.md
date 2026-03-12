@@ -127,3 +127,11 @@ npm run build        # 构建站点
 ## 联系方式
 
 培训组织方：国网四川电力
+
+---
+
+## 📝 许可
+
+[![License: AGPL v3](https://img.shields.io/badge/License-AGPL%20v3-blue.svg)](https://www.gnu.org/licenses/agpl-3.0)
+
+本项目采用 GNU Affero General Public License v3.0 (AGPL v3.0) 协议开源。
