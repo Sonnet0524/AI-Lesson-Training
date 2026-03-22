@@ -830,13 +830,17 @@ class PowerSystemAPI:
                             <span>展开</span>
                         </button>
                     </div>
+                    <div style="background: #f0f9ff; border-left: 3px solid #009944; padding: 10px; margin: 10px 0; font-size: 13px; color: #1a365d;">
+                        <strong>💡 MCP教学要点：</strong>这个JSON描述让AI"看懂"工具的能力，就像给工具配了一张"身份证+使用说明书"。
+                    </div>
                     <pre class="code-content collapsed"><code class="language-json">{
   "name": "query_investment_data",
-  "description": "查询指定时间范围内的投资项目数据，返回项目列表、投资额、进度等信息。适用于投资效益分析和项目管理场景。",
+  "description": "【这是最关键的部分！AI靠这段描述判断什么时候用】查询指定时间范围内的投资项目数据，返回项目列表、投资额、进度等信息。适用于投资效益分析和项目管理场景。",
   "version": "1.0.0",
   "parameters": {
     "type": "object",
     "properties": {
+      "_comment": "【输入参数定义】告诉AI：调用时需要什么数据",
       "region": {
         "type": "string",
         "description": "查询区域，如'成都高新区'、'天府新区'等",
@@ -865,6 +869,7 @@ class PowerSystemAPI:
     "additionalProperties": false
   },
   "returns": {
+    "_comment": "【返回值定义】告诉AI：调用后会得到什么数据",
     "type": "object",
     "properties": {
       "projects": {
@@ -914,9 +919,12 @@ class PowerSystemAPI:
                             <span>展开</span>
                         </button>
                     </div>
+                    <div style="background: #f0f9ff; border-left: 3px solid #009944; padding: 10px; margin: 10px 0; font-size: 13px; color: #1a365d;">
+                        <strong>💡 对比教学：</strong>这个工具展示MCP如何描述"操作类"能力（不是查询，而是执行动作）。
+                    </div>
                     <pre class="code-content collapsed"><code class="language-json">{
   "name": "send_notification",
-  "description": "向指定用户或用户组发送系统通知，支持钉钉、邮件、短信等多种渠道",
+  "description": "【操作类工具】向指定用户或用户组发送系统通知。当Agent判断需要主动通知相关人员时使用。支持钉钉、邮件、短信等多种渠道",
   "version": "1.2.0",
   "parameters": {
     "type": "object",
@@ -984,9 +992,12 @@ class PowerSystemAPI:
                             <span>展开</span>
                         </button>
                     </div>
+                    <div style="background: #f0f9ff; border-left: 3px solid #009944; padding: 10px; margin: 10px 0; font-size: 13px; color: #1a365d;">
+                        <strong>💡 综合应用：</strong>这个工具结合了查询数据+可视化+生成报告三个能力，展示复杂业务场景的MCP描述。
+                    </div>
                     <pre class="code-content collapsed"><code class="language-json">{
   "name": "generate_analysis_report",
-  "description": "基于投资数据生成可视化的效益分析报告，支持多种图表类型和导出格式",
+  "description": "【复杂工具示例】基于投资数据生成可视化的效益分析报告。当需要向领导汇报或生成正式文档时使用。支持多种图表类型和导出格式",
   "version": "2.0.0",
   "parameters": {
     "type": "object",
@@ -1107,16 +1118,31 @@ class PowerSystemAPI:
                             <span>展开</span>
                         </button>
                     </div>
-                    <pre class="code-content collapsed"><code class="language-yaml">---
+                    <pre class="code-content collapsed"><code class="language-yaml"># ============================================
+# SKILL定义文件 - 投资效益分析专家
+# 作用：告诉AI"你是谁"、"你能做什么"、"怎么做"
+# ============================================
+
+---
+# Skill名称：使用kebab-case命名，要简洁明了
 name: investment-analyzer
+
+# 功能描述：这是最关键的部分！
+# AI根据这段描述来决定什么时候调用这个Skill
 description: "投资效益分析专家，计算项目ROI并生成评估报告。当用户询问'分析投资效益'、'计算ROI'时使用。"
+
+# 触发方式：on_demand表示由AI判断何时使用
 trigger: on_demand
+
+# 标签：用于分类和检索
 tags: investment, roi, analysis
 ---
 
+# 【角色定义】告诉AI扮演什么角色
 你是一位电力行业投资效益分析专家。你的任务是帮助用户分析投资项目的效益情况。
 
 ## 分析流程
+# 关键教学点：这就是典型的"思考-规划-执行"流程！
 1. 首先了解用户要分析的项目范围和目标
 2. 使用query_investment_data工具查询相关项目数据
 3. 使用execute_code工具进行ROI计算和数据处理
@@ -1139,6 +1165,7 @@ tags: investment, roi, analysis
 - 数据验证: scripts/data_validator.py
 
 ## 注意事项
+# ⚠️ 教学重点：这些约束条件确保AI不会"瞎说"
 - 始终验证数据的完整性和准确性
 - 如果发现异常数据，主动向用户确认
 - 报告要包含具体的改进建议，不只是数据罗列
@@ -1160,21 +1187,32 @@ tags: investment, roi, analysis
                             <span>展开</span>
                         </button>
                     </div>
-                    <pre class="code-content collapsed"><code class="language-yaml">---
+                    <pre class="code-content collapsed"><code class="language-yaml"># ============================================
+# SKILL定义文件 - 项目进度追踪专家
+# 作用：监控项目状态、预警风险、生成进度报告
+# 对比上一个：同样是分析，但关注"时间"而非"金钱"
+# ============================================
+
+---
 name: project-tracker
+
+# 描述中的触发词很重要！AI靠这些词识别用户意图
 description: "追踪项目进度，识别延期风险。当用户询问'项目进度如何'、'检查延期风险'时使用。"
+
 trigger: on_demand
 tags: project, tracking, management
 ---
 
+# 【角色定义】
 你是一位项目管理专家，专门负责追踪和监控项目进度。你的任务是帮助用户了解项目当前状态、识别潜在风险并提供改进建议。
 
 ## 工作流程
+# 注意第5步：发现风险→主动通知，这就是Agent的"自主性"体现！
 1. 了解用户要监控的项目范围和关注点
 2. 使用get_project_status工具查询项目当前状态
 3. 使用calculate_delay_risk工具评估延期风险
 4. 识别关键里程碑的完成情况
-5. 如果发现延期风险，使用send_notification发送预警
+5. 如果发现延期风险，使用send_notification发送预警  # ← 自主决策点
 6. 生成包含进度图表和风险分析的报告
 
 ## 风险等级定义
@@ -1208,13 +1246,23 @@ tags: project, tracking, management
                             <span>展开</span>
                         </button>
                     </div>
-                    <pre class="code-content collapsed"><code class="language-yaml">---
+                    <pre class="code-content collapsed"><code class="language-yaml"># ============================================
+# SKILL定义文件 - 智能工单处理助手
+# 作用：自动化处理重复性工作（分类→分配→跟踪）
+# 核心价值：把人从繁琐工作中解放出来
+# ============================================
+
+---
 name: workorder-processor
+
+# 描述中列出了完整的能力链：分类→诊断→推荐
 description: "智能处理故障工单，自动分类、诊断、推荐解决方案。当用户提交工单、询问'处理工单'时使用。"
+
 trigger: on_demand
 tags: workorder, diagnosis, support
 ---
 
+# 【角色定义】
 你是一位智能工单处理专家。你的任务是自动识别工单类型、智能分配给合适的处理人、跟踪处理进度并提供自动回复。
 
 ## 处理流程
@@ -1226,10 +1274,12 @@ tags: workorder, diagnosis, support
 6. 持续跟踪处理进度，超时自动升级
 
 ## 工单优先级定义
-- urgent：紧急故障，影响业务运行
-- high：重要问题，需要尽快处理
-- medium：一般问题，按正常流程处理
-- low：咨询建议类，可延后处理
+# 教学点：这就是"决策树"的实际应用！
+# Agent根据这些规则自动判断优先级，不需要人干预
+- urgent：紧急故障，影响业务运行    # → 立即分配，短信通知
+- high：重要问题，需要尽快处理      # → 2小时内响应
+- medium：一般问题，按正常流程处理  # → 24小时内处理
+- low：咨询建议类，可延后处理        # → 3天内回复即可
 
 ## 分配原则
 - 根据工单类型匹配专业技能
