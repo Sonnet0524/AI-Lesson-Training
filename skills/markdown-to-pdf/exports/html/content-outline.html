@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day 1 下午课程大纲</title>
+    <link rel="stylesheet" href="../templates/css/print.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/python.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/javascript.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/bash.min.js"></script>
+    <script>hljs.highlightAll();</script>
+</head>
+<body>
+    <!-- 封面页 -->
+    <div class="cover-page">
+        <div class="logo-container">
+            <div class="logo-badge">
+                <svg width="80" height="80" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="50" cy="50" r="45" fill="#009944" />
+                    <text x="50" y="55" text-anchor="middle" fill="white" font-size="16" font-weight="bold">SGCC</text>
+                </svg>
+            </div>
+            <div class="logo-text">
+                <div class="logo-main">国网四川电力</div>
+                <div class="logo-sub">State Grid Sichuan Electric Power</div>
+            </div>
+        </div>
+        <div class="cover-divider"></div>
+        <h1 class="doc-title">Day 1 下午课程大纲</h1>
+        <h2 class="doc-subtitle">课程信息</h2>
+        <div class="cover-meta">
+            <div class="meta-item">
+                <span class="meta-label">培训项目</span>
+                <span class="meta-value">AI种子团队培训教材</span>
+            </div>
+            <div class="meta-item">
+                <span class="meta-label">课程阶段</span>
+                <span class="meta-value">Day 1: Agentic AI 设计范式</span>
+            </div>
+            <div class="meta-item">
+                <span class="meta-label">生成日期</span>
+                <span class="meta-value">2026年03月22日</span>
+            </div>
+        </div>
+        <div class="cover-decoration">
+            <div class="deco-line"></div>
+            <div class="deco-dots">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </div>
+    
+    <!-- 分页 -->
+    <div class="page-break"></div>
+    
+    <!-- 目录页 -->
+    <nav class="toc-page">
+        <div class="toc-header">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-line"></div>
+        </div>
+        <div class="toc-content">
+            <ul class="toc-list"><li class="toc-level-1"><a href="#day-1-下午课程大纲">Day 1 下午课程大纲</a></li><li class="toc-level-2"><a href="#课程信息">课程信息</a></li><li class="toc-level-2"><a href="#课程目标">课程目标</a></li><li class="toc-level-2"><a href="#核心概念地图">核心概念地图</a></li><li class="toc-level-2"><a href="#三课时结构">三课时结构</a></li><li class="toc-level-3"><a href="#课时1-agent本质与rpar框架-40分钟---约820">课时1: Agent本质与RPAR框架 (40分钟) - 约8,200字</a></li><li class="toc-level-3"><a href="#课时2-rpar实例与acting详解-40分钟---约85">课时2: RPAR实例与Acting详解 (40分钟) - 约8,500字</a></li><li class="toc-level-3"><a href="#课时3-工具演进与封装-40分钟---约8300字">课时3: 工具演进与封装 (40分钟) - 约8,300字</a></li><li class="toc-level-2"><a href="#教学逻辑流">教学逻辑流</a></li><li class="toc-level-2"><a href="#讲师要点提示">讲师要点提示</a></li><li class="toc-level-3"><a href="#开场钩子">开场钩子</a></li><li class="toc-level-3"><a href="#三个金句">三个金句</a></li><li class="toc-level-3"><a href="#新增金句">新增金句</a></li><li class="toc-level-3"><a href="#板书重点">板书重点</a></li><li class="toc-level-2"><a href="#互动设计">互动设计</a></li><li class="toc-level-3"><a href="#课时1互动">课时1互动</a></li><li class="toc-level-3"><a href="#课时2互动">课时2互动</a></li><li class="toc-level-3"><a href="#课时3互动">课时3互动</a></li><li class="toc-level-2"><a href="#质量指标">质量指标</a></li><li class="toc-level-3"><a href="#内容质量">内容质量</a></li></ul>
+        </div>
+    </nav>
+    
+    <!-- 分页 -->
+    <div class="page-break"></div>
+    
+    <!-- 正文内容 -->
+    <main class="content">
+        <h1 id="day-1" id="day-1-下午课程大纲">Day 1 下午课程大纲</h1>
+<h2 id="_1" id="课程信息">课程信息</h2>
+<ul>
+<li><strong>课程标题</strong>: Agentic AI设计范式：RPAR认知架构与工程实现</li>
+<li><strong>总时长</strong>: 120分钟（3课时 × 40分钟）</li>
+<li><strong>授课对象</strong>: 国网四川电力AI种子团队</li>
+<li><strong>前置知识</strong>: 上午已学习AI发展趋势和Agentic AI概念</li>
+<li><strong>目标字数</strong>: 25,000字</li>
+<li><strong>当前版本</strong>: v2.0（已扩充）</li>
+</ul>
+<hr />
+<h2 id="_2" id="课程目标">课程目标</h2>
+<ol>
+<li><strong>理解Agent本质</strong>: 掌握Agent与传统AI、Workflow的本质差别</li>
+<li><strong>掌握RPAR框架</strong>: 理解Reasoning-Planning-Acting-Reflection的认知循环</li>
+<li><strong>了解范式演进</strong>: 认识ReAct、Plan-and-Execute等RPAR的实例化</li>
+<li><strong>理解工具演进</strong>: 掌握API→MCP→Tools→Skills的技术栈演进</li>
+<li><strong>建立完整认知</strong>: 构建Agentic AI的六层技术栈认知体系</li>
+</ol>
+<hr />
+<h2 id="_3" id="核心概念地图">核心概念地图</h2>
+<div class="diagram-container"><img src="diagrams/content-outline_diagram_1.png" alt="Diagram 1" class="ascii-image" /></div>
+
+<hr />
+<h2 id="_4" id="三课时结构">三课时结构</h2>
+<h3 id="1-agentrpar-40-8200" id="课时1-agent本质与rpar框架-40分钟---约820">课时1: Agent本质与RPAR框架 (40分钟) - 约8,200字</h3>
+<p><strong>核心问题</strong>: Agent的本质是什么？RPAR框架是什么？</p>
+<p><strong>章节</strong>:
+1. <strong>引入</strong> (15分钟): 承接上午，提出核心问题
+   - 开场引导问题（5个引发思考的问题）
+   - 学员互动设计（举手表决、小组讨论）
+   - 课程目标可视化图表
+   - 电力行业价值说明（4个痛点分析）</p>
+<ol>
+<li><strong>Agent vs 传统AI</strong> (10分钟): 执行能力的本质差别</li>
+<li>传统大模型应用特点（交互模式、能力范围、完成度）</li>
+<li>Agent核心能力（执行+规划+反思）</li>
+<li>详细对比表</li>
+<li>3个电力行业对比案例（查询用电数据、故障诊断、报表生成）</li>
+<li>
+<p>执行能力技术原理解释</p>
+</li>
+<li>
+<p><strong>Workflow vs Agentic</strong> (10分钟): 自主规划能力对比</p>
+</li>
+<li>Workflow特点与局限</li>
+<li>Agentic特点与优势</li>
+<li>3个类比说明（高铁vs自驾、菜谱vs厨师、导航vs自动驾驶）</li>
+<li>
+<p>决策树：什么时候用Workflow，什么时候用Agentic</p>
+</li>
+<li>
+<p><strong>RPAR框架详解</strong> (5分钟): 四环节的认知循环</p>
+</li>
+<li>Reasoning（思考）5个维度详解</li>
+<li>Planning（规划）3种策略详解</li>
+<li>Acting（执行）工具选择逻辑</li>
+<li>Reflection（反思）3种类型详解</li>
+<li>电力行业投资分析案例走3轮RPAR循环</li>
+</ol>
+<p><strong>关键产出</strong>:
+- Agent = 执行能力 + 自主规划 + 反思调整
+- RPAR循环图（详细版）
+- 范式选择决策树
+- 5个电力行业实战案例</p>
+<hr />
+<h3 id="2-rparacting-40-8500" id="课时2-rpar实例与acting详解-40分钟---约85">课时2: RPAR实例与Acting详解 (40分钟) - 约8,500字</h3>
+<p><strong>核心问题</strong>: RPAR如何落地？Acting有哪些方式？</p>
+<p><strong>章节</strong>:
+1. <strong>RPAR的裁剪与实例化</strong> (15分钟)
+   - ReAct详解（论文来源、核心作者、概念解释）
+     - 3个完整案例（简单查询、多步推理、错误修正）
+     - 代码级别伪代码实现
+     - 优缺点分析
+   - Plan-and-Execute详解
+     - 规划阶段必要性（避免低效循环）
+     - 规划策略对比（一次性vs渐进式）
+     - 2个完整案例（订票场景、数据处理场景）
+     - 与ReAct对比决策树
+   - 完整RPAR详解
+     - 试错机制详解（检测、回退、重规划）
+     - 投资问效案例详细走3轮循环</p>
+<ol>
+<li><strong>范式对比与选择</strong> (10分钟)</li>
+<li>选择决策树（可视化）</li>
+<li>详细对比表（6个维度）</li>
+<li>电力行业场景匹配（10个场景）</li>
+<li>
+<p>性能对比表（响应时间、准确率、资源消耗）</p>
+</li>
+<li>
+<p><strong>Acting详解</strong> (15分钟)</p>
+</li>
+<li>API调用详解<ul>
+<li>REST API详解（HTTP方法、状态码、认证方式）</li>
+<li>完整的请求/响应示例（含错误处理）</li>
+<li>错误处理机制（重试、降级、熔断）</li>
+<li>电力行业常用API列举（3类12个API）</li>
+</ul>
+</li>
+<li>本地代码执行详解<ul>
+<li>Python代码执行环境说明</li>
+<li>3个实战代码示例（数据处理、数学计算、文件解析）</li>
+<li>安全性考虑（沙箱、权限、超时）</li>
+<li>与API的对比选择指南</li>
+</ul>
+</li>
+<li>文件系统操作详解<ul>
+<li>文件读写完整流程</li>
+<li>Excel/CSV/JSON处理示例</li>
+<li>批量文件处理场景</li>
+<li>存储路径和权限管理</li>
+</ul>
+</li>
+<li>其他工具详解<ul>
+<li>浏览器自动化（Selenium原理）</li>
+<li>数据库直连（SQL示例）</li>
+<li>命令行执行（使用场景和注意事项）</li>
+</ul>
+</li>
+</ol>
+<p><strong>关键产出</strong>:
+- 范式选择决策树
+- Acting四象限图
+- 3个范式伪代码实现
+- 4类Acting方式详解及代码示例
+- 错误处理最佳实践</p>
+<hr />
+<h3 id="3-40-8300" id="课时3-工具演进与封装-40分钟---约8300字">课时3: 工具演进与封装 (40分钟) - 约8,300字</h3>
+<p><strong>核心问题</strong>: 工具如何演进？如何封装？</p>
+<p><strong>章节</strong>:
+1. <strong>API → MCP</strong> (15分钟)
+   - API时代的混乱现状
+     - 列举4个不同风格的API文档（REST、GraphQL、gRPC、内部文档）
+     - 展示AI难以理解的地方（4个示例）
+     - 同一功能的不同API实现对比
+   - MCP标准详解
+     - 完整JSON Schema展示
+     - 7个字段逐个说明（name, description, parameters, returns, errors, examples, metadata）
+     - 3个完整MCP描述示例（查询数据、发送通知、生成报告）
+     - 与OpenAPI的对比
+   - 两层价值
+     - 第一层：描述标准化（让AI看懂）
+     - 第二层：生态标准化（跨平台互通）
+     - 5个真实MCP工具示例</p>
+<ol>
+<li><strong>Tools → Skills</strong> (15分钟)</li>
+<li>Tools的4个局限</li>
+<li>Skills定义与三层封装架构</li>
+<li>同一功能的三层对比（投资效益分析）</li>
+<li>Skills设计原则（4个原则，配反例和改进示例）</li>
+<li>
+<p>完整组合示例</p>
+<ul>
+<li>3个Tools组成1个Skill</li>
+<li>2个Skills组合完成复杂任务</li>
+<li>数据流转图</li>
+</ul>
+</li>
+<li>
+<p><strong>完整技术栈架构</strong> (10分钟)</p>
+</li>
+<li>六层架构图详细说明</li>
+<li>各层职责详解（6层表格）</li>
+<li>与灵知平台的详细映射</li>
+<li>请求从RPAR到API的完整链路追踪</li>
+<li>实际项目示例（投资问效系统端到端流程）</li>
+</ol>
+<p><strong>关键产出</strong>:
+- 工具演进阶梯图
+- 完整架构层次图
+- 3个MCP格式JSON样例
+- 3个Skills封装样例
+- 六层技术栈与灵知平台映射表</p>
+<hr />
+<h2 id="_5" id="教学逻辑流">教学逻辑流</h2>
+<div class="highlight"><pre><span></span><code>【问题引入】
+上午讲了Agent发展，但Agent与传统AI的本质差别是什么？
+    ↓
+【本质深挖】
+Agent = 执行能力 + 自主规划 + 反思调整
+（3个电力行业案例对比）
+    ↓
+【框架建立】
+RPAR: Reasoning-Planning-Acting-Reflection
+（详细拆解4个环节，走查完整案例）
+    ↓
+【实例化】
+不同范式是RPAR的裁剪：ReAct、Plan-and-Execute、完整RPAR
+（3种范式详解+选择决策树）
+    ↓
+【执行层】
+Acting让Agent从&quot;动口&quot;到&quot;动手&quot;
+（4类Acting详解+代码示例）
+    ↓
+【工具演进】
+API → MCP → Tools → Skills
+（MCP标准详解+Skills设计原则）
+    ↓
+【完整架构】
+六层技术栈与灵知平台映射
+（端到端链路追踪+项目示例）
+    ↓
+【总结】
+Agentic = RPAR大脑 + Skills能力 + MCP标准 + API手脚
+</code></pre></div>
+
+<hr />
+<h2 id="_6" id="讲师要点提示">讲师要点提示</h2>
+<h3 id="_7" id="开场钩子">开场钩子</h3>
+<blockquote>
+<p>"上午专家讲了Agent的历史，下午我们解决一个核心问题：Agent与传统AI应用的本质差别是什么？答案只有一个字——'干'。Agent不只是说，而是真干。"</p>
+</blockquote>
+<h3 id="_8" id="三个金句">三个金句</h3>
+<ol>
+<li><strong>Agent本质</strong>: "从'动口'到'动手'，从'顾问'到'助手'。"</li>
+<li><strong>RPAR核心</strong>: "ReAct是RPAR的简化版，RPAR是Agent的'完全体'。"</li>
+<li><strong>工具演进</strong>: "从'人能懂'到'AI能懂'，MCP让工具具备了'自我介绍'能力。"</li>
+</ol>
+<h3 id="_9" id="新增金句">新增金句</h3>
+<ol>
+<li><strong>范式选择</strong>: "没有最好的范式，只有最适合的范式。"</li>
+<li><strong>MCP价值</strong>: "MCP不是'能不能'的问题，是'通不通'的问题。"</li>
+<li><strong>Skills本质</strong>: "Tools解决'怎么做'，Skills解决'做什么'。"</li>
+</ol>
+<h3 id="_10" id="板书重点">板书重点</h3>
+<ul>
+<li><strong>必须画图1</strong>: RPAR循环图 (四象限详细版)</li>
+<li><strong>必须画图2</strong>: Acting四象限 (2x2网格)</li>
+<li><strong>必须画图3</strong>: 工具演进阶梯 (API→MCP→Tools→Skills→RPAR)</li>
+<li><strong>必须画图4</strong>: 六层架构图</li>
+<li><strong>必须画图5</strong>: 范式选择决策树</li>
+</ul>
+<hr />
+<h2 id="_11" id="互动设计">互动设计</h2>
+<h3 id="1" id="课时1互动">课时1互动</h3>
+<ul>
+<li><strong>开场引导问题</strong>: 5个问题引发思考</li>
+<li><strong>举手表决</strong>: 了解学员当前AI应用情况</li>
+<li><strong>小组讨论</strong>: 2分钟讨论最想AI帮忙完成的工作</li>
+<li><strong>场景记录</strong>: 记录学员分享的场景，后续案例引用</li>
+</ul>
+<h3 id="2" id="课时2互动">课时2互动</h3>
+<ul>
+<li><strong>案例演练</strong>: 走查投资问效案例3轮RPAR循环</li>
+<li><strong>决策练习</strong>: 给场景让学员选择合适范式</li>
+<li><strong>代码解读</strong>: 解读Acting代码示例</li>
+</ul>
+<h3 id="3" id="课时3互动">课时3互动</h3>
+<ul>
+<li><strong>MCP设计</strong>: 让学员设计一个MCP描述</li>
+<li><strong>Skills拆分</strong>: 练习将复杂任务拆分为Skills</li>
+<li><strong>架构映射</strong>: 将技术概念映射到灵知平台</li>
+</ul>
+<hr />
+<h2 id="_12" id="质量指标">质量指标</h2>
+<h3 id="_13" id="内容质量">内容质量</h3>
+<ul>
+<li>✅ 总字数：约25,000字（目标达成）</li>
+<li>✅ 讲师话术占比：≥30%</li>
+<li>✅ 电力行业案例：≥5个（实际8个）</li>
+<li>✅ 代码示例：≥15个（实际20+）</li>
+<li>✅ MCP JSON样例：≥3个（实际3个完整示例）</li>
+<li>✅ Skills样例：≥3个（实际3个完整示例）</li>
+<li>✅ 白板/板书建议：每章节都有</li>
+</ul>
+<h3 id="_14" id="结构质量">结构质量</h3>
+<ul>
+<li>✅ 每章节包含：讲解要点、讲师话术、白板建议、互动设计</li>
+<li>✅ 概念有详细解释+示例</li>
+<li>✅ 有对比表格和决策树</li>
+<li>✅ 有完整的技术实现（伪代码）</li>
+<li>✅ 有电力行业具体案例</li>
+</ul>
+<hr />
+<h2 id="_15" id="与后续课程衔接">与后续课程衔接</h2>
+<ul>
+<li><strong>Day 2</strong>: 在灵知平台实现RPAR (实操)</li>
+<li><strong>Day 3</strong>: 优化与发布 (Reflection的实践)</li>
+<li><strong>Day 4</strong>: Vibe Coding开发前端 (Acting中的代码执行)</li>
+</ul>
+<p><strong>衔接话术</strong>:</p>
+<blockquote>
+<p>"今天讲的是理论框架，明天开始你们要在灵知平台上实现这个框架。下午讲的三层封装（Tools→Code Tools→Skills）直接对应灵知平台的模块设计。"</p>
+</blockquote>
+<hr />
+<h2 id="_16" id="文档清单">文档清单</h2>
+<h3 id="_17" id="输出文件">输出文件</h3>
+<div class="highlight"><pre><span></span><code>AI-Lesson-Training/docs/day1-pm/
+├── content-outline.md          # [更新] 更详细的大纲 (v2.0)
+├── hour1-content.md            # [扩充] 约8,200字
+├── hour2-content.md            # [扩充] 约8,500字
+└── hour3-content.md            # [扩充] 约8,300字
+
+总计: 约25,000字 (目标达成)
+</code></pre></div>
+
+<h3 id="_18" id="扩充内容统计">扩充内容统计</h3>
+<ul>
+<li><strong>原字数</strong>: 约13,700字</li>
+<li><strong>新字数</strong>: 约25,000字</li>
+<li><strong>扩充</strong>: 约11,300字 (182%)</li>
+</ul>
+<hr />
+<p><strong>文档版本</strong>: v2.0<br />
+<strong>更新日期</strong>: 2026-03-22<br />
+<strong>编写</strong>: Content Team<br />
+<strong>审核</strong>: PM Agent</p>
+    </main>
+    
+    <!-- 文档页脚 -->
+    <footer class="document-footer">
+        <div class="footer-content">
+            <div class="footer-left">
+                <span class="footer-logo">国网四川电力</span>
+            </div>
+            <div class="footer-center">
+                <span>AI种子团队培训 · 内部资料</span>
+            </div>
+            <div class="footer-right">
+                <span></span>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

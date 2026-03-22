@@ -1,0 +1,2157 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>课时1: Agent本质与RPAR框架</title>
+    <link rel="stylesheet" href="../templates/css/print.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/python.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/javascript.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/bash.min.js"></script>
+    <script>hljs.highlightAll();</script>
+</head>
+<body>
+    <!-- 封面页 -->
+    <div class="cover-page">
+        <div class="logo-container">
+            <div class="logo-badge">
+                <svg width="80" height="80" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="50" cy="50" r="45" fill="#009944" />
+                    <text x="50" y="55" text-anchor="middle" fill="white" font-size="16" font-weight="bold">SGCC</text>
+                </svg>
+            </div>
+            <div class="logo-text">
+                <div class="logo-main">国网四川电力</div>
+                <div class="logo-sub">State Grid Sichuan Electric Power</div>
+            </div>
+        </div>
+        <div class="cover-divider"></div>
+        <h1 class="doc-title">课时1: Agent本质与RPAR框架</h1>
+        <h2 class="doc-subtitle">1. 引入 (15分钟)</h2>
+        <div class="cover-meta">
+            <div class="meta-item">
+                <span class="meta-label">培训项目</span>
+                <span class="meta-value">AI种子团队培训教材</span>
+            </div>
+            <div class="meta-item">
+                <span class="meta-label">课程阶段</span>
+                <span class="meta-value">Day 1: Agentic AI 设计范式</span>
+            </div>
+            <div class="meta-item">
+                <span class="meta-label">生成日期</span>
+                <span class="meta-value">2026年03月22日</span>
+            </div>
+        </div>
+        <div class="cover-decoration">
+            <div class="deco-line"></div>
+            <div class="deco-dots">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </div>
+    
+    <!-- 分页 -->
+    <div class="page-break"></div>
+    
+    <!-- 目录页 -->
+    <nav class="toc-page">
+        <div class="toc-header">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-line"></div>
+        </div>
+        <div class="toc-content">
+            <ul class="toc-list"><li class="toc-level-1"><a href="#课时1-agent本质与rpar框架">课时1: Agent本质与RPAR框架</a></li><li class="toc-level-2"><a href="#1-引入-15分钟">1. 引入 (15分钟)</a></li><li class="toc-level-3"><a href="#11-承接上午与开场引导">1.1 承接上午与开场引导</a></li><li class="toc-level-4"><a href="#讲解要点">讲解要点</a></li><li class="toc-level-4"><a href="#开场引导问题引发思考">开场引导问题（引发思考）</a></li><li class="toc-level-4"><a href="#学员互动设计">学员互动设计</a></li><li class="toc-level-3"><a href="#12-课程目标可视化">1.2 课程目标可视化</a></li><li class="toc-level-4"><a href="#课程目标图表">课程目标图表</a></li><li class="toc-level-4"><a href="#课程结构预览">课程结构预览</a></li><li class="toc-level-3"><a href="#13-电力行业价值说明">1.3 电力行业价值说明</a></li><li class="toc-level-4"><a href="#为什么电力行业需要agent">为什么电力行业需要Agent？</a></li><li class="toc-level-4"><a href="#课程价值承诺">课程价值承诺</a></li><li class="toc-level-3"><a href="#讲师话术示例引入部分约300字">讲师话术示例（引入部分，约300字）</a></li><li class="toc-level-3"><a href="#白板板书建议">白板/板书建议</a></li><li class="toc-level-2"><a href="#2-agent-vs-传统ai-10分钟">2. Agent vs 传统AI (10分钟)</a></li><li class="toc-level-3"><a href="#21-传统大模型应用的特点">2.1 传统大模型应用的特点</a></li><li class="toc-level-4"><a href="#交互模式">交互模式</a></li><li class="toc-level-4"><a href="#能力范围">能力范围</a></li><li class="toc-level-4"><a href="#完成度分析">完成度分析</a></li><li class="toc-level-3"><a href="#22-agent的核心能力">2.2 Agent的核心能力</a></li></ul>
+        </div>
+    </nav>
+    
+    <!-- 分页 -->
+    <div class="page-break"></div>
+    
+    <!-- 正文内容 -->
+    <main class="content">
+        <h1 id="1-agentrpar" id="课时1-agent本质与rpar框架">课时1: Agent本质与RPAR框架</h1>
+<p><strong>时长</strong>: 40分钟<br />
+<strong>主题</strong>: 深挖Agent内核，建立RPAR认知框架<br />
+<strong>目标字数</strong>: 8,000字</p>
+<hr />
+<h2 id="1-15" id="1-引入-15分钟">1. 引入 (15分钟)</h2>
+<h3 id="11" id="11-承接上午与开场引导">1.1 承接上午与开场引导</h3>
+<h4 id="_1" id="讲解要点">讲解要点</h4>
+<p><strong>承接上午</strong>:
+- 上午专家讲了Agent的发展历程
+- 从技术演进到产业应用
+- 现在我们要深挖：<strong>Agent的内核是什么？</strong></p>
+<p><strong>核心问题抛出</strong>:</p>
+<blockquote>
+<p>"Agent与传统AI应用的本质差别是什么？"</p>
+</blockquote>
+<p><strong>答案预告</strong>:
+- 不是能力更强
+- 不是知识更多
+- 而是<strong>"能执行"</strong> + <strong>"能自主规划"</strong></p>
+<h4 id="_2" id="开场引导问题引发思考">开场引导问题（引发思考）</h4>
+<p>在进入正式内容之前，让我们先通过几个问题来引发思考：</p>
+<p><strong>问题1</strong>: "你们单位现在用的大模型应用，比如智能客服、知识问答，它们能做什么？"</p>
+<p><em>预期学员回答</em>: 回答问题、查资料、给建议...</p>
+<p><strong>问题2</strong>: "那它们能直接帮你们操作业务系统吗？能直接生成报表吗？能自动发送通知吗？"</p>
+<p><em>预期学员回答</em>: 不能，需要人工操作...</p>
+<p><strong>问题3</strong>: "如果有一个AI，不仅能回答'如何查询用电数据'，还能直接登录系统、执行查询、整理结果、生成报告，你们觉得价值差多少？"</p>
+<p><em>讲师引导</em>: 这就是我们今天要讲的Agent——从"动口"到"动手"的本质跨越。</p>
+<p><strong>问题4</strong>: "Workflow工作流也能自动执行，那和Agent有什么差别？为什么Workflow处理不了复杂情况？"</p>
+<p><em>预期学员回答</em>: Workflow是固定的，不能应变...</p>
+<p><strong>问题5</strong>: "你们觉得电力行业最复杂的场景是什么？故障诊断？投资决策？这些场景AI能怎么处理？"</p>
+<p><em>讲师引导</em>: 这些复杂场景正是Agent的用武之地，后面我们会详细讲。</p>
+<h4 id="_3" id="学员互动设计">学员互动设计</h4>
+<p><strong>互动环节1：举手表决</strong> (2分钟)</p>
+<blockquote>
+<p>"请大家举手，你们单位现在用的大模型应用，是能直接执行操作的请举手，只能回答问题的请举手。"</p>
+</blockquote>
+<p><strong>目的</strong>: 让学员意识到当前应用的局限性，建立需求感。</p>
+<p><strong>互动环节2：小组讨论</strong> (3分钟)</p>
+<blockquote>
+<p>"请前后左右的同事讨论2分钟：如果AI能直接帮你们完成一项工作，你们最希望是哪一项？为什么？"</p>
+</blockquote>
+<p><strong>目的</strong>: 建立场景关联，让课程内容与学员实际工作产生连接。</p>
+<p><strong>互动环节3：分享与记录</strong> (2分钟)</p>
+<blockquote>
+<p>"请2-3位同事分享一下，我会把有价值的场景记下来，今天课程中会用这些场景做案例。"</p>
+</blockquote>
+<p><strong>讲师记录要点</strong>: 将学员提到的场景分类（查询类、分析类、操作类），在后续讲解中引用。</p>
+<h3 id="12" id="12-课程目标可视化">1.2 课程目标可视化</h3>
+<h4 id="_4" id="课程目标图表">课程目标图表</h4>
+<div class="diagram-container"><img src="diagrams/hour1-content_diagram_1.png" alt="Diagram 1" class="ascii-image" /></div>
+
+<p><strong>学习路径</strong>:
+1. <strong>起点</strong>: 了解传统AI应用的局限性
+2. <strong>中段</strong>: 掌握Agent的三大核心能力（执行、规划、反思）
+3. <strong>终点</strong>: 建立RPAR认知框架，为后续课程打下基础</p>
+<h4 id="_5" id="课程结构预览">课程结构预览</h4>
+<div class="highlight"><pre><span></span><code>课时1 (40分钟)
+├── 引入 (15分钟)
+│   ├── 开场引导问题
+│   ├── 学员互动
+│   └── 课程目标可视化
+├── Agent vs 传统AI (10分钟)
+│   ├── 传统AI应用的特点
+│   ├── Agent的核心能力
+│   └── 3个电力行业对比案例
+├── Workflow vs Agentic (10分钟)
+│   ├── Workflow的局限性
+│   ├── Agentic的突破性
+│   └── 3个类比说明
+└── RPAR框架详解 (5分钟)
+    ├── RPAR四环节
+    └── 电力行业案例走查
+</code></pre></div>
+
+<h3 id="13" id="13-电力行业价值说明">1.3 电力行业价值说明</h3>
+<h4 id="agent" id="为什么电力行业需要agent">为什么电力行业需要Agent？</h4>
+<p><strong>行业痛点分析</strong>:</p>
+<p><strong>痛点1: 数据分散，查询繁琐</strong></p>
+<blockquote>
+<p>用电数据分散在营销系统、生产系统、GIS系统等多个平台。查一个完整数据需要登录多个系统、导出Excel、手动整合。</p>
+</blockquote>
+<p><strong>Agent价值</strong>: 自动跨系统查询、智能整合、一键生成报告</p>
+<p><strong>痛点2: 故障诊断，依赖经验</strong></p>
+<blockquote>
+<p>设备故障诊断依赖老师傅经验，年轻员工缺乏系统性培训材料，故障处理时间长。</p>
+</blockquote>
+<p><strong>Agent价值</strong>: 基于知识库和历史案例，自动推理诊断路径，辅助快速定位故障</p>
+<p><strong>痛点3: 投资分析，数据复杂</strong></p>
+<blockquote>
+<p>投资效益分析涉及多维度数据（投资额、进度、收益、对比基准），人工分析效率低、易出错。</p>
+</blockquote>
+<p><strong>Agent价值</strong>: 自动采集数据、多维度分析、可视化呈现、智能建议</p>
+<p><strong>痛点4: 报表生成，重复劳动</strong></p>
+<blockquote>
+<p>月度、季度、年度报表格式固定，但需要反复查询数据、填入模板、格式调整。</p>
+</blockquote>
+<p><strong>Agent价值</strong>: 定时自动执行、模板化生成、质量检查、自动分发</p>
+<h4 id="_6" id="课程价值承诺">课程价值承诺</h4>
+<blockquote>
+<p>"今天这40分钟，你们将掌握Agent的本质认知。回去之后，你们能够：
+1. 识别哪些场景适合用Agent，哪些不适合
+2. 理解Agent与传统AI、Workflow的根本差别
+3. 建立RPAR框架的思维模式，为明天的实操打下基础"</p>
+</blockquote>
+<h3 id="300" id="讲师话术示例引入部分约300字">讲师话术示例（引入部分，约300字）</h3>
+<p><strong>开场白</strong>:</p>
+<blockquote>
+<p>"上午我们听了Agent的发展史，看到了从技术演进到产业应用的全过程。但我想问大家一个问题：Agent和你们现在用的大模型应用，比如智能客服、知识库问答，本质差别到底是什么？是更聪明吗？是知识更多吗？都不是。</p>
+<p>让我们做个小调查。你们单位现在用的AI应用，能直接帮你们操作业务系统的请举手... 只能回答问题、给建议的请举手... 看到了吗？这就是现状——AI还是'顾问'，只能动口，不能动手。</p>
+<p>但Agent不一样。Agent是'助手'，不仅告诉你怎么做，还直接帮你做完。这就是我们今天要解决的核心问题：Agent的本质是什么？为什么它能从'动口'到'动手'？</p>
+<p>今天这120分钟，我们只解决一个问题：Agent的内核——RPAR框架。这是你们明天在灵知平台上实操的理论基础。"</p>
+</blockquote>
+<h3 id="_7" id="白板板书建议">白板/板书建议</h3>
+<p><strong>顶部大字</strong>:</p>
+<div class="highlight"><pre><span></span><code>┌──────────────────────────────────┐
+│  Agent的本质 = 执行 + 规划 + 反思  │
+└──────────────────────────────────┘
+</code></pre></div>
+
+<p><strong>左侧列表</strong>:</p>
+<div class="highlight"><pre><span></span><code>课程目标：
+✓ 理解Agent本质
+✓ 掌握RPAR框架
+✓ 建立认知体系
+</code></pre></div>
+
+<p><strong>右侧留空</strong>: 记录学员分享的场景案例</p>
+<hr />
+<h2 id="2-agent-vs-ai-10" id="2-agent-vs-传统ai-10分钟">2. Agent vs 传统AI (10分钟)</h2>
+<h3 id="21" id="21-传统大模型应用的特点">2.1 传统大模型应用的特点</h3>
+<h4 id="_8" id="交互模式">交互模式</h4>
+<p><strong>传统AI应用的交互模式</strong>: 一问一答</p>
+<div class="highlight"><pre><span></span><code>用户: &quot;如何查询成都高新区的用电数据？&quot;
+AI: &quot;您可以按照以下步骤操作：
+1. 登录营销系统
+2. 进入数据查询模块
+3. 选择区域：成都高新区
+4. 选择时间范围
+5. 点击查询按钮
+6. 导出Excel文件&quot;
+</code></pre></div>
+
+<p><strong>特点分析</strong>:
+- ✅ 给出了详细的操作步骤
+- ❌ 需要用户手动执行每一步
+- ❌ 如果系统界面变化，步骤可能失效
+- ❌ 用户需要具备操作能力</p>
+<h4 id="_9" id="能力范围">能力范围</h4>
+<p><strong>传统AI的能力边界</strong>:</p>
+<table>
+<thead>
+<tr>
+<th>能力</th>
+<th>支持情况</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>回答问题</td>
+<td>✅</td>
+<td>基于训练知识回答</td>
+</tr>
+<tr>
+<td>提供建议</td>
+<td>✅</td>
+<td>给出操作建议</td>
+</tr>
+<tr>
+<td>生成内容</td>
+<td>✅</td>
+<td>文本、代码、图片</td>
+</tr>
+<tr>
+<td>执行操作</td>
+<td>❌</td>
+<td>无法调用外部系统</td>
+</tr>
+<tr>
+<td>自主决策</td>
+<td>❌</td>
+<td>无法根据情况调整</td>
+</tr>
+<tr>
+<td>持续迭代</td>
+<td>❌</td>
+<td>单次交互，无记忆</td>
+</tr>
+</tbody>
+</table>
+<h4 id="_10" id="完成度分析">完成度分析</h4>
+<p><strong>传统AI的完成度</strong>: "告诉你怎么做，但不帮你做"</p>
+<p><strong>价值维度</strong>:
+- <strong>信息价值</strong>: 高 —— 提供准确的信息和建议
+- <strong>执行价值</strong>: 低 —— 需要人工执行
+- <strong>时间价值</strong>: 中 —— 节省信息查找时间，但不节省执行时间
+- <strong>体验价值</strong>: 中 —— 交互简单，但不够智能</p>
+<h3 id="22-agent" id="22-agent的核心能力">2.2 Agent的核心能力</h3>
+<h4 id="_11" id="交互模式">交互模式</h4>
+<p><strong>Agent的交互模式</strong>: 多轮自主交互</p>
+<div class="highlight"><pre><span></span><code>用户: &quot;帮我查一下成都高新区上周的用电数据&quot;
+Agent: &quot;好的，我来为您查询。&quot;
+[Agent自动登录系统...]
+[Agent选择区域：成都高新区...]
+[Agent选择时间范围...]
+[Agent执行查询...]
+[Agent整理数据...]
+Agent: &quot;查询完成。成都高新区上周用电数据如下：
+- 总用电量：12,345 MWh
+- 同比上周：+3.2%
+- 峰值负荷：2,100 MW
+详细报告已保存，需要我生成分析报告吗？&quot;
+</code></pre></div>
+
+<p><strong>特点分析</strong>:
+- ✅ 直接执行操作，无需人工干预
+- ✅ 能理解复杂指令，分解任务
+- ✅ 能处理异常情况，自主调整
+- ✅ 持续交互，直到任务完成</p>
+<h4 id="_12" id="核心能力三角">核心能力三角</h4>
+<div class="diagram-container"><img src="diagrams/hour1-content_diagram_2.png" alt="Diagram 2" class="ascii-image" /></div>
+
+<p><strong>执行能力</strong>:
+- 调用API、执行代码、操作文件
+- 与外部系统交互
+- 直接产生结果</p>
+<p><strong>规划能力</strong>:
+- 理解复杂任务
+- 分解为可执行的步骤
+- 动态调整执行顺序</p>
+<p><strong>反思能力</strong>:
+- 评估执行结果
+- 识别错误和问题
+- 调整策略重新执行</p>
+<h4 id="_13" id="完成度分析">完成度分析</h4>
+<p><strong>Agent的完成度</strong>: "直接帮你做完"</p>
+<p><strong>价值维度</strong>:
+- <strong>信息价值</strong>: 高 —— 同样提供准确信息
+- <strong>执行价值</strong>: 高 —— 直接执行操作
+- <strong>时间价值</strong>: 高 —— 节省信息和执行时间
+- <strong>体验价值</strong>: 高 —— 智能交互，自然语言对话</p>
+<h3 id="23" id="23-对比表">2.3 对比表</h3>
+<table>
+<thead>
+<tr>
+<th>维度</th>
+<th>传统AI应用</th>
+<th>Agent</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>交互模式</strong></td>
+<td>单轮对话</td>
+<td>多轮自主交互</td>
+</tr>
+<tr>
+<td><strong>执行能力</strong></td>
+<td>❌ 只给建议</td>
+<td>✅ 直接执行</td>
+</tr>
+<tr>
+<td><strong>完成度</strong></td>
+<td>"你应该..."</td>
+<td>"已完成"</td>
+</tr>
+<tr>
+<td><strong>任务分解</strong></td>
+<td>❌ 需要人分解</td>
+<td>✅ 自动分解</td>
+</tr>
+<tr>
+<td><strong>异常处理</strong></td>
+<td>❌ 无法处理</td>
+<td>✅ 自主调整</td>
+</tr>
+<tr>
+<td><strong>持续迭代</strong></td>
+<td>❌ 单次交互</td>
+<td>✅ 多轮循环</td>
+</tr>
+<tr>
+<td><strong>价值类型</strong></td>
+<td>信息价值</td>
+<td>结果价值</td>
+</tr>
+</tbody>
+</table>
+<h3 id="24" id="24-电力行业案例对比">2.4 电力行业案例对比</h3>
+<h4 id="1" id="案例1-查询用电数据场景">案例1: 查询用电数据场景</h4>
+<p><strong>场景描述</strong>:</p>
+<blockquote>
+<p>领导要求："查一下成都高新区上个月的用电情况，对比一下前几个月的趋势"</p>
+</blockquote>
+<p><strong>传统AI应用的处理方式</strong>:</p>
+<div class="highlight"><pre><span></span><code>用户: &quot;查一下成都高新区上个月的用电情况，对比一下前几个月的趋势&quot;
+
+AI回答:
+&quot;您可以按以下步骤查询：
+1. 登录营销管理系统
+2. 进入&#39;数据查询&#39; → &#39;用电统计&#39;
+3. 选择区域：成都高新区
+4. 选择时间：2024年2月
+5. 导出数据
+6. 重复步骤4-5，分别导出1月、12月的数据
+7. 在Excel中制作趋势对比图表
+
+注意：您需要有营销系统的查询权限。&quot;
+
+【结果】用户收到操作指南，需要手动执行约15-20分钟的操作
+</code></pre></div>
+
+<p><strong>Agent的处理方式</strong>:</p>
+<div class="highlight"><pre><span></span><code><span class="err">用户</span><span class="o">:</span><span class="w"> </span><span class="s">&quot;查一下成都高新区上个月的用电情况，对比一下前几个月的趋势&quot;</span>
+
+<span class="nl">Agent:</span>
+<span class="s">&quot;好的，我来为您查询成都高新区近3个月的用电数据并生成趋势分析。&quot;</span>
+
+<span class="p">[</span><span class="n">Round</span><span class="w"> </span><span class="mh">1</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="err">思考</span><span class="p">]</span>
+<span class="nl">Thought:</span><span class="w"> </span><span class="err">用户需要成都高新区近</span><span class="mh">3</span><span class="err">个月的用电数据对比。需要查询</span><span class="mh">2</span><span class="err">月、</span><span class="mh">1</span><span class="err">月、</span><span class="mh">12</span><span class="err">月的数据。</span>
+
+<span class="p">[</span><span class="n">Round</span><span class="w"> </span><span class="mh">1</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="err">执行</span><span class="p">]</span>
+<span class="nl">Action:</span><span class="w"> </span><span class="err">调用</span><span class="n">query_electricity_data</span><span class="w"> </span><span class="n">API</span>
+<span class="nl">Parameters:</span><span class="w"> </span><span class="p">{</span><span class="nl">region:</span><span class="w"> </span><span class="s">&quot;成都高新区&quot;</span><span class="p">,</span><span class="w"> </span><span class="nl">months:</span><span class="w"> </span><span class="p">[</span><span class="s">&quot;2024-02&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;2024-01&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;2023-12&quot;</span><span class="p">]}</span>
+
+<span class="p">[</span><span class="n">Round</span><span class="w"> </span><span class="mh">1</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="err">观察</span><span class="p">]</span>
+<span class="nl">Observation:</span><span class="w"> </span><span class="err">获取到</span><span class="mh">3</span><span class="err">个月的数据，包含用电量、峰值负荷、用户数等</span>
+
+<span class="p">[</span><span class="n">Round</span><span class="w"> </span><span class="mh">2</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="err">思考</span><span class="p">]</span>
+<span class="nl">Thought:</span><span class="w"> </span><span class="err">数据已获取，需要计算环比变化率并生成趋势图表</span>
+
+<span class="p">[</span><span class="n">Round</span><span class="w"> </span><span class="mh">2</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="err">执行</span><span class="p">]</span>
+<span class="nl">Action:</span><span class="w"> </span><span class="err">调用</span><span class="n">analyze_trend函数</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">generate_chart函数</span>
+
+<span class="p">[</span><span class="n">Round</span><span class="w"> </span><span class="mh">2</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="err">观察</span><span class="p">]</span>
+<span class="nl">Observation:</span><span class="w"> </span><span class="err">分析完成，图表生成</span>
+
+<span class="p">[</span><span class="n">Round</span><span class="w"> </span><span class="mh">3</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="err">思考</span><span class="p">]</span>
+<span class="nl">Thought:</span><span class="w"> </span><span class="err">可以生成完整的分析报告了</span>
+
+<span class="p">[</span><span class="n">Round</span><span class="w"> </span><span class="mh">3</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="err">执行</span><span class="p">]</span>
+<span class="nl">Action:</span><span class="w"> </span><span class="err">生成</span><span class="n">Markdown格式报告</span>
+
+<span class="nl">Agent回答:</span>
+<span class="s">&quot;查询完成！成都高新区近3个月用电情况分析如下：</span>
+
+<span class="err">📊</span><span class="w"> </span><span class="err">用电数据对比</span>
+<span class="err">•</span><span class="w"> </span><span class="mh">2024</span><span class="err">年</span><span class="mh">2</span><span class="err">月：</span><span class="mh">12</span><span class="p">,</span><span class="mh">345</span><span class="w"> </span><span class="n">MWh</span><span class="err">（环比</span><span class="w"> </span><span class="o">+</span><span class="mf">3.2</span><span class="o">%</span><span class="err">）</span>
+<span class="err">•</span><span class="w"> </span><span class="mh">2024</span><span class="err">年</span><span class="mh">1</span><span class="err">月：</span><span class="mh">11</span><span class="p">,</span><span class="mh">956</span><span class="w"> </span><span class="n">MWh</span><span class="err">（环比</span><span class="w"> </span><span class="o">-</span><span class="mf">5.8</span><span class="o">%</span><span class="err">）</span><span class="w">  </span>
+<span class="err">•</span><span class="w"> </span><span class="mh">2023</span><span class="err">年</span><span class="mh">12</span><span class="err">月：</span><span class="mh">12</span><span class="p">,</span><span class="mh">691</span><span class="w"> </span><span class="n">MWh</span>
+
+<span class="err">📈</span><span class="w"> </span><span class="err">趋势分析</span>
+<span class="err">•</span><span class="w"> </span><span class="err">整体趋势：春节影响</span><span class="mh">1</span><span class="err">月下降，</span><span class="mh">2</span><span class="err">月恢复增长</span>
+<span class="err">•</span><span class="w"> </span><span class="err">峰值负荷：</span><span class="mh">2</span><span class="p">,</span><span class="mh">100</span><span class="w"> </span><span class="n">MW</span><span class="err">（出现在</span><span class="mh">2</span><span class="err">月</span><span class="mh">15</span><span class="err">日）</span>
+<span class="err">•</span><span class="w"> </span><span class="err">用户增长：新增用户</span><span class="w"> </span><span class="mh">234</span><span class="w"> </span><span class="err">户</span>
+
+<span class="err">📄</span><span class="w"> </span><span class="err">详细报告已生成：高新区用电分析报告</span><span class="n">_202403</span><span class="p">.</span><span class="n">pdf</span>
+<span class="err">📊</span><span class="w"> </span><span class="err">趋势图表已保存：</span><span class="n">trend_chart</span><span class="p">.</span><span class="n">png</span>
+
+<span class="err">是否需要我进一步分析某个具体方面？</span><span class="s">&quot;</span>
+
+<span class="err">【结果】用户直接收到完整的分析报告和图表，耗时约</span><span class="mh">30</span><span class="err">秒</span>
+</code></pre></div>
+
+<p><strong>对比总结</strong>:</p>
+<table>
+<thead>
+<tr>
+<th>对比项</th>
+<th>传统AI</th>
+<th>Agent</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>用户操作</td>
+<td>需要执行7步</td>
+<td>0步，直接接收结果</td>
+</tr>
+<tr>
+<td>耗时</td>
+<td>15-20分钟</td>
+<td>30秒</td>
+</tr>
+<tr>
+<td>出错概率</td>
+<td>高（人工操作）</td>
+<td>低（自动执行）</td>
+</tr>
+<tr>
+<td>输出质量</td>
+<td>依赖用户Excel技能</td>
+<td>专业图表和分析</td>
+</tr>
+<tr>
+<td>体验</td>
+<td>学习成本</td>
+<td>自然语言交互</td>
+</tr>
+</tbody>
+</table>
+<p><strong>时间效率对比数据</strong>:
+- 传统方式：15-20分钟
+- Agent方式：30秒
+- <strong>效率提升：30-40倍</strong></p>
+<h4 id="2" id="案例2-故障诊断场景">案例2: 故障诊断场景</h4>
+<p><strong>场景描述</strong>:</p>
+<blockquote>
+<p>运维人员报告："高新区变电站主变温度异常，达到85°C，正常应该低于75°C"</p>
+</blockquote>
+<p><strong>传统AI应用的处理方式</strong>:</p>
+<div class="highlight"><pre><span></span><code>用户: &quot;高新区变电站主变温度异常，85°C，怎么处理？&quot;
+
+AI回答:
+&quot;主变温度异常可能由以下原因导致：
+1. 负载过高
+2. 冷却系统故障
+3. 环境温度异常
+4. 传感器故障
+
+建议排查步骤：
+1. 检查当前负载率
+2. 检查冷却风扇运行情况
+3. 检查环境温度
+4. 检查传感器数据是否正常
+5. 如无法解决，联系检修班组
+
+相关标准：
+- 正常温度：&lt; 75°C
+- 告警温度：75-85°C
+- 紧急温度：&gt; 85°C
+
+注意：当前温度已达85°C，建议立即采取降温措施或减载运行。&quot;
+
+【结果】运维人员收到排查指南，需要手动检查各项数据
+</code></pre></div>
+
+<p><strong>Agent的处理方式</strong>:</p>
+<div class="highlight"><pre><span></span><code>用户: &quot;高新区变电站主变温度异常，85°C&quot;
+
+Agent:
+&quot;收到告警，立即启动故障诊断流程。当前温度85°C已达告警阈值，正在自动排查...&quot;
+
+[Round 1 - 思考]
+Thought: 主变温度异常（85°C），需要系统性地排查可能原因。按照优先级：负载→冷却→环境→传感器
+
+[Round 1 - 执行]
+Action: 查询当前负载率
+Observation: 负载率 78%（正常范围）
+
+[Round 2 - 思考]
+Thought: 负载正常，排查冷却系统
+
+[Round 2 - 执行]
+Action: 检查冷却系统状态
+Observation: 冷却风扇#2故障，转速为0
+
+[Round 3 - 思考]
+Thought: 发现冷却风扇故障！这可能是温度异常的直接原因。需要进一步确认并生成处理建议。
+
+[Round 3 - 执行]
+Action: 查询历史数据，确认风扇故障与温度升高的时间关联
+Observation: 风扇#2在2小时前故障，温度从72°C逐步上升至85°C
+
+[Round 4 - 思考]
+Thought: 故障根因已确定。需要生成处理方案并评估风险。
+
+[Round 4 - 执行]
+Action: 生成故障诊断报告和处理建议
+
+Agent回答:
+&quot;🔴 故障诊断完成 - 高新区变电站主变温度异常
+
+【根因分析】
+✓ 负载率：78%（正常）
+✗ 冷却风扇#2：故障（转速0）⚠️
+✓ 环境温度：22°C（正常）
+✓ 传感器数据：正常
+
+【时间线】
+2小时前：冷却风扇#2故障
+随后：主变温度从72°C持续上升至85°C
+
+【处理建议】
+1. 【立即】启动备用冷却系统
+2. 【紧急】联系检修班组处理风扇#2
+3. 【监控】持续监控温度，如超过90°C启动减载预案
+4. 【记录】故障已记录，自动创建检修工单
+
+【风险评估】
+当前风险等级：中等
+预计修复时间：2-4小时
+备用冷却可支撑：6小时
+
+⚡ 已自动执行：
+✓ 启动备用冷却
+✓ 发送告警通知给值班长和检修班组
+✓ 创建紧急检修工单（编号：WO-2024-0315-001）
+
+请确认是否启动减载预案？&quot;
+
+【结果】自动完成诊断、定位故障、生成方案、执行应急措施
+</code></pre></div>
+
+<p><strong>对比总结</strong>:</p>
+<table>
+<thead>
+<tr>
+<th>对比项</th>
+<th>传统AI</th>
+<th>Agent</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>诊断深度</td>
+<td>提供可能原因列表</td>
+<td>自动排查并定位根因</td>
+</tr>
+<tr>
+<td>处理速度</td>
+<td>需要人工逐项检查</td>
+<td>秒级自动诊断</td>
+</tr>
+<tr>
+<td>响应措施</td>
+<td>仅提供建议</td>
+<td>自动执行应急措施</td>
+</tr>
+<tr>
+<td>工单处理</td>
+<td>人工创建</td>
+<td>自动创建并派单</td>
+</tr>
+<tr>
+<td>风险控制</td>
+<td>依赖人员经验</td>
+<td>自动风险评估</td>
+</tr>
+</tbody>
+</table>
+<p><strong>关键差异</strong>: Agent能够<strong>主动采集数据</strong>、<strong>推理诊断</strong>、<strong>自动执行</strong>应急措施，而不仅仅是提供建议。</p>
+<h4 id="3" id="案例3-报表生成场景">案例3: 报表生成场景</h4>
+<p><strong>场景描述</strong>:</p>
+<blockquote>
+<p>每月5日前需要生成上月投资效益分析报告，包含：投资完成情况、ROI分析、项目进度、风险预警</p>
+</blockquote>
+<p><strong>传统AI应用的处理方式</strong>:</p>
+<div class="highlight"><pre><span></span><code>用户: &quot;帮我写一份投资效益分析报告&quot;
+
+AI回答:
+&quot;投资效益分析报告通常包含以下内容：
+
+1. 执行摘要
+2. 投资完成情况
+   - 计划投资额 vs 实际投资额
+   - 投资完成率
+3. ROI分析
+   - 各项目ROI计算
+   - 与预期对比
+4. 项目进度
+   - 完成项目数
+   - 进行中项目数
+   - 延期项目数
+5. 风险预警
+   - 资金风险
+   - 进度风险
+   - 收益风险
+
+您可以收集以上数据后，我可以帮您撰写报告内容。
+
+请提供：
+- 投资项目清单
+- 各项目投资额和收益数据
+- 项目进度信息
+- 相关财务数据&quot;
+
+【结果】用户需要手动收集所有数据，然后AI才能协助撰写报告
+</code></pre></div>
+
+<p><strong>Agent的处理方式</strong>:</p>
+<div class="highlight"><pre><span></span><code>用户: &quot;生成2月份投资效益分析报告&quot;
+
+Agent:
+&quot;正在生成2月份投资效益分析报告，预计需要1-2分钟...&quot;
+
+[Round 1 - 思考]
+Thought: 需要查询2月份的投资数据，包括：项目列表、投资额、收益、进度等
+
+[Round 1 - 执行]
+Action: 调用query_investment_data API
+Parameters: {month: &quot;2024-02&quot;, include_details: true}
+Observation: 获取到15个项目的详细数据
+
+[Round 2 - 思考]
+Thought: 数据已获取，需要计算各项分析指标
+
+[Round 2 - 执行]
+Action: 并行执行
+<span class="k">-</span> calculate_roi for each project
+<span class="k">-</span> calculate_completion_rate
+<span class="k">-</span> identify_risks
+Observation: 分析指标计算完成
+
+[Round 3 - 思考]
+Thought: 数据和分析指标都有了，需要生成可视化图表
+
+[Round 3 - 执行]
+Action: 生成图表
+<span class="k">-</span> 投资完成率饼图
+<span class="k">-</span> ROI对比柱状图
+<span class="k">-</span> 项目进度甘特图
+<span class="k">-</span> 风险热力图
+Observation: 4个图表生成完成
+
+[Round 4 - 思考]
+Thought: 可以生成完整的分析报告了
+
+[Round 4 - 执行]
+Action: 调用generate_report函数，整合所有数据和图表
+
+Agent回答:
+&quot;✅ 2月份投资效益分析报告已生成
+
+📄 报告文件：投资效益分析报告_202402.pdf
+📊 附件图表：
+   <span class="k">-</span> 投资完成率分布图
+   <span class="k">-</span> ROI对比分析图
+   <span class="k">-</span> 项目进度跟踪图
+   <span class="k">-</span> 风险预警热力图
+
+【报告摘要】
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+📈 总体情况
+• 计划投资：8,500万元
+• 实际投资：8,230万元
+• 完成率：96.8%
+• 整体ROI：12.3%（目标10%）
+
+📊 项目分布
+• 完成：8个项目
+• 进行中：6个项目
+• 延期：1个项目
+
+⚠️ 风险预警
+• 高风险：1个项目（PRJ-2024-008 延期风险）
+• 中风险：2个项目（ROI低于预期）
+
+💡 建议措施
+1. 重点关注PRJ-2024-008项目，建议启动专项督导
+2. 对ROI低于预期的项目进行效益评估
+3. 下月投资计划建议增加配网改造项目
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+报告已保存至：/reports/2024/02/
+是否需要我发送到您的邮箱？&quot;
+
+【结果】从数据查询到报告生成全自动完成，耗时90秒
+</code></pre></div>
+
+<p><strong>时间效率对比数据</strong>:
+- 传统方式（人工）: 4-6小时
+  - 数据收集：2-3小时
+  - Excel处理：1-2小时
+  - 报告撰写：1小时
+- Agent方式: 90秒
+- <strong>效率提升：160-240倍</strong></p>
+<p><strong>质量对比</strong>:
+- 传统方式：质量依赖个人Excel技能和报告撰写能力
+- Agent方式：标准化输出，包含专业图表和分析</p>
+<h3 id="25" id="25-执行能力的技术原理解释">2.5 执行能力的技术原理解释</h3>
+<h4 id="_14" id="技术架构概述">技术架构概述</h4>
+<div class="diagram-container"><img src="diagrams/hour1-content_diagram_3.png" alt="Diagram 3" class="ascii-image" /></div>
+
+<h4 id="_15" id="关键技术组件">关键技术组件</h4>
+<p><strong>1. 意图识别 (Intent Recognition)</strong></p>
+<div class="highlight"><pre><span></span><code><span class="c1"># 示例：理解用户指令的技术实现</span>
+<span class="n">user_input</span> <span class="o">=</span> <span class="s2">&quot;查一下成都高新区上个月的用电情况&quot;</span>
+
+<span class="c1"># LLM解析意图</span>
+<span class="n">intent_analysis</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;action&quot;</span><span class="p">:</span> <span class="s2">&quot;query_data&quot;</span><span class="p">,</span>           <span class="c1"># 动作类型</span>
+    <span class="s2">&quot;target&quot;</span><span class="p">:</span> <span class="s2">&quot;electricity_usage&quot;</span><span class="p">,</span>    <span class="c1"># 查询对象</span>
+    <span class="s2">&quot;region&quot;</span><span class="p">:</span> <span class="s2">&quot;成都高新区&quot;</span><span class="p">,</span>            <span class="c1"># 区域参数</span>
+    <span class="s2">&quot;time_period&quot;</span><span class="p">:</span> <span class="s2">&quot;last_month&quot;</span><span class="p">,</span>      <span class="c1"># 时间参数</span>
+    <span class="s2">&quot;confidence&quot;</span><span class="p">:</span> <span class="mf">0.95</span>                <span class="c1"># 置信度</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p><strong>2. 工具注册与发现 (Tool Registration &amp; Discovery)</strong></p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;tools&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;query_electricity_data&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;查询指定区域的用电数据&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;parameters&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;region&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;string - 区域名称&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;time_range&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;string - 时间范围&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;metrics&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;array - 查询指标&quot;</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;generate_report&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;生成数据分析报告&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;parameters&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;data&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;object - 分析数据&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;template&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;string - 报告模板&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;format&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;string - 输出格式&quot;</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">]</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p><strong>3. 函数调用 (Function Calling)</strong></p>
+<div class="highlight"><pre><span></span><code><span class="c1"># LLM根据任务选择合适的工具</span>
+<span class="n">available_tools</span> <span class="o">=</span> <span class="p">[</span><span class="n">query_electricity_data</span><span class="p">,</span> <span class="n">generate_report</span><span class="p">,</span> <span class="n">send_notification</span><span class="p">]</span>
+
+<span class="c1"># LLM决策</span>
+<span class="n">selected_tool</span> <span class="o">=</span> <span class="s2">&quot;query_electricity_data&quot;</span>
+<span class="n">parameters</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;region&quot;</span><span class="p">:</span> <span class="s2">&quot;成都高新区&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;time_range&quot;</span><span class="p">:</span> <span class="s2">&quot;2024-02-01 to 2024-02-29&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;metrics&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;total_usage&quot;</span><span class="p">,</span> <span class="s2">&quot;peak_load&quot;</span><span class="p">,</span> <span class="s2">&quot;user_count&quot;</span><span class="p">]</span>
+<span class="p">}</span>
+
+<span class="c1"># 执行调用</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">query_electricity_data</span><span class="p">(</span><span class="o">**</span><span class="n">parameters</span><span class="p">)</span>
+</code></pre></div>
+
+<p><strong>4. 结果整合 (Result Integration)</strong></p>
+<div class="highlight"><pre><span></span><code><span class="c1"># 多步骤结果整合</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">integrate_results</span><span class="p">(</span><span class="n">query_result</span><span class="p">:</span> <span class="nb">dict</span><span class="p">,</span> <span class="n">analysis_result</span><span class="p">:</span> <span class="nb">dict</span><span class="p">,</span> <span class="n">chart_data</span><span class="p">:</span> <span class="nb">dict</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    整合多步骤处理结果，生成结构化报告。</span>
+
+<span class="sd">    该函数用于ReAct工作流的最后一步——结果整合阶段。</span>
+<span class="sd">    在电力业务场景中，通常将数据查询、AI分析、图表生成的结果</span>
+<span class="sd">    合并为一份完整的分析报告，便于决策者快速获取关键信息。</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        query_result (dict): 数据查询步骤返回的原始数据</span>
+<span class="sd">            示例: {&quot;region&quot;: &quot;四川&quot;, &quot;load_data&quot;: [...], &quot;timestamp&quot;: &quot;2024-01-15&quot;}</span>
+<span class="sd">        analysis_result (dict): AI分析步骤返回的分析结果</span>
+<span class="sd">            示例: {&quot;trend&quot;: &quot;上升&quot;, &quot;anomaly_detected&quot;: True, &quot;confidence&quot;: 0.95}</span>
+<span class="sd">        chart_data (dict): 图表生成步骤返回的可视化数据</span>
+<span class="sd">            示例: {&quot;chart_type&quot;: &quot;line&quot;, &quot;data_points&quot;: [...], &quot;title&quot;: &quot;负荷趋势&quot;}</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        dict: 完整的结构化报告，包含以下字段:</span>
+<span class="sd">            - summary (str): 数据概览摘要</span>
+<span class="sd">            - analysis (dict): 详细分析结果</span>
+<span class="sd">            - charts (dict): 图表数据</span>
+<span class="sd">            - recommendations (list): AI生成的行动建议列表</span>
+<span class="sd">            - generated_at (str): 报告生成时间戳</span>
+
+<span class="sd">    Raises:</span>
+<span class="sd">        ValueError: 当任一输入参数为None或空字典时抛出</span>
+<span class="sd">        TypeError: 当输入参数类型不符合要求时抛出</span>
+
+<span class="sd">    Examples:</span>
+<span class="sd">        # 基本用法：整合负荷分析结果</span>
+<span class="sd">        &gt;&gt;&gt; query_data = {&quot;region&quot;: &quot;成都&quot;, &quot;load&quot;: 1250.5}</span>
+<span class="sd">        &gt;&gt;&gt; analysis = {&quot;trend&quot;: &quot;上升15%&quot;, &quot;alert&quot;: False}</span>
+<span class="sd">        &gt;&gt;&gt; chart = {&quot;type&quot;: &quot;bar&quot;, &quot;values&quot;: [1200, 1250, 1300]}</span>
+<span class="sd">        &gt;&gt;&gt; report = integrate_results(query_data, analysis, chart)</span>
+<span class="sd">        &gt;&gt;&gt; &quot;summary&quot; in report</span>
+<span class="sd">        True</span>
+
+<span class="sd">        # 电力业务场景：整合故障诊断结果</span>
+<span class="sd">        &gt;&gt;&gt; query = {&quot;circuit_id&quot;: &quot;CD-001&quot;, &quot;status&quot;: &quot;abnormal&quot;}</span>
+<span class="sd">        &gt;&gt;&gt; analysis = {&quot;fault_type&quot;: &quot;过载&quot;, &quot;severity&quot;: &quot;high&quot;}</span>
+<span class="sd">        &gt;&gt;&gt; chart = {&quot;heatmap&quot;: [...], &quot;time_series&quot;: [...]}</span>
+<span class="sd">        &gt;&gt;&gt; result = integrate_results(query, analysis, chart)</span>
+<span class="sd">        &gt;&gt;&gt; len(result[&quot;recommendations&quot;]) &gt; 0</span>
+<span class="sd">        True</span>
+
+<span class="sd">    Note:</span>
+<span class="sd">        该函数假设 generate_summary() 和 generate_recommendations() 辅助函数</span>
+<span class="sd">        已在同模块中定义。在实际应用中，这些函数可能涉及调用LLM生成文本。</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">report</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;summary&quot;</span><span class="p">:</span> <span class="n">generate_summary</span><span class="p">(</span><span class="n">query_result</span><span class="p">),</span>
+        <span class="s2">&quot;analysis&quot;</span><span class="p">:</span> <span class="n">analysis_result</span><span class="p">,</span>
+        <span class="s2">&quot;charts&quot;</span><span class="p">:</span> <span class="n">chart_data</span><span class="p">,</span>
+        <span class="s2">&quot;recommendations&quot;</span><span class="p">:</span> <span class="n">generate_recommendations</span><span class="p">(</span><span class="n">analysis_result</span><span class="p">),</span>
+        <span class="s2">&quot;generated_at&quot;</span><span class="p">:</span> <span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span><span class="o">.</span><span class="n">isoformat</span><span class="p">()</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="n">format_report</span><span class="p">(</span><span class="n">report</span><span class="p">)</span>
+</code></pre></div>
+
+<h4 id="ai" id="与传统ai的关键技术差异">与传统AI的关键技术差异</h4>
+<table>
+<thead>
+<tr>
+<th>技术维度</th>
+<th>传统AI</th>
+<th>Agent</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>交互方式</strong></td>
+<td>Text-in-Text-out</td>
+<td>Text-in-Action-out</td>
+</tr>
+<tr>
+<td><strong>输出类型</strong></td>
+<td>纯文本</td>
+<td>文本 + 工具调用</td>
+</tr>
+<tr>
+<td><strong>上下文管理</strong></td>
+<td>单轮或简单多轮</td>
+<td>复杂任务状态管理</td>
+</tr>
+<tr>
+<td><strong>记忆能力</strong></td>
+<td>有限的上下文窗口</td>
+<td>持久化任务记忆</td>
+</tr>
+<tr>
+<td><strong>错误处理</strong></td>
+<td>无</td>
+<td>自动重试、降级</td>
+</tr>
+<tr>
+<td><strong>多步骤协作</strong></td>
+<td>无</td>
+<td>工具链编排</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_16" id="核心观点">核心观点</h3>
+<blockquote>
+<p><strong>"Agent的本质是'执行'，特别是'自主执行'——从'动口'到'动手'。"</strong></p>
+</blockquote>
+<p><strong>三个关键转变</strong>:
+1. <strong>从信息到结果</strong>: 不只是告诉你怎么做，而是直接给你结果
+2. <strong>从被动到主动</strong>: 不只是回答问题，而是主动完成任务
+3. <strong>从静态到动态</strong>: 不只是单次交互，而是持续迭代直到完成</p>
+<h3 id="agent-vs-ai250" id="讲师话术示例agent-vs-传统ai约250字">讲师话术示例（Agent vs 传统AI，约250字）</h3>
+<blockquote>
+<p>"刚才我们看了三个对比案例：查询用电数据、故障诊断、报表生成。大家发现规律了吗？传统AI应用不管多'智能'，它都是'顾问'——只动口，不动手。你问它怎么查询数据，它给你操作步骤；你问它怎么诊断故障，它给你排查清单。但最后还是你自己去操作。</p>
+<p>Agent不一样。Agent是'助手'，你告诉它任务，它自己完成。查数据？它自己去系统里查。诊断故障？它自己调用监控数据、分析、定位、甚至自动执行应急措施。生成报表？从数据采集到报告生成全自动完成。</p>
+<p>这就是本质差别：从'动口'到'动手'。技术上讲，传统AI是'Text-in-Text-out'，Agent是'Text-in-Action-out'。Agent不只是生成文本，它还能生成'动作'——调用API、执行代码、操作文件。</p>
+<p>在电力行业，这个差别意味着什么？意味着原来需要几个小时的手工操作，现在90秒就能完成。意味着原来依赖老师傅经验的故障诊断，现在Agent可以系统化地自动完成。"</p>
+</blockquote>
+<h3 id="_17" id="白板板书建议">白板/板书建议</h3>
+<p><strong>画对比</strong>:</p>
+<div class="highlight"><pre><span></span><code>┌──────────────────────────────────────┐
+│ 传统AI:  提问 → 回答建议              │
+│               ↓                      │
+│          [人工执行]                  │
+│          15-20分钟                   │
+├──────────────────────────────────────┤
+│ Agent:   提问 → 自主执行 → 完成结果   │
+│                                      │
+│          30秒                        │
+│          效率提升30-40倍             │
+└──────────────────────────────────────┘
+</code></pre></div>
+
+<p><strong>关键标注</strong>:</p>
+<div class="highlight"><pre><span></span><code>Agent = 执行能力 + 自主规划 + 反思调整
+        ↓           ↓           ↓
+      直接操作     动态决策     自我纠错
+</code></pre></div>
+
+<hr />
+<h2 id="3-workflow-vs-agentic-10" id="3-workflow-vs-agentic-10分钟">3. Workflow vs Agentic (10分钟)</h2>
+<h3 id="31-workflow" id="31-workflow工作流的特点">3.1 Workflow（工作流）的特点</h3>
+<h4 id="_18" id="定义与原理">定义与原理</h4>
+<p><strong>Workflow</strong>是一种预设的、固定的业务流程自动化机制。它按照预定义的步骤顺序执行，每个步骤都有明确的输入、输出和触发条件。</p>
+<div class="highlight"><pre><span></span><code>Workflow执行流程：
+触发事件 → 步骤1 → 步骤2 → 步骤3 → ... → 步骤N → 完成
+              ↓       ↓       ↓            ↓
+           固定逻辑  固定逻辑  固定逻辑     固定逻辑
+</code></pre></div>
+
+<h4 id="_19" id="核心特点">核心特点</h4>
+<p><strong>✅ 优点</strong>:
+1. <strong>确定性高</strong>: 流程固定，结果可预测
+2. <strong>执行效率高</strong>: 无需决策，直接执行
+3. <strong>易于审计</strong>: 执行路径清晰，可追溯
+4. <strong>开发成本低</strong>: 规则明确，实现简单</p>
+<p><strong>❌ 局限性</strong>:
+1. <strong>无自主规划</strong>: 步骤是预设的，不能动态调整
+2. <strong>无反思能力</strong>: 走错就失败，无法自我纠正
+3. <strong>适应性差</strong>: 遇到未预设的情况就卡住
+4. <strong>维护成本高</strong>: 规则越多，维护越复杂</p>
+<h4 id="workflow" id="电力行业workflow示例">电力行业Workflow示例</h4>
+<p><strong>场景</strong>: 故障工单自动处理Workflow</p>
+<div class="highlight"><pre><span></span><code>故障工单处理<span class="nv">Workflow</span>：
+┌────────────────────────────────────────────┐
+│<span class="w"> </span><span class="nv">Step</span><span class="w"> </span><span class="mi">1</span>:<span class="w"> </span>接收工单<span class="w">                            </span>│
+│<span class="w">   </span><span class="o">-</span><span class="w"> </span>解析工单内容<span class="w">                            </span>│
+│<span class="w">   </span><span class="o">-</span><span class="w"> </span>记录故障信息<span class="w">                            </span>│
+└──────────────┬─────────────────────────────┘
+<span class="w">               </span>↓
+┌────────────────────────────────────────────┐
+│<span class="w"> </span><span class="nv">Step</span><span class="w"> </span><span class="mi">2</span>:<span class="w"> </span>分类判断<span class="w">                            </span>│
+│<span class="w">   </span><span class="o">-</span><span class="w"> </span><span class="k">IF</span><span class="w"> </span>故障类型<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;高压&quot;</span><span class="w"> </span><span class="k">THEN</span><span class="w"> </span>优先级<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;紧急&quot;</span><span class="w"> </span>│
+│<span class="w">   </span><span class="o">-</span><span class="w"> </span><span class="k">IF</span><span class="w"> </span>故障类型<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;低压&quot;</span><span class="w"> </span><span class="k">THEN</span><span class="w"> </span>优先级<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;一般&quot;</span><span class="w"> </span>│
+│<span class="w">   </span><span class="o">-</span><span class="w"> </span><span class="k">ELSE</span><span class="w"> </span>转人工处理<span class="w">                         </span>│
+└──────────────┬─────────────────────────────┘
+<span class="w">               </span>↓
+┌────────────────────────────────────────────┐
+│<span class="w"> </span><span class="nv">Step</span><span class="w"> </span><span class="mi">3</span>:<span class="w"> </span>派单<span class="w">                                </span>│
+│<span class="w">   </span><span class="o">-</span><span class="w"> </span>根据区域分配到对应班组<span class="w">                   </span>│
+│<span class="w">   </span><span class="o">-</span><span class="w"> </span>发送通知<span class="w">                                </span>│
+└──────────────┬─────────────────────────────┘
+<span class="w">               </span>↓
+┌────────────────────────────────────────────┐
+│<span class="w"> </span><span class="nv">Step</span><span class="w"> </span><span class="mi">4</span>:<span class="w"> </span>等待处理<span class="w">                            </span>│
+│<span class="w">   </span><span class="o">-</span><span class="w"> </span>超时检查（每<span class="mi">30</span>分钟）<span class="w">                    </span>│
+│<span class="w">   </span><span class="o">-</span><span class="w"> </span><span class="k">IF</span><span class="w"> </span>超时<span class="w"> </span><span class="k">THEN</span><span class="w"> </span>升级<span class="w">                       </span>│
+└──────────────┬─────────────────────────────┘
+<span class="w">               </span>↓
+┌────────────────────────────────────────────┐
+│<span class="w"> </span><span class="nv">Step</span><span class="w"> </span><span class="mi">5</span>:<span class="w"> </span>工单关闭<span class="w">                            </span>│
+│<span class="w">   </span><span class="o">-</span><span class="w"> </span>记录处理结果<span class="w">                            </span>│
+│<span class="w">   </span><span class="o">-</span><span class="w"> </span>发送完成通知<span class="w">                            </span>│
+└────────────────────────────────────────────┘
+</code></pre></div>
+
+<p><strong>问题场景</strong>:
+- 如果故障类型不在预设列表中？→ Workflow卡住，转人工
+- 如果分类规则判断错误？→ 整个流程基于错误分类执行
+- 如果需要根据实时情况调整优先级？→ Workflow无法动态调整</p>
+<h3 id="32-agentic" id="32-agentic智能体的特点">3.2 Agentic（智能体）的特点</h3>
+<h4 id="_20" id="定义与原理">定义与原理</h4>
+<p><strong>Agentic</strong>是一种具备自主决策能力的智能执行机制。它能够根据任务目标、环境反馈和自身状态，动态规划执行路径，并在执行过程中不断反思和优化。</p>
+<div class="diagram-container"><img src="diagrams/hour1-content_diagram_4.png" alt="Diagram 4" class="ascii-image" /></div>
+
+<h4 id="_21" id="核心特点">核心特点</h4>
+<p><strong>✅ 优点</strong>:
+1. <strong>自主规划</strong>: 根据任务动态制定计划
+2. <strong>反思调整</strong>: 能够识别错误并自我纠正
+3. <strong>适应性强</strong>: 能够处理未预设的情况
+4. <strong>智能化高</strong>: 能够像人一样思考和决策</p>
+<p><strong>❌ 挑战</strong>:
+1. <strong>复杂度高</strong>: 需要强大的推理和规划能力
+2. <strong>不确定性</strong>: 决策质量依赖模型能力
+3. <strong>调试困难</strong>: 执行路径不固定，问题定位难
+4. <strong>成本较高</strong>: 需要多轮推理和调用</p>
+<h4 id="agentic" id="电力行业agentic示例">电力行业Agentic示例</h4>
+<p><strong>场景</strong>: 同样的故障工单处理，使用Agentic方式</p>
+<div class="highlight"><pre><span></span><code><span class="err">故障工单</span><span class="n">Agentic处理</span><span class="err">：</span>
+
+<span class="n">Round</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">Reasoning</span><span class="err">（思考）</span><span class="p">:</span>
+<span class="n">Thought</span><span class="p">:</span><span class="w"> </span><span class="err">收到故障工单，内容是</span><span class="s2">&quot;高新区变电站主变温度异常85°C&quot;</span><span class="err">。</span>
+<span class="w">        </span><span class="err">需要分析：</span>
+<span class="w">        </span><span class="mf">1.</span><span class="w"> </span><span class="err">故障严重程度</span>
+<span class="w">        </span><span class="mf">2.</span><span class="w"> </span><span class="err">可能的原因</span>
+<span class="w">        </span><span class="mf">3.</span><span class="w"> </span><span class="err">需要查询哪些数据</span>
+
+<span class="n">Round</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">Planning</span><span class="err">（规划）</span><span class="p">:</span>
+<span class="n">Plan</span><span class="p">:</span><span class="w"> </span><span class="mf">1.</span><span class="w"> </span><span class="err">查询主变历史温度数据</span>
+<span class="w">      </span><span class="mf">2.</span><span class="w"> </span><span class="err">查询当前负载情况</span>
+<span class="w">      </span><span class="mf">3.</span><span class="w"> </span><span class="err">查询冷却系统状态</span>
+<span class="w">      </span><span class="mf">4.</span><span class="w"> </span><span class="err">根据数据判断故障等级</span>
+
+<span class="n">Round</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">Acting</span><span class="err">（执行）</span><span class="p">:</span>
+<span class="n">Action</span><span class="p">:</span><span class="w"> </span><span class="err">并行调用多个查询接口</span>
+<span class="w">        </span><span class="o">-</span><span class="w"> </span><span class="n">get_temperature_history</span><span class="p">()</span>
+<span class="w">        </span><span class="o">-</span><span class="w"> </span><span class="n">get_current_load</span><span class="p">()</span>
+<span class="w">        </span><span class="o">-</span><span class="w"> </span><span class="n">get_cooling_status</span><span class="p">()</span>
+
+<span class="n">Round</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">Observation</span><span class="err">（观察）</span><span class="p">:</span>
+<span class="n">Observation</span><span class="p">:</span><span class="w"> </span>
+<span class="o">-</span><span class="w"> </span><span class="err">历史温度：正常范围</span><span class="mi">65</span><span class="o">-</span><span class="mi">75</span><span class="err">°</span><span class="n">C</span>
+<span class="o">-</span><span class="w"> </span><span class="err">当前负载：</span><span class="mi">78</span><span class="o">%</span><span class="err">（正常）</span>
+<span class="o">-</span><span class="w"> </span><span class="err">冷却状态：风扇</span><span class="c1">#2故障</span>
+
+<span class="n">Round</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">Reflection</span><span class="err">（反思）</span><span class="p">:</span>
+<span class="n">Reflection</span><span class="p">:</span><span class="w"> </span><span class="err">数据已获取，发现冷却风扇故障。</span>
+<span class="w">           </span><span class="err">故障等级：中等（有备用冷却）</span>
+<span class="w">           </span><span class="err">需要生成处理方案并自动执行应急措施。</span>
+
+<span class="n">Round</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">Reasoning</span><span class="err">（思考）</span><span class="p">:</span>
+<span class="n">Thought</span><span class="p">:</span><span class="w"> </span><span class="err">根因已定位（冷却风扇故障），需要：</span>
+<span class="w">        </span><span class="mf">1.</span><span class="w"> </span><span class="err">启动备用冷却</span>
+<span class="w">        </span><span class="mf">2.</span><span class="w"> </span><span class="err">生成检修工单</span>
+<span class="w">        </span><span class="mf">3.</span><span class="w"> </span><span class="err">发送告警通知</span>
+<span class="w">        </span><span class="mf">4.</span><span class="w"> </span><span class="err">持续监控温度变化</span>
+
+<span class="n">Round</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">Planning</span><span class="err">（规划）</span><span class="p">:</span>
+<span class="n">Plan</span><span class="p">:</span><span class="w"> </span><span class="mf">1.</span><span class="w"> </span><span class="err">调用备用冷却启动接口</span>
+<span class="w">      </span><span class="mf">2.</span><span class="w"> </span><span class="err">创建紧急检修工单</span>
+<span class="w">      </span><span class="mf">3.</span><span class="w"> </span><span class="err">发送多渠道通知</span>
+<span class="w">      </span><span class="mf">4.</span><span class="w"> </span><span class="err">设置温度监控告警</span>
+
+<span class="n">Round</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">Acting</span><span class="err">（执行）</span><span class="p">:</span>
+<span class="n">Action</span><span class="p">:</span><span class="w"> </span><span class="err">顺序执行</span>
+<span class="w">        </span><span class="mf">1.</span><span class="w"> </span><span class="n">activate_backup_cooling</span><span class="p">()</span>
+<span class="w">        </span><span class="mf">2.</span><span class="w"> </span><span class="n">create_work_order</span><span class="p">(</span><span class="n">priority</span><span class="o">=</span><span class="s2">&quot;urgent&quot;</span><span class="p">)</span>
+<span class="w">        </span><span class="mf">3.</span><span class="w"> </span><span class="n">send_notification</span><span class="p">(</span><span class="n">channels</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;sms&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;app&quot;</span><span class="p">])</span>
+<span class="w">        </span><span class="mf">4.</span><span class="w"> </span><span class="n">set_temperature_alert</span><span class="p">(</span><span class="n">threshold</span><span class="o">=</span><span class="mi">90</span><span class="p">)</span>
+
+<span class="n">Round</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">Observation</span><span class="err">（观察）</span><span class="p">:</span>
+<span class="n">Observation</span><span class="p">:</span>
+<span class="o">-</span><span class="w"> </span><span class="err">备用冷却已启动</span>
+<span class="o">-</span><span class="w"> </span><span class="err">工单已创建（</span><span class="n">WO</span><span class="o">-</span><span class="mi">2024</span><span class="o">-</span><span class="mi">0315</span><span class="o">-</span><span class="mi">001</span><span class="err">）</span>
+<span class="o">-</span><span class="w"> </span><span class="err">通知已发送给</span><span class="mi">5</span><span class="err">人</span>
+<span class="o">-</span><span class="w"> </span><span class="err">温度监控已设置</span>
+
+<span class="n">Round</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">Reflection</span><span class="err">（反思）</span><span class="p">:</span>
+<span class="n">Reflection</span><span class="p">:</span><span class="w"> </span><span class="err">应急措施已执行完毕。</span>
+<span class="w">           </span><span class="err">温度上升趋势已得到控制。</span>
+<span class="w">           </span><span class="err">任务完成，可以总结输出。</span>
+
+<span class="n">Final</span><span class="w"> </span><span class="n">Answer</span><span class="p">:</span>
+<span class="s2">&quot;故障处理完成：</span>
+<span class="err">✓</span><span class="w"> </span><span class="err">根因：冷却风扇</span><span class="c1">#2故障</span>
+<span class="err">✓</span><span class="w"> </span><span class="err">应急：备用冷却已启动</span>
+<span class="err">✓</span><span class="w"> </span><span class="err">工单：</span><span class="n">WO</span><span class="o">-</span><span class="mi">2024</span><span class="o">-</span><span class="mi">0315</span><span class="o">-</span><span class="mi">001</span><span class="err">已创建并派单</span>
+<span class="err">✓</span><span class="w"> </span><span class="err">监控：温度持续监控中（当前</span><span class="mi">83</span><span class="err">°</span><span class="n">C</span><span class="err">，趋于稳定）</span><span class="s2">&quot;</span>
+</code></pre></div>
+
+<p><strong>对比Workflow的优势</strong>:
+- <strong>动态决策</strong>: 根据实时数据决定查询哪些信息
+- <strong>灵活调整</strong>: 发现风扇故障后，立即调整处理方案
+- <strong>自我纠错</strong>: 如果某个查询失败，可以重试或换其他方式
+- <strong>智能组合</strong>: 自动组合多个操作完成复杂任务</p>
+<h3 id="33" id="33-类比说明">3.3 类比说明</h3>
+<h4 id="1-vs" id="类比1-高铁-vs-自驾已有完善">类比1: 高铁 vs 自驾（已有，完善）</h4>
+<p><strong>Workflow = 高铁</strong>
+- ✅ 速度快：预设路线，直达目的地
+- ✅ 准时：时间可控
+- ❌ 路线固定：不能根据情况改变路线
+- ❌ 无应变能力：遇到突发情况只能停车等待</p>
+<p><strong>Agentic = 自驾</strong>
+- ✅ 灵活：可以根据路况选择最佳路线
+- ✅ 应变：遇到堵车可以绕行
+- ✅ 自主决策：司机根据实时情况做决定
+- ❌ 可能迷路：需要良好的导航能力
+- ❌ 效率不稳定：取决于司机和路况</p>
+<p><strong>适用场景</strong>:
+- <strong>高铁（Workflow）</strong>: 流程标准化、重复性高的任务
+- <strong>自驾（Agentic）</strong>: 需要灵活应变、决策复杂的任务</p>
+<h4 id="2-vs" id="类比2-菜谱-vs-厨师新增">类比2: 菜谱 vs 厨师（新增）</h4>
+<p><strong>Workflow = 按照菜谱做菜</strong></p>
+<div class="highlight"><pre><span></span><code>菜谱执行流程：
+Step 1: 准备食材（鸡肉500g、青椒2个...）
+Step 2: 鸡肉切块
+Step 3: 热锅凉油
+Step 4: 下鸡肉炒至变色
+Step 5: 加入青椒
+Step 6: 调味出锅
+
+问题场景：
+- 如果鸡肉不新鲜？→ 菜谱没说怎么办
+- 如果青椒不够？→ 流程卡住
+- 如果想调整口味？→ 需要人工干预
+</code></pre></div>
+
+<p><strong>Agentic = 专业厨师做菜</strong></p>
+<div class="highlight"><pre><span></span><code>厨师思考过程：
+
+观察：今天的鸡肉不太新鲜，青椒只有1个
+
+思考：需要调整做法
+       - 鸡肉不新鲜 → 多加料酒和姜去腥
+       - 青椒不够 → 用红椒补充颜色
+       - 整体口感 → 适当调整调味
+
+执行：灵活调整烹饪过程
+       - 腌制时间延长
+       - 增加配菜
+       - 边尝边调
+
+结果：根据食材情况，做出最佳口感的菜品
+</code></pre></div>
+
+<p><strong>核心差异</strong>:
+- <strong>菜谱（Workflow）</strong>: 按部就班，需要严格遵循预设步骤
+- <strong>厨师（Agentic）</strong>: 根据情况灵活调整，追求最终效果</p>
+<p><strong>电力行业映射</strong>:
+- <strong>菜谱场景</strong>: 标准化的报表生成、固定流程的审批
+- <strong>厨师场景</strong>: 故障诊断、投资决策分析、异常情况处理</p>
+<h4 id="3-vs" id="类比3-导航软件-vs-自动驾驶新增">类比3: 导航软件 vs 自动驾驶（新增）</h4>
+<p><strong>Workflow = 导航软件</strong></p>
+<div class="highlight"><pre><span></span><code>导航软件工作流程：
+1. 接收目的地
+2. 计算路线（基于地图数据）
+3. 给出转向提示
+4. 人工执行驾驶
+
+特点：
+- 路线规划是固定的（除非重新计算）
+- 不会根据实时交通自动调整
+- 遇到封路需要人工重新规划
+- 驾驶决策完全依赖人工
+</code></pre></div>
+
+<p><strong>Agentic = 自动驾驶</strong></p>
+<div class="highlight"><pre><span></span><code>自动驾驶执行过程：
+
+持续循环：
+┌────────────────────────────────────┐
+│ Perception（感知）                 │
+│ - 雷达扫描周围环境                  │
+│ - 识别车辆、行人、交通信号          │
+└──────────────┬─────────────────────┘
+               ↓
+┌────────────────────────────────────┐
+│ Decision（决策）                   │
+│ - 根据环境判断是否需要变道          │
+│ - 判断是否需要减速/加速             │
+│ - 选择最佳路径                      │
+└──────────────┬─────────────────────┘
+               ↓
+┌────────────────────────────────────┐
+│ Action（执行）                     │
+│ - 控制方向盘、油门、刹车            │
+│ - 实时调整                          │
+└──────────────┬─────────────────────┘
+               ↓
+               └─→ 回到感知（循环）
+
+特点：
+- 实时感知环境变化
+- 动态决策和调整
+- 自主完成驾驶任务
+- 异常情况自主处理
+</code></pre></div>
+
+<p><strong>核心差异</strong>:</p>
+<table>
+<thead>
+<tr>
+<th>维度</th>
+<th>导航软件（Workflow）</th>
+<th>自动驾驶（Agentic）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>执行者</strong></td>
+<td>人工</td>
+<td>系统自主</td>
+</tr>
+<tr>
+<td><strong>路径规划</strong></td>
+<td>预设路线</td>
+<td>动态调整</td>
+</tr>
+<tr>
+<td><strong>异常处理</strong></td>
+<td>人工介入</td>
+<td>自主处理</td>
+</tr>
+<tr>
+<td><strong>决策能力</strong></td>
+<td>无</td>
+<td>实时决策</td>
+</tr>
+<tr>
+<td><strong>学习能力</strong></td>
+<td>无</td>
+<td>持续优化</td>
+</tr>
+</tbody>
+</table>
+<p><strong>电力行业映射</strong>:
+- <strong>导航软件场景</strong>: 标准化的数据查询流程、固定格式的报表生成
+- <strong>自动驾驶场景</strong>: 智能电网调度、故障自动诊断与恢复、负荷预测与优化</p>
+<h3 id="34-workflowagentic" id="34-决策树什么时候用workflow什么时候用agenti">3.4 决策树：什么时候用Workflow，什么时候用Agentic</h3>
+<h4 id="_22" id="决策树图示">决策树图示</h4>
+<div class="diagram-container"><img src="diagrams/hour1-content_diagram_8.png" alt="Diagram 8" class="ascii-image" /></div>
+
+<h4 id="_23" id="决策判断标准">决策判断标准</h4>
+<p><strong>使用Workflow的情况</strong>:
+- ✅ 流程标准化、步骤明确
+- ✅ 输入输出格式固定
+- ✅ 异常情况少且有明确处理规则
+- ✅ 执行效率要求高
+- ✅ 需要严格审计和合规</p>
+<p><strong>使用Agentic的情况</strong>:
+- ✅ 任务复杂、步骤不明确
+- ✅ 需要根据实际情况动态调整
+- ✅ 异常情况多，需要灵活处理
+- ✅ 需要推理和决策能力
+- ✅ 追求智能化和自动化</p>
+<p><strong>使用混合模式的情况</strong>:
+- ✅ 大部分步骤标准化，但某些环节需要灵活处理
+- ✅ 可以用Workflow做主干，Agentic处理分支
+- ✅ 需要平衡效率和灵活性</p>
+<h4 id="_24" id="电力行业场景决策示例">电力行业场景决策示例</h4>
+<table>
+<thead>
+<tr>
+<th>场景</th>
+<th>推荐模式</th>
+<th>决策理由</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>月度报表生成</strong></td>
+<td>Workflow</td>
+<td>步骤固定：取数→计算→生成→发送</td>
+</tr>
+<tr>
+<td><strong>故障诊断</strong></td>
+<td>Agentic</td>
+<td>需要排查多种可能，动态决策</td>
+</tr>
+<tr>
+<td><strong>电费计算</strong></td>
+<td>Workflow</td>
+<td>规则明确，公式固定</td>
+</tr>
+<tr>
+<td><strong>投诉处理</strong></td>
+<td>Agentic</td>
+<td>需要理解语义，灵活回复</td>
+</tr>
+<tr>
+<td><strong>负荷预测</strong></td>
+<td>Agentic</td>
+<td>需要分析历史趋势，动态建模</td>
+</tr>
+<tr>
+<td><strong>工单派单</strong></td>
+<td>混合模式</td>
+<td>主流程固定，异常处理用Agentic</td>
+</tr>
+<tr>
+<td><strong>设备巡检</strong></td>
+<td>Workflow</td>
+<td>检查清单固定，步骤标准化</td>
+</tr>
+<tr>
+<td><strong>用电异常分析</strong></td>
+<td>Agentic</td>
+<td>需要多维度分析，智能判断</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_25" id="关键洞察">关键洞察</h3>
+<blockquote>
+<p>"Workflow是'提线木偶'，Agent是'自主机器人'。差别就在<strong>自主规划</strong>和<strong>反思</strong>能力。"</p>
+</blockquote>
+<p><strong>选择原则</strong>:
+1. <strong>简单重复用Workflow</strong>: 规则明确、异常少的场景
+2. <strong>复杂决策用Agentic</strong>: 需要推理、灵活应变的场景
+3. <strong>效率优先用Workflow</strong>: 追求执行速度和确定性
+4. <strong>智能优先用Agentic</strong>: 追求自适应和智能化</p>
+<h3 id="workflow-vs-agentic280" id="讲师话术示例workflow-vs-agentic约280字">讲师话术示例（Workflow vs Agentic，约280字）</h3>
+<blockquote>
+<p>"刚才有人举手说，他们单位有Workflow工作流，也能自动执行。那Workflow和Agent有什么差别呢？</p>
+<p>我用三个类比来解释。</p>
+<p><strong>第一个类比：高铁 vs 自驾</strong>。Workflow像高铁，速度快、准时，但路线固定，遇到突发情况只能停车等待。Agent像自驾，可以根据路况灵活调整路线，遇到堵车就绕行。</p>
+<p><strong>第二个类比：菜谱 vs 厨师</strong>。Workflow像按照菜谱做菜，严格按照步骤执行，如果食材不新鲜或不够，流程就卡住了。Agent像专业厨师，会根据食材情况灵活调整，追求最终菜品的口感。</p>
+<p><strong>第三个类比：导航软件 vs 自动驾驶</strong>。导航软件告诉你怎么走，但开车的还是你。自动驾驶是系统自己开，感知环境、做决策、执行操作，全程自主。</p>
+<p>所以，差别就在两个词：<strong>自主规划</strong>和<strong>反思</strong>。Workflow是预设的步骤，走完就结束，遇到问题就卡住。Agent是智能体，能看情况、做决策、自我纠正。</p>
+<p>在电力行业怎么选？标准化的流程，比如月度报表生成，用Workflow就够了。但复杂的场景，比如故障诊断、投资分析，就需要Agent，因为它能根据实际情况动态调整。"</p>
+</blockquote>
+<h3 id="_26" id="白板板书建议">白板/板书建议</h3>
+<p><strong>画图对比</strong>:</p>
+<div class="highlight"><pre><span></span><code>Workflow (高铁/菜谱/导航):
+A → B → C → D
+└──── 固定路线 ────┘
+   走错就停止
+
+Agentic (自驾/厨师/自动驾驶):
+    ┌→ B →┐
+起点 ─┤     ├→ 终点
+    └→ C →┘
+   实时调整路线
+</code></pre></div>
+
+<p><strong>决策树板书</strong>:</p>
+<div class="highlight"><pre><span></span><code>选择Workflow还是Agentic？
+
+流程固定？
+├── 是 → 结果可预测？
+│        ├── 是 → Workflow ✅
+│        └── 否 → 混合模式
+└── 否 → 需要灵活决策？
+         ├── 是 → Agentic ✅
+         └── 否 → 进一步分析
+</code></pre></div>
+
+<p><strong>核心公式</strong>:</p>
+<div class="highlight"><pre><span></span><code>Agent = Workflow + 自主规划 + 反思调整
+</code></pre></div>
+
+<hr />
+<h2 id="4-rpar-5" id="4-rpar框架详解-5分钟">4. RPAR框架详解 (5分钟)</h2>
+<h3 id="41-rpar" id="41-引出rpar">4.1 引出RPAR</h3>
+<h4 id="agentrpar" id="从agent到rpar">从Agent到RPAR</h4>
+<p><strong>问题</strong>:</p>
+<blockquote>
+<p>"既然Agent的核心是'自主执行'，那它是如何自主的？它是怎么思考、怎么规划、怎么反思的？"</p>
+</blockquote>
+<p><strong>答案</strong>:</p>
+<blockquote>
+<p>"答案就是RPAR框架——Reasoning（思考）、Planning（规划）、Acting（执行）、Reflection（反思）。这是Agent的'认知架构'，模拟了人类解决问题的思维方式。"</p>
+</blockquote>
+<h3 id="42-rpar" id="42-rpar四环节详解">4.2 RPAR四环节详解</h3>
+<h4 id="r-reasoning" id="r---reasoning思考">R - Reasoning（思考）</h4>
+<p><strong>核心问题</strong>: "我现在面对什么问题？"</p>
+<p><strong>人类类比</strong>: 观察分析、理解任务</p>
+<p><strong>具体工作内容</strong>:</p>
+<div class="highlight"><pre><span></span><code>Reasoning阶段思考维度：
+
+1. 意图识别
+   - 用户到底想要什么？
+   - 表面需求 vs 真实需求
+
+2. 上下文理解
+   - 当前是什么情况？
+   - 有哪些已知信息？
+   - 缺少什么信息？
+
+3. 任务分解
+   - 这个大任务能拆成哪些小任务？
+   - 任务之间的依赖关系是什么？
+
+4. 约束分析
+   - 有什么限制条件？
+   - 时间限制？权限限制？
+   - 必须遵守的规则？
+
+5. 资源评估
+   - 有哪些工具可用？
+   - 每个工具能做什么？
+   - 调用的成本和限制？
+</code></pre></div>
+
+<p><strong>电力行业示例</strong>:</p>
+<div class="highlight"><pre><span></span><code>用户请求: &quot;分析一下成都高新区配网改造项目的投资效益&quot;
+
+Reasoning过程:
+
+【意图识别】
+用户需要投资效益分析，可能用于：
+<span class="k">-</span> 月度/季度汇报
+<span class="k">-</span> 项目审计
+<span class="k">-</span> 投资决策参考
+
+【上下文理解】
+已知信息：
+<span class="k">-</span> 区域：成都高新区
+<span class="k">-</span> 项目类型：配网改造
+<span class="k">-</span> 分析目标：投资效益
+
+未知信息：
+<span class="k">-</span> 具体时间范围
+<span class="k">-</span> 需要哪些维度的分析
+<span class="k">-</span> 输出格式要求
+
+【任务分解】
+1. 查询配网改造项目数据
+2. 计算各项目ROI
+3. 对比分析（与同类型项目、行业标准）
+4. 生成分析报告
+
+【约束分析】
+<span class="k">-</span> 只能查询有权限的数据
+<span class="k">-</span> 敏感数据需要脱敏
+<span class="k">-</span> 报告格式要符合公司规范
+
+【资源评估】
+可用工具：
+<span class="k">-</span> query_investment_data: 查询投资数据
+<span class="k">-</span> calculate_roi: 计算ROI
+<span class="k">-</span> generate_report: 生成报告
+<span class="k">-</span> get_industry_benchmark: 获取行业基准
+</code></pre></div>
+
+<h4 id="p-planning" id="p---planning规划">P - Planning（规划）</h4>
+<p><strong>核心问题</strong>: "我需要分几步做？"</p>
+<p><strong>人类类比</strong>: 制定计划、排定优先级</p>
+<p><strong>规划策略详解</strong>:</p>
+<p><strong>策略1: 分解策略</strong></p>
+<div class="highlight"><pre><span></span><code>复杂任务分解方法：
+
+1. 按阶段分解
+   输入 → 处理 → 输出 → 验证
+
+2. 按功能分解
+   数据采集 → 数据处理 → 数据分析 → 结果呈现
+
+3. 按依赖分解
+   先执行不依赖其他步骤的任务
+   再执行依赖前置结果的任务
+</code></pre></div>
+
+<p><strong>策略2: 优先级排序</strong></p>
+<div class="highlight"><pre><span></span><code>任务优先级判断标准：
+
+高优先级：
+- 影响后续所有步骤的任务
+- 时间敏感的任务
+- 失败成本高的任务
+
+中优先级：
+- 可以并行执行的任务
+- 重要性一般的任务
+
+低优先级：
+- 失败可重试的任务
+- 可选的优化步骤
+</code></pre></div>
+
+<p><strong>策略3: 资源评估</strong></p>
+<div class="highlight"><pre><span></span><code>资源评估维度：
+
+1. 工具可用性
+   - 哪些工具可用？
+   - 工具的可靠性如何？
+
+2. 调用成本
+   - 时间成本
+   - 计算成本
+   - 外部API调用费用
+
+3. 失败预案
+   - 如果主工具失败，有没有备选方案？
+   - 是否需要人工介入？
+</code></pre></div>
+
+<p><strong>电力行业示例</strong>:</p>
+<div class="highlight"><pre><span></span><code><span class="nx">Planning阶段</span><span class="err">：</span>
+
+<span class="err">【</span><span class="nx">计划制定</span><span class="err">】</span>
+<span class="nx">步骤1</span><span class="p">:</span><span class="w"> </span><span class="nx">查询配网改造项目数据</span>
+<span class="w">        </span><span class="o">-</span><span class="w"> </span><span class="nx">工具</span><span class="p">:</span><span class="w"> </span><span class="nx">query_investment_data</span>
+<span class="w">        </span><span class="o">-</span><span class="w"> </span><span class="nx">参数</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nx">region</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;成都高新区&quot;</span><span class="p">,</span><span class="w"> </span><span class="k">type</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;配网改造&quot;</span><span class="p">}</span>
+<span class="w">        </span><span class="o">-</span><span class="w"> </span><span class="nx">依赖</span><span class="p">:</span><span class="w"> </span><span class="nx">无</span>
+<span class="w">        </span><span class="o">-</span><span class="w"> </span><span class="nx">预计时间</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="nx">秒</span>
+
+<span class="nx">步骤2</span><span class="p">:</span><span class="w"> </span><span class="nx">并行执行数据计算</span>
+<span class="w">        </span><span class="o">-</span><span class="w"> </span><span class="mi">2</span><span class="nx">a</span><span class="p">:</span><span class="w"> </span><span class="nx">计算各项目ROI</span>
+<span class="w">          </span><span class="nx">工具</span><span class="p">:</span><span class="w"> </span><span class="nx">calculate_roi</span>
+<span class="w">          </span><span class="nx">依赖</span><span class="p">:</span><span class="w"> </span><span class="nx">步骤1的结果</span>
+
+<span class="w">        </span><span class="o">-</span><span class="w"> </span><span class="mi">2</span><span class="nx">b</span><span class="p">:</span><span class="w"> </span><span class="nx">获取行业基准数据</span>
+<span class="w">          </span><span class="nx">工具</span><span class="p">:</span><span class="w"> </span><span class="nx">get_industry_benchmark</span>
+<span class="w">          </span><span class="nx">依赖</span><span class="p">:</span><span class="w"> </span><span class="nx">无</span>
+
+<span class="w">        </span><span class="nx">并行执行</span><span class="err">，</span><span class="nx">节省时间</span>
+
+<span class="nx">步骤3</span><span class="p">:</span><span class="w"> </span><span class="nx">对比分析</span>
+<span class="w">        </span><span class="o">-</span><span class="w"> </span><span class="nx">工具</span><span class="p">:</span><span class="w"> </span><span class="nx">comparative_analysis</span>
+<span class="w">        </span><span class="o">-</span><span class="w"> </span><span class="nx">依赖</span><span class="p">:</span><span class="w"> </span><span class="nx">步骤2a和2b的结果</span>
+<span class="w">        </span><span class="o">-</span><span class="w"> </span><span class="nx">内容</span><span class="p">:</span><span class="w"> </span><span class="nx">ROI对比</span><span class="err">、</span><span class="nx">进度对比</span><span class="err">、</span><span class="nx">风险对比</span>
+
+<span class="nx">步骤4</span><span class="p">:</span><span class="w"> </span><span class="nx">生成可视化图表</span>
+<span class="w">        </span><span class="o">-</span><span class="w"> </span><span class="nx">工具</span><span class="p">:</span><span class="w"> </span><span class="nx">generate_charts</span>
+<span class="w">        </span><span class="o">-</span><span class="w"> </span><span class="nx">依赖</span><span class="p">:</span><span class="w"> </span><span class="nx">步骤3的结果</span>
+<span class="w">        </span><span class="o">-</span><span class="w"> </span><span class="nx">类型</span><span class="p">:</span><span class="w"> </span><span class="nx">ROI分布图</span><span class="err">、</span><span class="nx">趋势图</span><span class="err">、</span><span class="nx">对比图</span>
+
+<span class="nx">步骤5</span><span class="p">:</span><span class="w"> </span><span class="nx">生成分析报告</span>
+<span class="w">        </span><span class="o">-</span><span class="w"> </span><span class="nx">工具</span><span class="p">:</span><span class="w"> </span><span class="nx">generate_report</span>
+<span class="w">        </span><span class="o">-</span><span class="w"> </span><span class="nx">依赖</span><span class="p">:</span><span class="w"> </span><span class="nx">步骤3和4的结果</span>
+<span class="w">        </span><span class="o">-</span><span class="w"> </span><span class="nx">格式</span><span class="p">:</span><span class="w"> </span><span class="nx">Markdown</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">PDF</span>
+
+<span class="err">【</span><span class="nx">优先级排序</span><span class="err">】</span>
+<span class="nx">P0</span><span class="p">:</span><span class="w"> </span><span class="nx">步骤1</span><span class="err">（</span><span class="nx">数据获取</span><span class="err">，</span><span class="nx">影响所有后续步骤</span><span class="err">）</span>
+<span class="nx">P1</span><span class="p">:</span><span class="w"> </span><span class="nx">步骤2</span><span class="err">（</span><span class="nx">计算和基准</span><span class="err">，</span><span class="nx">可并行</span><span class="err">）</span>
+<span class="nx">P2</span><span class="p">:</span><span class="w"> </span><span class="nx">步骤3</span><span class="o">-</span><span class="mi">4</span><span class="err">（</span><span class="nx">分析和可视化</span><span class="err">）</span>
+<span class="nx">P3</span><span class="p">:</span><span class="w"> </span><span class="nx">步骤5</span><span class="err">（</span><span class="nx">报告生成</span><span class="err">，</span><span class="nx">失败可重试</span><span class="err">）</span>
+</code></pre></div>
+
+<h4 id="a-acting" id="a---acting执行">A - Acting（执行）</h4>
+<p><strong>核心问题</strong>: "调用什么工具？"</p>
+<p><strong>人类类比</strong>: 动手执行、操作工具</p>
+<p><strong>工具选择逻辑</strong>:</p>
+<div class="highlight"><pre><span></span><code>工具选择决策流程：
+
+1. 需求匹配
+   - 当前步骤需要什么能力？
+   - 哪些工具具备这种能力？
+
+2. 精确度评估
+   - 工具的参数是否匹配需求？
+   - 工具的返回值是否满足要求？
+
+3. 可靠性评估
+   - 工具的成功率如何？
+   - 是否有失败的风险？
+
+4. 成本评估
+   - 调用成本是否可接受？
+   - 有没有更经济的替代方案？
+
+5. 参数准备
+   - 必需参数是否都有值？
+   - 可选参数如何设置最优？
+   - 参数格式是否正确？
+
+6. 错误预判
+   - 可能的错误类型有哪些？
+   - 如何捕获和处理错误？
+   - 失败后的回退策略是什么？
+</code></pre></div>
+
+<p><strong>电力行业示例</strong>:</p>
+<div class="highlight"><pre><span></span><code><span class="nx">Acting阶段</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nx">步骤1执行</span><span class="err">：</span>
+
+<span class="err">【</span><span class="nx">工具选择</span><span class="err">】</span>
+<span class="nx">需求</span><span class="p">:</span><span class="w"> </span><span class="nx">查询配网改造项目投资数据</span>
+<span class="nx">候选工具</span><span class="p">:</span><span class="w"> </span>
+<span class="w">  </span><span class="o">-</span><span class="w"> </span><span class="nx">query_investment_data</span><span class="w"> </span><span class="p">(</span><span class="nx">专门查询投资数据</span><span class="err">，</span><span class="nx">匹配度100</span><span class="o">%</span><span class="p">)</span>
+<span class="w">  </span><span class="o">-</span><span class="w"> </span><span class="nx">query_project_data</span><span class="w"> </span><span class="p">(</span><span class="nx">查询项目数据</span><span class="err">，</span><span class="nx">匹配度70</span><span class="o">%</span><span class="p">)</span>
+<span class="w">  </span><span class="o">-</span><span class="w"> </span><span class="nx">generic_query</span><span class="w"> </span><span class="p">(</span><span class="nx">通用查询</span><span class="err">，</span><span class="nx">匹配度40</span><span class="o">%</span><span class="p">)</span>
+
+<span class="nx">选择</span><span class="p">:</span><span class="w"> </span><span class="nx">query_investment_data</span>
+
+<span class="err">【</span><span class="nx">参数准备</span><span class="err">】</span>
+<span class="nx">参数</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="s">&quot;region&quot;</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;成都高新区&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="s">&quot;project_type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;配网改造&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="s">&quot;start_date&quot;</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;2024-01-01&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="s">&quot;end_date&quot;</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;2024-12-31&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="s">&quot;include_details&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">  </span><span class="s">&quot;format&quot;</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;json&quot;</span>
+<span class="p">}</span>
+
+<span class="nx">参数验证</span><span class="p">:</span>
+<span class="err">✓</span><span class="w"> </span><span class="nx">region</span><span class="p">:</span><span class="w"> </span><span class="nx">有效区域名称</span>
+<span class="err">✓</span><span class="w"> </span><span class="nx">project_type</span><span class="p">:</span><span class="w"> </span><span class="nx">在项目类型枚举中</span>
+<span class="err">✓</span><span class="w"> </span><span class="nx">date_range</span><span class="p">:</span><span class="w"> </span><span class="nx">格式正确</span><span class="err">，</span><span class="nx">范围合理</span>
+<span class="err">✓</span><span class="w"> </span><span class="nx">include_details</span><span class="p">:</span><span class="w"> </span><span class="nx">boolean类型</span>
+
+<span class="err">【</span><span class="nx">错误预判</span><span class="err">】</span>
+<span class="nx">可能的错误</span><span class="p">:</span>
+<span class="o">-</span><span class="w"> </span><span class="nx">区域不存在</span><span class="w"> </span><span class="err">→</span><span class="w"> </span><span class="nx">提示用户确认区域名称</span>
+<span class="o">-</span><span class="w"> </span><span class="nx">权限不足</span><span class="w"> </span><span class="err">→</span><span class="w"> </span><span class="nx">返回部分数据并提示</span>
+<span class="o">-</span><span class="w"> </span><span class="nx">查询超时</span><span class="w"> </span><span class="err">→</span><span class="w"> </span><span class="nx">重试或分页查询</span>
+<span class="o">-</span><span class="w"> </span><span class="nx">无数据</span><span class="w"> </span><span class="err">→</span><span class="w"> </span><span class="nx">返回空结果并说明</span>
+
+<span class="err">【</span><span class="nx">执行调用</span><span class="err">】</span>
+<span class="nx">调用</span><span class="p">:</span><span class="w"> </span><span class="nx">query_investment_data</span><span class="p">(</span><span class="nx">params</span><span class="p">)</span>
+<span class="nx">结果</span><span class="p">:</span><span class="w"> </span><span class="nx">成功</span><span class="err">，</span><span class="nx">返回15个项目数据</span>
+</code></pre></div>
+
+<h4 id="r-reflection" id="r---reflection反思">R - Reflection（反思）</h4>
+<p><strong>核心问题</strong>: "这样做对吗？"</p>
+<p><strong>人类类比</strong>: 复盘调整、经验总结</p>
+<p><strong>反思类型详解</strong>:</p>
+<p><strong>类型1: 结果评估</strong></p>
+<div class="highlight"><pre><span></span><code>评估维度：
+
+1. 完整性检查
+   - 是否获取了所有需要的数据？
+   - 输出是否完整？
+   - 有没有遗漏？
+
+2. 准确性检查
+   - 数据是否正确？
+   - 计算结果是否合理？
+   - 有没有异常值？
+
+3. 质量检查
+   - 输出质量是否达标？
+   - 是否满足用户期望？
+   - 有没有改进空间？
+
+4. 目标达成度
+   - 是否解决了用户的问题？
+   - 用户的核心需求是否被满足？
+</code></pre></div>
+
+<p><strong>类型2: 过程复盘</strong></p>
+<div class="highlight"><pre><span></span><code>复盘维度：
+
+1. 效率评估
+   - 执行步骤是否最优？
+   - 有没有冗余操作？
+   - 耗时是否合理？
+
+2. 决策评估
+   - 工具选择是否正确？
+   - 参数设置是否最优？
+   - 有没有更好的方案？
+
+3. 错误分析
+   - 遇到了哪些问题？
+   - 问题的原因是什么？
+   - 如何避免类似问题？
+
+4. 经验沉淀
+   - 这次执行有什么经验？
+   - 哪些可以复用？
+   - 哪些需要优化？
+</code></pre></div>
+
+<p><strong>类型3: 策略调整</strong></p>
+<div class="highlight"><pre><span></span><code>调整决策：
+
+情况1: 结果不满意
+- 问题在哪里？
+- 需要补充什么信息？
+- 重新规划并执行
+
+情况2: 执行失败
+- 失败的原因是什么？
+- 能不能修复？
+- 是否需要换方案？
+
+情况3: 结果优秀
+- 为什么做得好？
+- 经验如何沉淀？
+- 是否可以作为最佳实践？
+</code></pre></div>
+
+<p><strong>电力行业示例</strong>:</p>
+<div class="highlight"><pre><span></span><code>Reflection阶段 - 步骤1执行后的反思：
+
+【结果评估】
+✓ 完整性: 获取了15个项目的数据，包含所有必要字段
+✓ 准确性: 数据格式正确，数值在合理范围内
+✓ 质量: 数据质量良好
+⚠ 目标达成度: 基本达成，但发现部分项目缺少ROI数据
+
+【过程复盘】
+效率: 查询耗时1.8秒，符合预期
+决策: 工具选择正确
+问题: 5个项目缺少returns字段，无法计算ROI
+
+【策略调整】
+问题分析: 部分项目可能还在进行中，没有收益数据
+解决方案: 
+  - 对有returns的项目计算ROI
+  - 对无returns的项目标记为&quot;进行中，暂无法评估&quot;
+  - 在报告中说明数据情况
+
+下一步行动: 继续执行步骤2（计算ROI），但调整计算逻辑
+</code></pre></div>
+
+<h3 id="43-rpar" id="43-rpar循环特性">4.3 RPAR循环特性</h3>
+<div class="highlight"><pre><span></span><code>                    ┌──────────────────┐
+                    │    Reasoning     │
+                    │     (思考)       │
+                    │  理解任务现状    │
+                    └────────┬─────────┘
+                             ↓
+                    ┌──────────────────┐
+                    │    Planning      │
+                    │     (规划)       │
+                    │  制定执行步骤    │
+                    └────────┬─────────┘
+                             ↓
+                    ┌──────────────────┐
+                    │     Acting       │
+                    │     (执行)       │
+                    │  调用工具执行    │
+                    └────────┬─────────┘
+                             ↓
+                    ┌──────────────────┐
+                    │   Reflection     │
+                    │     (反思)       │
+                    │  评估调整策略    │
+                    └────────┬─────────┘
+                             └──────────────→ 
+                                 回到Reasoning
+                                    持续迭代
+</code></pre></div>
+
+<p><strong>循环特性说明</strong>:</p>
+<ol>
+<li><strong>非线性</strong>: 不是A→B→C→D的直线流程，而是可以循环往复</li>
+<li><strong>迭代优化</strong>: 每次循环都可能调整策略，逐步逼近最优解</li>
+<li><strong>容错性强</strong>: 发现错误可以回到前面的环节重新来</li>
+<li><strong>适应性好</strong>: 根据反馈动态调整，适应复杂变化的环境</li>
+</ol>
+<h3 id="44" id="44-与人类的对比">4.4 与人类的对比</h3>
+<p><strong>人类解决问题的过程</strong>:</p>
+<div class="highlight"><pre><span></span><code>接到任务 → 思考分析 → 制定方案 → 动手实施 → 检查结果
+              ↑                              │
+              └──────── 不满意就重新来 ───────┘
+</code></pre></div>
+
+<ol>
+<li><strong>看到问题</strong> → 大脑分析：这是什么问题？需要什么信息？</li>
+<li><strong>制定方案</strong> → 思考：分几步做？先做哪步？</li>
+<li><strong>动手实施</strong> → 执行：操作工具、采集数据、处理信息</li>
+<li><strong>检查效果</strong> → 复盘：结果对吗？达到目标了吗？</li>
+<li><strong>回到1</strong> → 如果不满意，重新思考、重新做</li>
+</ol>
+<p><strong>Agent的RPAR就是模拟这个过程</strong>。</p>
+<p><strong>对比表</strong>:</p>
+<table>
+<thead>
+<tr>
+<th>人类解决问题</th>
+<th>Agent RPAR</th>
+<th>对应环节</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>看到问题，理解需求</td>
+<td>分析任务，识别意图</td>
+<td>Reasoning</td>
+</tr>
+<tr>
+<td>制定方案，规划步骤</td>
+<td>任务分解，步骤编排</td>
+<td>Planning</td>
+</tr>
+<tr>
+<td>动手操作，执行计划</td>
+<td>调用工具，执行操作</td>
+<td>Acting</td>
+</tr>
+<tr>
+<td>检查结果，反思调整</td>
+<td>评估结果，策略优化</td>
+<td>Reflection</td>
+</tr>
+<tr>
+<td>不满意就重新来</td>
+<td>循环迭代</td>
+<td>回到Reasoning</td>
+</tr>
+</tbody>
+</table>
+<h3 id="45-rpar" id="45-电力行业案例完整rpar循环走查">4.5 电力行业案例：完整RPAR循环走查</h3>
+<p><strong>场景</strong>: 分析成都高新区2024年配网改造项目的投资效益</p>
+<h4 id="round-1" id="round-1">Round 1</h4>
+<p><strong>Reasoning（思考）</strong>:</p>
+<div class="highlight"><pre><span></span><code>用户请求: &quot;分析一下成都高新区配网改造项目的投资效益&quot;
+
+思考过程:
+1. 意图识别: 用户需要投资效益分析，可能用于汇报或审计
+2. 上下文理解: 
+   <span class="k">-</span> 区域：成都高新区
+   <span class="k">-</span> 类型：配网改造
+   <span class="k">-</span> 时间范围未指定，默认当年
+3. 任务分解: 查询数据 → 计算ROI → 对比分析 → 生成报告
+4. 约束分析: 数据权限、敏感信息脱敏
+5. 资源评估: 有query_investment_data、calculate_roi等工具
+</code></pre></div>
+
+<p><strong>Planning（规划）</strong>:</p>
+<div class="highlight"><pre><span></span><code><span class="err">计划</span><span class="o">:</span>
+<span class="n">Step</span><span class="w"> </span><span class="mi">1</span><span class="o">:</span><span class="w"> </span><span class="err">查询配网改造项目数据（</span><span class="n">P0</span><span class="err">）</span>
+<span class="n">Step</span><span class="w"> </span><span class="mi">2</span><span class="o">:</span><span class="w"> </span><span class="err">计算各项目</span><span class="n">ROI</span><span class="err">（</span><span class="n">P1</span><span class="err">）</span>
+<span class="n">Step</span><span class="w"> </span><span class="mi">3</span><span class="o">:</span><span class="w"> </span><span class="err">对比行业基准（</span><span class="n">P1</span><span class="err">，可与</span><span class="n">Step2并行</span><span class="err">）</span>
+<span class="n">Step</span><span class="w"> </span><span class="mi">4</span><span class="o">:</span><span class="w"> </span><span class="err">生成分析报告（</span><span class="n">P2</span><span class="err">）</span>
+</code></pre></div>
+
+<p><strong>Acting（执行）</strong>:</p>
+<div class="highlight"><pre><span></span><code><span class="err">调用</span><span class="o">:</span><span class="w"> </span><span class="n">query_investment_data</span>
+<span class="err">参数</span><span class="o">:</span><span class="w"> </span><span class="o">{</span><span class="n">region</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;成都高新区&quot;</span><span class="o">,</span><span class="w"> </span><span class="n">type</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;配网改造&quot;</span><span class="o">,</span><span class="w"> </span><span class="n">year</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;2024&quot;</span><span class="o">}</span>
+<span class="err">结果</span><span class="o">:</span><span class="w"> </span><span class="err">获取到</span><span class="mi">8</span><span class="err">个项目数据</span>
+</code></pre></div>
+
+<p><strong>Reflection（反思）</strong>:</p>
+<div class="highlight"><pre><span></span><code>评估:
+✓ 成功获取8个项目数据
+⚠ 发现3个项目缺少returns字段
+⚠ 发现1个项目状态为&quot;延期&quot;
+
+调整策略:
+- 对有returns的5个项目计算ROI
+- 对无returns的3个项目标记&quot;进行中&quot;
+- 对延期项目特别关注
+</code></pre></div>
+
+<h4 id="round-2" id="round-2">Round 2</h4>
+<p><strong>Reasoning（思考）</strong>:</p>
+<div class="highlight"><pre><span></span><code>当前状态:
+- 已获得8个项目的基础数据
+- 5个项目可计算ROI
+- 需要进一步分析延期项目的原因
+
+新的思考:
+- 延期项目可能影响整体效益评估
+- 需要查询延期原因和历史数据
+</code></pre></div>
+
+<p><strong>Planning（规划）</strong>:</p>
+<div class="highlight"><pre><span></span><code><span class="err">计划</span><span class="o">:</span>
+<span class="n">Step</span><span class="w"> </span><span class="mi">1</span><span class="o">:</span><span class="w"> </span><span class="err">计算</span><span class="mi">5</span><span class="err">个项目的</span><span class="n">ROI</span>
+<span class="n">Step</span><span class="w"> </span><span class="mi">2</span><span class="o">:</span><span class="w"> </span><span class="err">查询延期项目的详细信息（新增）</span>
+<span class="n">Step</span><span class="w"> </span><span class="mi">3</span><span class="o">:</span><span class="w"> </span><span class="err">获取行业基准数据</span>
+<span class="n">Step</span><span class="w"> </span><span class="mi">4</span><span class="o">:</span><span class="w"> </span><span class="err">综合分析并生成报告</span>
+</code></pre></div>
+
+<p><strong>Acting（执行）</strong>:</p>
+<div class="highlight"><pre><span></span><code>并行调用:
+<span class="k">-</span> calculate_roi(项目数据) → ROI结果
+<span class="k">-</span> query_project_details(延期项目ID) → 延期原因
+<span class="k">-</span> get_industry_benchmark(配网改造) → 基准数据
+
+结果:
+<span class="k">-</span> ROI计算完成：平均ROI 12.5%
+<span class="k">-</span> 延期原因：施工许可延误
+<span class="k">-</span> 行业基准：平均ROI 10%
+</code></pre></div>
+
+<p><strong>Reflection（反思）</strong>:</p>
+<div class="highlight"><pre><span></span><code>评估:
+✓ ROI计算完成，平均12.5%高于行业基准10%
+✓ 找到延期原因（非项目本身问题）
+✓ 数据完整度良好
+
+关键发现:
+- 整体效益良好（高于行业平均）
+- 延期项目需要单独关注
+- 可以生成完整的分析报告
+</code></pre></div>
+
+<h4 id="round-3" id="round-3">Round 3</h4>
+<p><strong>Reasoning（思考）</strong>:</p>
+<div class="highlight"><pre><span></span><code>当前状态:
+- 所有必要数据已获取
+- ROI分析完成
+- 延期情况已了解
+
+思考:
+- 可以生成最终报告了
+- 需要包含：总体分析、项目详情、风险提示、建议
+</code></pre></div>
+
+<p><strong>Planning（规划）</strong>:</p>
+<div class="highlight"><pre><span></span><code><span class="err">计划</span><span class="o">:</span>
+<span class="n">Step</span><span class="w"> </span><span class="mi">1</span><span class="o">:</span><span class="w"> </span><span class="err">生成可视化图表</span>
+<span class="n">Step</span><span class="w"> </span><span class="mi">2</span><span class="o">:</span><span class="w"> </span><span class="err">撰写分析报告</span>
+<span class="n">Step</span><span class="w"> </span><span class="mi">3</span><span class="o">:</span><span class="w"> </span><span class="err">输出最终结果</span>
+</code></pre></div>
+
+<p><strong>Acting（执行）</strong>:</p>
+<div class="highlight"><pre><span></span><code>调用:
+<span class="k">-</span> generate_chart(ROI分布图)
+<span class="k">-</span> generate_chart(进度甘特图)
+<span class="k">-</span> generate_report(完整分析报告)
+
+结果: 报告和图表生成完成
+</code></pre></div>
+
+<p><strong>Reflection（反思）</strong>:</p>
+<div class="highlight"><pre><span></span><code>评估:
+✓ 报告完整性: 包含所有必要章节
+✓ 数据准确性: 经过验证
+✓ 分析深度: 有对比、有发现、有建议
+
+最终结论: 任务完成，输出结果
+</code></pre></div>
+
+<h4 id="_27" id="最终结果">最终结果</h4>
+<div class="highlight"><pre><span></span><code>📊 成都高新区2024年配网改造项目投资效益分析
+
+【总体概况】
+• 项目数量：8个
+• 总投资：5,600万元
+• 平均ROI：12.5%（高于行业基准10%）
+• 整体评级：良好
+
+【项目分布】
+✅ 已完成（5个）：平均ROI 14.2%
+⏳ 进行中（3个）：暂无法评估ROI
+⚠️ 延期（1个）：施工许可延误，预计下月完成
+
+【关键发现】
+1. 整体投资效益优于行业平均水平
+2. 配网改造项目ROI普遍在10-18%区间
+3. 延期项目非效益问题，需关注许可流程
+
+【风险提示】
+• 3个进行中项目需跟踪后续收益情况
+• 建议建立项目效益动态监控机制
+
+【改进建议】
+1. 将成功经验推广到其他区域
+2. 优化施工许可办理流程
+3. 加强项目进度监控
+</code></pre></div>
+
+<h3 id="_28" id="核心观点">核心观点</h3>
+<p><strong>三个突破</strong>:</p>
+<ol>
+<li><strong>从黑盒到白盒</strong>: 显式推理过程，可审计、可调试</li>
+<li>传统AI：输入→黑盒→输出，不知道中间发生了什么</li>
+<li>
+<p>Agent RPAR：每个环节都清晰可见，可以追溯决策过程</p>
+</li>
+<li>
+<p><strong>从静态到动态</strong>: 与环境持续交互，边做边学</p>
+</li>
+<li>传统AI：一次性给出答案</li>
+<li>
+<p>Agent RPAR：多轮交互，根据反馈动态调整</p>
+</li>
+<li>
+<p><strong>从确定到适应</strong>: 容错性强，可自我纠正</p>
+</li>
+<li>传统AI：错了就错了</li>
+<li>Agent RPAR：发现错误可以重新规划、重新执行</li>
+</ol>
+<h3 id="rpar350" id="讲师话术示例rpar详解约350字">讲师话术示例（RPAR详解，约350字）</h3>
+<blockquote>
+<p>"刚才我们讲了Agent的核心能力，现在来看Agent是如何实现这些能力的。答案就是RPAR框架。</p>
+<p>RPAR四个字母，四个环节。第一个R，Reasoning，思考。Agent接到任务后，首先要想：这是什么问题？需要什么信息？怎么分解？这就像你接到一个任务，第一反应是理解任务。</p>
+<p>第二个P，Planning，规划。想清楚之后，要制定计划：分几步做？先做哪步？哪些可以并行？这就像你做项目，要先排计划。</p>
+<p>第三个A，Acting，执行。计划有了，就要动手。调用什么工具？参数怎么设？错误怎么处理？这就是执行环节。</p>
+<p>第四个R，Reflection，反思。执行完了要检查：结果对吗？达到目标了吗？哪里可以改进？如果没做好，回到第一个R重新思考。这就是循环。</p>
+<p>注意，这不是线性的，是循环的。就像我们做数学题，算错了要重新审题、重新列式子。Agent也是这样，它有试错和修正的能力。</p>
+<p>刚才我们走了一个完整的案例：分析投资效益。走了三轮RPAR循环。第一轮查询数据，发现有问题；第二轮补充分析；第三轮生成报告。这就是RPAR的威力——它能处理复杂、不确定的任务，通过循环迭代逐步逼近最优解。"</p>
+</blockquote>
+<h3 id="_29" id="白板板书建议">白板/板书建议</h3>
+<p><strong>画核心图 - RPAR循环</strong>:</p>
+<div class="highlight"><pre><span></span><code>                    ┌──────────────────┐
+                    │    Reasoning     │
+                    │     (思考)       │
+                    │  理解任务现状    │
+                    └────────┬─────────┘
+                             ↓
+                    ┌──────────────────┐
+                    │    Planning      │
+                    │     (规划)       │
+                    │  制定执行步骤    │
+                    └────────┬─────────┘
+                             ↓
+                    ┌──────────────────┐
+                    │     Acting       │
+                    │     (执行)       │
+                    │  调用工具执行    │
+                    └────────┬─────────┘
+                             ↓
+                    ┌──────────────────┐
+                    │   Reflection     │
+                    │     (反思)       │
+                    │  评估调整策略    │
+                    └────────┬─────────┘
+                             └──────────────→ 
+                                 回到Reasoning
+</code></pre></div>
+
+<p><strong>用不同颜色标注四个环节</strong>:
+- Reasoning: 蓝色（思考）
+- Planning: 绿色（规划）
+- Acting: 橙色（执行）
+- Reflection: 红色（反思）</p>
+<p><strong>旁边标注</strong>:</p>
+<div class="highlight"><pre><span></span><code>三轮循环示例：
+Round 1: 查询 → 发现问题
+Round 2: 补充 → 获取完整数据
+Round 3: 分析 → 生成报告
+</code></pre></div>
+
+<hr />
+<h2 id="_30" id="课时小结">课时小结</h2>
+<h3 id="_31" id="核心要点回顾">核心要点回顾</h3>
+<ol>
+<li><strong>Agent本质</strong>: 执行能力 + 自主规划 + 反思调整</li>
+<li><strong>与传统AI差别</strong>: 从"动口"到"动手"</li>
+<li><strong>与Workflow差别</strong>: 从"固定流程"到"自主规划"</li>
+<li><strong>RPAR框架</strong>: Reasoning-Planning-Acting-Reflection循环</li>
+</ol>
+<h3 id="_32" id="关键概念总结">关键概念总结</h3>
+<div class="diagram-container"><img src="diagrams/hour1-content_diagram_10.png" alt="Diagram 10" class="ascii-image" /></div>
+
+<h3 id="_33" id="金句">金句</h3>
+<blockquote>
+<p>"Agent不是更聪明的问答系统，而是能自主执行任务的智能体。RPAR是这个智能体的'认知架构'——它模拟了人类解决问题的思维方式。"</p>
+</blockquote>
+<h3 id="_34" id="三个核心转变">三个核心转变</h3>
+<ol>
+<li><strong>从信息到结果</strong>: 不只是告诉你怎么做，而是直接给你结果</li>
+<li><strong>从被动到主动</strong>: 不只是回答问题，而是主动完成任务</li>
+<li><strong>从静态到动态</strong>: 不只是单次交互，而是持续迭代优化</li>
+</ol>
+<h3 id="_35" id="过渡到下节课">过渡到下节课</h3>
+<blockquote>
+<p>"刚才我们讲了RPAR框架，但理论要落地。下节课我们看：RPAR有哪些具体实现方式？ReAct、Plan-and-Execute都是怎么来的？还有，Acting具体有哪些方式？休息10分钟，我们继续。"</p>
+</blockquote>
+<hr />
+<p><strong>文档版本</strong>: v2.0<br />
+<strong>时长</strong>: 40分钟<br />
+<strong>字数</strong>: 约8,200字<br />
+<strong>编写</strong>: Content Team<br />
+<strong>更新日期</strong>: 2026-03-22</p>
+<hr />
+<h2 id="_36" id="附录白板板书完整版">附录：白板板书完整版</h2>
+<h3 id="1_1" id="板书1课程概览">板书1：课程概览</h3>
+<div class="highlight"><pre><span></span><code>┌──────────────────────────────────────────────────────┐
+│            Day 1 下午：Agentic AI设计范式            │
+├──────────────────────────────────────────────────────┤
+│                                                      │
+│  核心问题：Agent与传统AI的本质差别是什么？           │
+│                                                      │
+│  答案：Agent = 执行 + 规划 + 反思                    │
+│                                                      │
+│  三课时结构：                                        │
+│  • Hour 1: Agent本质 + RPAR框架                      │
+│  • Hour 2: RPAR实例 + Acting详解                     │
+│  • Hour 3: 工具演进 API→MCP→Skills                   │
+│                                                      │
+└──────────────────────────────────────────────────────┘
+</code></pre></div>
+
+<h3 id="2agent-vs-ai" id="板书2agent-vs-传统ai">板书2：Agent vs 传统AI</h3>
+<div class="highlight"><pre><span></span><code>┌─────────────────────────────────────────────────────┐
+│ 传统AI                vs              Agent         │
+├─────────────────────────────────────────────────────┤
+│                                                     │
+│ 提问 → 回答建议          提问 → 自主执行 → 结果    │
+│       ↓                                               │
+│   [人工执行]                                          │
+│   15-20分钟         vs         30秒                  │
+│                                                     │
+│   效率提升：30-40倍                                  │
+│                                                     │
+│  本质差别：Text-in-Text-out vs Text-in-Action-out  │
+│                                                     │
+└─────────────────────────────────────────────────────┘
+</code></pre></div>
+
+<h3 id="3workflow-vs-agentic" id="板书3workflow-vs-agentic">板书3：Workflow vs Agentic</h3>
+<div class="diagram-container"><img src="diagrams/hour1-content_diagram_11.png" alt="Diagram 11" class="ascii-image" /></div>
+
+<h3 id="4rpar" id="板书4rpar循环">板书4：RPAR循环</h3>
+<div class="highlight"><pre><span></span><code>                    ┌──────────────┐
+                    │  Reasoning   │ ← 思考
+                    │   (理解)     │
+                    └──────┬───────┘
+                           ↓
+                    ┌──────────────┐
+                    │   Planning   │ ← 规划
+                    │   (计划)     │
+                    └──────┬───────┘
+                           ↓
+                    ┌──────────────┐
+                    │    Acting    │ ← 执行
+                    │   (操作)     │
+                    └──────┬───────┘
+                           ↓
+                    ┌──────────────┐
+                    │ Reflection   │ ← 反思
+                    │   (评估)     │
+                    └──────┬───────┘
+                           └──────────→ 
+                              回到思考
+                              (循环)
+</code></pre></div>
+
+<h3 id="5" id="板书5决策树">板书5：决策树</h3>
+<div class="highlight"><pre><span></span><code>选择Workflow还是Agentic？
+
+流程是否固定？
+│
+├─ 是 → 结果是否可预测？
+│       │
+│       ├─ 是 → 【Workflow】✓
+│       │
+│       └─ 否 → 【混合模式】
+│
+└─ 否 → 需要灵活决策？
+        │
+        ├─ 是 → 【Agentic】✓
+        │
+        └─ 否 → 需进一步分析
+</code></pre></div>
+    </main>
+    
+    <!-- 文档页脚 -->
+    <footer class="document-footer">
+        <div class="footer-content">
+            <div class="footer-left">
+                <span class="footer-logo">国网四川电力</span>
+            </div>
+            <div class="footer-center">
+                <span>AI种子团队培训 · 内部资料</span>
+            </div>
+            <div class="footer-right">
+                <span></span>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
