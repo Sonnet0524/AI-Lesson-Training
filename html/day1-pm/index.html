@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Day 1: Agentic AI 设计范式</title>
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css">
 </head>
 <body>
     <!-- 导航栏 -->
@@ -118,6 +119,60 @@
                     <span class="insight-label">核心洞察</span>
                     <p class="insight-text">"Agent的本质是<strong>'执行'</strong>，特别是<strong>'自主执行'</strong>——从'顾问'到'助手'"</p>
                 </div>
+
+                <!-- Agentic概念详解卡片 -->
+                <div class="concept-card" data-concept="agentic">
+                    <div class="concept-header">
+                        <div class="concept-icon">🤖</div>
+                        <div class="concept-title-group">
+                            <h4 class="concept-title">Agentic AI 详解</h4>
+                            <span class="concept-subtitle">与Autonomous AI的区别</span>
+                        </div>
+                        <button class="concept-toggle" onclick="toggleConcept(this)">
+                            <span class="toggle-icon">+</span>
+                            <span class="toggle-text">了解详情</span>
+                        </button>
+                    </div>
+                    <div class="concept-brief">
+                        <p>Agentic AI 是一种能够自主感知环境、做出决策并执行行动的AI系统。与传统的Autonomous AI不同，Agentic AI强调"主动性"和"目标导向性"。</p>
+                    </div>
+                    <div class="concept-detail">
+                        <div class="detail-section">
+                            <h5>核心特征</h5>
+                            <ul>
+                                <li><strong>自主性</strong>：能够独立做出决策，无需人工干预</li>
+                                <li><strong>主动性</strong>：主动探索解决问题的方法，而非被动响应</li>
+                                <li><strong>适应性</strong>：根据环境变化动态调整策略</li>
+                                <li><strong>工具使用</strong>：能够调用外部工具和资源完成复杂任务</li>
+                            </ul>
+                        </div>
+                        <div class="detail-section">
+                            <h5>与Autonomous AI的区别</h5>
+                            <table class="comparison-table">
+                                <tr>
+                                    <th>维度</th>
+                                    <th>Autonomous AI</th>
+                                    <th>Agentic AI</th>
+                                </tr>
+                                <tr>
+                                    <td>决策方式</td>
+                                    <td>基于规则/预设</td>
+                                    <td>基于推理和学习</td>
+                                </tr>
+                                <tr>
+                                    <td>交互方式</td>
+                                    <td>被动响应</td>
+                                    <td>主动规划</td>
+                                </tr>
+                                <tr>
+                                    <td>目标达成</td>
+                                    <td>固定流程</td>
+                                    <td>动态调整</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
             </div>
 
             <!-- Workflow vs Agentic -->
@@ -162,50 +217,130 @@
             <!-- RPAR框架详解 -->
             <div class="content-block rpar-block">
                 <h3 class="block-title">RPAR框架：Agent的认知架构</h3>
-                <div class="rpar-container">
-                    <div class="rpar-cycle" id="rparCycle">
-                        <div class="rpar-phase" data-phase="reasoning">
-                            <div class="phase-icon">🧠</div>
-                            <div class="phase-content">
-                                <h4>Reasoning</h4>
-                                <span class="phase-name">思考</span>
-                                <p class="phase-desc">理解任务，分析现状</p>
-                            </div>
-                        </div>
-                        <div class="rpar-connector"></div>
-                        <div class="rpar-phase" data-phase="planning">
-                            <div class="phase-icon">📋</div>
-                            <div class="phase-content">
-                                <h4>Planning</h4>
-                                <span class="phase-name">规划</span>
-                                <p class="phase-desc">制定执行步骤</p>
-                            </div>
-                        </div>
-                        <div class="rpar-connector"></div>
-                        <div class="rpar-phase" data-phase="acting">
-                            <div class="phase-icon">⚡</div>
-                            <div class="phase-content">
-                                <h4>Acting</h4>
-                                <span class="phase-name">执行</span>
-                                <p class="phase-desc">调用工具执行</p>
-                            </div>
-                        </div>
-                        <div class="rpar-connector"></div>
-                        <div class="rpar-phase" data-phase="reflection">
-                            <div class="phase-icon">🔄</div>
-                            <div class="phase-content">
-                                <h4>Reflection</h4>
-                                <span class="phase-name">反思</span>
-                                <p class="phase-desc">评估调整策略</p>
-                            </div>
-                        </div>
-                        <div class="rpar-loop-arrow">↻</div>
+                
+                <!-- 交互式RPAR步骤展示组件 -->
+                <div class="step-container" id="rparStepContainer">
+                    <div class="step-progress">
+                        <div class="step-connector active"></div>
+                        <div class="step-connector"></div>
+                        <div class="step-connector"></div>
+                        <div class="step-connector"></div>
                     </div>
-                    <div class="rpar-controls">
-                        <button class="btn btn-small" onclick="animateRparCycle()">播放循环动画</button>
-                        <span class="rpar-status">点击播放查看RPAR循环</span>
+                    <div class="step-items">
+                        <div class="step-item active" data-step="1" onclick="activateStep(1)">
+                            <div class="step-circle">1</div>
+                            <div class="step-content">
+                                <h4 class="step-name">Reasoning</h4>
+                                <span class="step-label">思考</span>
+                                <p class="step-desc">理解任务，分析现状</p>
+                            </div>
+                        </div>
+                        <div class="step-item" data-step="2" onclick="activateStep(2)">
+                            <div class="step-circle">2</div>
+                            <div class="step-content">
+                                <h4 class="step-name">Planning</h4>
+                                <span class="step-label">规划</span>
+                                <p class="step-desc">制定执行步骤</p>
+                            </div>
+                        </div>
+                        <div class="step-item" data-step="3" onclick="activateStep(3)">
+                            <div class="step-circle">3</div>
+                            <div class="step-content">
+                                <h4 class="step-name">Acting</h4>
+                                <span class="step-label">执行</span>
+                                <p class="step-desc">调用工具执行</p>
+                            </div>
+                        </div>
+                        <div class="step-item" data-step="4" onclick="activateStep(4)">
+                            <div class="step-circle">4</div>
+                            <div class="step-content">
+                                <h4 class="step-name">Reflection</h4>
+                                <span class="step-label">反思</span>
+                                <p class="step-desc">评估调整策略</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="step-details" id="stepDetails">
+                        <div class="detail-panel active" data-panel="1">
+                            <div class="detail-icon">🧠</div>
+                            <h4>Reasoning - 思考环节</h4>
+                            <p>AI理解用户意图、分析当前状况、识别约束条件和潜在风险。</p>
+                            <ul>
+                                <li>意图识别：理解用户的真实需求</li>
+                                <li>上下文理解：分析对话历史和背景信息</li>
+                                <li>约束分析：识别时间、资源等限制</li>
+                                <li>风险评估：预判可能的问题</li>
+                            </ul>
+                        </div>
+                        <div class="detail-panel" data-panel="2">
+                            <div class="detail-icon">📋</div>
+                            <h4>Planning - 规划环节</h4>
+                            <p>基于思考结果，制定详细的执行计划，包括步骤分解和优先级排序。</p>
+                            <ul>
+                                <li>任务分解：将复杂任务拆分为可执行子任务</li>
+                                <li>优先级排序：确定执行顺序</li>
+                                <li>资源评估：评估所需工具和数据</li>
+                                <li>路径规划：选择最优执行路径</li>
+                            </ul>
+                        </div>
+                        <div class="detail-panel" data-panel="3">
+                            <div class="detail-icon">⚡</div>
+                            <h4>Acting - 执行环节</h4>
+                            <p>调用各种工具和资源，执行规划中的具体任务。</p>
+                            <ul>
+                                <li>工具选择：根据任务选择合适工具</li>
+                                <li>参数准备：准备正确的输入参数</li>
+                                <li>执行调用：发起工具调用</li>
+                                <li>结果获取：接收并解析执行结果</li>
+                            </ul>
+                        </div>
+                        <div class="detail-panel" data-panel="4">
+                            <div class="detail-icon">🔄</div>
+                            <h4>Reflection - 反思环节</h4>
+                            <p>评估执行结果，识别问题，调整策略，决定是否继续循环。</p>
+                            <ul>
+                                <li>结果评估：检查结果是否符合预期</li>
+                                <li>错误识别：发现并定位问题</li>
+                                <li>策略调整：修改后续执行计划</li>
+                                <li>知识沉淀：总结经验教训</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="step-controls">
+                        <button class="btn btn-small" onclick="playRparAnimation()">
+                            <span class="btn-icon">▶</span> 自动播放
+                        </button>
+                        <button class="btn btn-small btn-secondary" onclick="resetRparSteps()">
+                            <span class="btn-icon">↺</span> 重置
+                        </button>
+                        <span class="step-status">点击步骤查看详情或播放动画</span>
                     </div>
                 </div>
+
+                <!-- RPAR环节概念详解卡片 -->
+                <div class="concept-cards-grid">
+                    <div class="concept-card-mini" onclick="activateStep(1)">
+                        <div class="mini-icon">🧠</div>
+                        <h5>Reasoning</h5>
+                        <p>3-5个思考维度：意图识别、上下文理解、约束分析...</p>
+                    </div>
+                    <div class="concept-card-mini" onclick="activateStep(2)">
+                        <div class="mini-icon">📋</div>
+                        <h5>Planning</h5>
+                        <p>规划策略：分解、排序、资源评估</p>
+                    </div>
+                    <div class="concept-card-mini" onclick="activateStep(3)">
+                        <div class="mini-icon">⚡</div>
+                        <h5>Acting</h5>
+                        <p>工具选择逻辑、参数准备、错误预判</p>
+                    </div>
+                    <div class="concept-card-mini" onclick="activateStep(4)">
+                        <div class="mini-icon">🔄</div>
+                        <h5>Reflection</h5>
+                        <p>反思类型：结果评估、过程复盘、知识沉淀</p>
+                    </div>
+                </div>
+
                 <div class="rpar-breakthrough">
                     <h4>三个核心突破</h4>
                     <div class="breakthrough-grid">
@@ -242,11 +377,26 @@
             <!-- RPAR裁剪 -->
             <div class="content-block">
                 <h3 class="block-title">RPAR的裁剪：不同场景的选择</h3>
-                <div class="paradigm-tabs">
-                    <div class="tab-buttons">
-                        <button class="tab-btn active" data-tab="react">ReAct</button>
-                        <button class="tab-btn" data-tab="plan">Plan-and-Execute</button>
-                        <button class="tab-btn" data-tab="full">完整RPAR</button>
+                
+                <!-- Tab切换增强版 -->
+                <div class="tabs-enhanced">
+                    <div class="tab-header">
+                        <div class="tab-indicator"></div>
+                        <button class="tab-btn active" data-tab="react" onclick="switchTab('react')">
+                            <span class="tab-icon">⚡</span>
+                            <span class="tab-text">ReAct</span>
+                            <span class="tab-badge">简化版</span>
+                        </button>
+                        <button class="tab-btn" data-tab="plan" onclick="switchTab('plan')">
+                            <span class="tab-icon">📋</span>
+                            <span class="tab-text">Plan-and-Execute</span>
+                            <span class="tab-badge">高效版</span>
+                        </button>
+                        <button class="tab-btn" data-tab="full" onclick="switchTab('full')">
+                            <span class="tab-icon">🎯</span>
+                            <span class="tab-text">完整RPAR</span>
+                            <span class="tab-badge">完全体</span>
+                        </button>
                     </div>
                     <div class="tab-contents">
                         <div class="tab-content active" id="react">
@@ -261,6 +411,70 @@
                                         <li>✗ 缺乏显式规划和反思</li>
                                     </ul>
                                 </div>
+                                
+                                <!-- ReAct概念详解卡片 -->
+                                <div class="concept-card" data-concept="react">
+                                    <div class="concept-header">
+                                        <div class="concept-icon">📚</div>
+                                        <div class="concept-title-group">
+                                            <h4 class="concept-title">ReAct 详解</h4>
+                                            <span class="concept-subtitle">论文来源与核心思想</span>
+                                        </div>
+                                        <button class="concept-toggle" onclick="toggleConcept(this)">
+                                            <span class="toggle-icon">+</span>
+                                            <span class="toggle-text">了解详情</span>
+                                        </button>
+                                    </div>
+                                    <div class="concept-brief">
+                                        <p>ReAct（Reasoning + Acting）是普林斯顿大学和Google Research在2022年提出的方法，核心思想是让AI交替进行推理和行动。</p>
+                                    </div>
+                                    <div class="concept-detail">
+                                        <div class="detail-section">
+                                            <h5>论文信息</h5>
+                                            <ul>
+                                                <li><strong>论文标题</strong>：ReAct: Synergizing Reasoning and Acting in Language Models</li>
+                                                <li><strong>发表时间</strong>：2022年10月</li>
+                                                <li><strong>核心作者</strong>：Shunyu Yao（普林斯顿）, Jeffrey Zhao（Google）等</li>
+                                                <li><strong>核心思想</strong>：推理（Reasoning）和行动（Acting）应该相互促进</li>
+                                            </ul>
+                                        </div>
+                                        <div class="detail-section">
+                                            <h5>完整流程示例</h5>
+                                            <div class="code-block">
+                                                <div class="code-header">
+                                                    <span class="code-title">ReAct循环伪代码</span>
+                                                    <button class="code-toggle" onclick="toggleCode(this)">
+                                                        <span>展开</span>
+                                                    </button>
+                                                </div>
+                                                <pre class="code-content collapsed"><code class="language-python">def react_loop(user_query, max_iterations=10):
+    thought_history = []
+    action_history = []
+    
+    for i in range(max_iterations):
+        # 1. Reasoning: 基于历史和当前状态思考
+        thought = llm.reason(
+            query=user_query,
+            history=thought_history,
+            actions=action_history
+        )
+        thought_history.append(thought)
+        
+        # 2. Acting: 执行工具调用
+        action = parse_action(thought)
+        observation = execute_tool(action)
+        action_history.append({"action": action, "observation": observation})
+        
+        # 3. 检查是否完成
+        if is_complete(thought, observation):
+            return generate_answer(thought_history, action_history)
+    
+    return "达到最大迭代次数"</code></pre>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
                                 <div class="paradigm-example">
                                     <h5>示例：查询天气</h5>
                                     <code>思考→调用天气API→回答用户</code>
@@ -382,6 +596,64 @@
                         </div>
                     </div>
                 </div>
+                
+                <!-- API调用代码示例 -->
+                <div class="code-block">
+                    <div class="code-header">
+                        <span class="code-title">Python API调用示例</span>
+                        <span class="code-lang">Python</span>
+                        <button class="code-toggle" onclick="toggleCode(this)">
+                            <span>展开</span>
+                        </button>
+                    </div>
+                    <pre class="code-content collapsed"><code class="language-python">import requests
+from typing import Dict, Any
+
+class PowerSystemAPI:
+    """电力系统API调用工具"""
+    
+    def __init__(self, base_url: str, api_key: str):
+        self.base_url = base_url
+        self.headers = {
+            "Authorization": f"Bearer {api_key}",
+            "Content-Type": "application/json"
+        }
+    
+    def query_investment_data(
+        self, 
+        region: str, 
+        start_date: str, 
+        end_date: str,
+        project_type: str = "全部"
+    ) -> Dict[str, Any]:
+        """
+        查询投资项目数据
+        
+        Args:
+            region: 查询区域，如'成都高新区'
+            start_date: 开始日期，格式YYYY-MM-DD
+            end_date: 结束日期，格式YYYY-MM-DD
+            project_type: 项目类型筛选
+        
+        Returns:
+            包含项目列表、投资总额等信息的字典
+        """
+        url = f"{self.base_url}/api/v1/investments/query"
+        params = {
+            "region": region,
+            "start": start_date,
+            "end": end_date,
+            "type": project_type
+        }
+        
+        try:
+            response = requests.get(url, headers=self.headers, params=params)
+            response.raise_for_status()
+            return response.json()
+        except requests.exceptions.RequestException as e:
+            return {"error": str(e), "code": "API_ERROR"}</code></pre>
+                </div>
+                
                 <div class="key-insight">
                     <span class="insight-label">核心洞察</span>
                     <p class="insight-text">"<strong>Acting</strong>让Agent从'动口'变成'动手'——没有Acting，Agent只是聊天机器人"</p>
@@ -407,9 +679,9 @@
                         <div class="stair" data-level="5">
                             <div class="stair-level">L5</div>
                             <div class="stair-content">
-                                <h4>Skills</h4>
-                                <span class="stair-tag">业务语义</span>
-                                <p>面向AI的业务能力封装</p>
+<h4>Skills</h4>
+                            <span class="stair-tag">AI行为指导</span>
+                            <p>通过Prompt定义AI的角色和工作流程</p>
                             </div>
                         </div>
                         <div class="stair" data-level="4">
@@ -486,9 +758,498 @@
                         <div class="compare-result">AI直接理解</div>
                     </div>
                 </div>
+                
+                <!-- MCP概念详解卡片 -->
+                <div class="concept-card" data-concept="mcp">
+                    <div class="concept-header">
+                        <div class="concept-icon">🔌</div>
+                        <div class="concept-title-group">
+                            <h4 class="concept-title">MCP (Model Context Protocol)</h4>
+                            <span class="concept-subtitle">模型上下文协议详解</span>
+                        </div>
+                        <button class="concept-toggle" onclick="toggleConcept(this)">
+                            <span class="toggle-icon">+</span>
+                            <span class="toggle-text">了解详情</span>
+                        </button>
+                    </div>
+                    <div class="concept-brief">
+                        <p>MCP是一种标准化协议，让AI模型能够理解工具的用途、参数和返回值。它定义了一套JSON Schema，使得工具具备"自描述"能力。</p>
+                    </div>
+                    <div class="concept-detail">
+                        <div class="detail-section">
+                            <h5>MCP的核心价值</h5>
+                            <ul>
+                                <li><strong>第一层价值 - 描述标准化</strong>：统一的JSON格式，让AI直接理解</li>
+                                <li><strong>第二层价值 - 生态标准化</strong>：跨平台互通，一次开发多处使用</li>
+                            </ul>
+                        </div>
+                        <div class="detail-section">
+                            <h5>MCP字段说明</h5>
+                            <table class="comparison-table">
+                                <tr>
+                                    <th>字段</th>
+                                    <th>类型</th>
+                                    <th>说明</th>
+                                </tr>
+                                <tr>
+                                    <td><code>name</code></td>
+                                    <td>string</td>
+                                    <td>工具名称，驼峰命名</td>
+                                </tr>
+                                <tr>
+                                    <td><code>description</code></td>
+                                    <td>string</td>
+                                    <td>功能描述，让AI理解用途</td>
+                                </tr>
+                                <tr>
+                                    <td><code>parameters</code></td>
+                                    <td>object</td>
+                                    <td>输入参数定义（JSON Schema）</td>
+                                </tr>
+                                <tr>
+                                    <td><code>returns</code></td>
+                                    <td>object</td>
+                                    <td>返回结果定义</td>
+                                </tr>
+                                <tr>
+                                    <td><code>errors</code></td>
+                                    <td>object</td>
+                                    <td>错误码定义</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- MCP JSON示例1 -->
+                <div class="code-block">
+                    <div class="code-header">
+                        <span class="code-title">MCP描述示例 - 查询投资项目数据</span>
+                        <span class="code-lang">JSON</span>
+                        <button class="code-toggle" onclick="toggleCode(this)">
+                            <span>展开</span>
+                        </button>
+                    </div>
+                    <pre class="code-content collapsed"><code class="language-json">{
+  "name": "query_investment_data",
+  "description": "查询指定时间范围内的投资项目数据，返回项目列表、投资额、进度等信息。适用于投资效益分析和项目管理场景。",
+  "version": "1.0.0",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "region": {
+        "type": "string",
+        "description": "查询区域，如'成都高新区'、'天府新区'等",
+        "examples": ["成都高新区", "锦江区", "全市"]
+      },
+      "start_date": {
+        "type": "string",
+        "format": "date",
+        "description": "查询开始日期，格式YYYY-MM-DD",
+        "examples": ["2024-01-01", "2024-03-01"]
+      },
+      "end_date": {
+        "type": "string",
+        "format": "date",
+        "description": "查询结束日期，格式YYYY-MM-DD",
+        "examples": ["2024-12-31", "2024-06-30"]
+      },
+      "project_type": {
+        "type": "string",
+        "enum": ["全部", "配网改造", "变电站建设", "智能电网", "新能源"],
+        "description": "项目类型筛选",
+        "default": "全部"
+      }
+    },
+    "required": ["region", "start_date", "end_date"],
+    "additionalProperties": false
+  },
+  "returns": {
+    "type": "object",
+    "properties": {
+      "projects": {
+        "type": "array",
+        "description": "项目列表",
+        "items": {
+          "type": "object",
+          "properties": {
+            "project_id": {
+              "type": "string",
+              "description": "项目唯一标识"
+            },
+            "project_name": {
+              "type": "string",
+              "description": "项目名称"
+            },
+            "investment_amount": {
+              "type": "number",
+              "description": "投资金额(万元)"
+            },
+            "progress": {
+              "type": "number",
+              "description": "项目进度(0-100)"
+            }
+          }
+        }
+      },
+      "total_count": {
+        "type": "integer",
+        "description": "项目总数"
+      },
+      "total_investment": {
+        "type": "number",
+        "description": "投资总额(万元)"
+      }
+    }
+  }
+}</code></pre>
+                </div>
+                
+                <!-- MCP JSON示例2 -->
+                <div class="code-block">
+                    <div class="code-header">
+                        <span class="code-title">MCP描述示例 - 发送通知</span>
+                        <span class="code-lang">JSON</span>
+                        <button class="code-toggle" onclick="toggleCode(this)">
+                            <span>展开</span>
+                        </button>
+                    </div>
+                    <pre class="code-content collapsed"><code class="language-json">{
+  "name": "send_notification",
+  "description": "向指定用户或用户组发送系统通知，支持钉钉、邮件、短信等多种渠道",
+  "version": "1.2.0",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "channel": {
+        "type": "string",
+        "enum": ["dingtalk", "email", "sms", "app"],
+        "description": "通知渠道"
+      },
+      "recipients": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "description": "接收人列表（用户ID或手机号）"
+      },
+      "title": {
+        "type": "string",
+        "description": "通知标题"
+      },
+      "content": {
+        "type": "string",
+        "description": "通知内容"
+      },
+      "priority": {
+        "type": "string",
+        "enum": ["low", "normal", "high", "urgent"],
+        "default": "normal",
+        "description": "优先级"
+      }
+    },
+    "required": ["channel", "recipients", "title", "content"]
+  },
+  "returns": {
+    "type": "object",
+    "properties": {
+      "success": {
+        "type": "boolean",
+        "description": "是否发送成功"
+      },
+      "sent_count": {
+        "type": "integer",
+        "description": "成功发送人数"
+      },
+      "failed_count": {
+        "type": "integer",
+        "description": "发送失败人数"
+      }
+    }
+  },
+  "errors": {
+    "INVALID_CHANNEL": "不支持的通知渠道",
+    "INVALID_RECIPIENTS": "接收人格式错误",
+    "RATE_LIMITED": "发送频率超限"
+  }
+}</code></pre>
+                </div>
+                
+                <!-- MCP JSON示例3 -->
+                <div class="code-block">
+                    <div class="code-header">
+                        <span class="code-title">MCP描述示例 - 生成分析报告</span>
+                        <span class="code-lang">JSON</span>
+                        <button class="code-toggle" onclick="toggleCode(this)">
+                            <span>展开</span>
+                        </button>
+                    </div>
+                    <pre class="code-content collapsed"><code class="language-json">{
+  "name": "generate_analysis_report",
+  "description": "基于投资数据生成可视化的效益分析报告，支持多种图表类型和导出格式",
+  "version": "2.0.0",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "data_source": {
+        "type": "string",
+        "description": "数据源ID或查询条件"
+      },
+      "report_type": {
+        "type": "string",
+        "enum": ["roi_analysis", "progress_report", "budget_summary", "comprehensive"],
+        "description": "报告类型"
+      },
+      "chart_types": {
+        "type": "array",
+        "items": {
+          "enum": ["bar", "line", "pie", "table"]
+        },
+        "description": "包含的图表类型"
+      },
+      "output_format": {
+        "type": "string",
+        "enum": ["pdf", "excel", "html", "markdown"],
+        "default": "pdf",
+        "description": "输出格式"
+      },
+      "time_range": {
+        "type": "object",
+        "properties": {
+          "start": {"type": "string", "format": "date"},
+          "end": {"type": "string", "format": "date"}
+        },
+        "required": ["start", "end"]
+      }
+    },
+    "required": ["data_source", "report_type"]
+  },
+  "returns": {
+    "type": "object",
+    "properties": {
+      "report_url": {
+        "type": "string",
+        "description": "报告下载链接"
+      },
+      "preview_images": {
+        "type": "array",
+        "items": {"type": "string"},
+        "description": "报告预览图（base64）"
+      },
+      "generated_at": {
+        "type": "string",
+        "format": "date-time",
+        "description": "生成时间"
+      }
+    }
+  }
+}</code></pre>
+                </div>
+                
                 <div class="mcp-key">
                     <h4>MCP的核心突破</h4>
                     <p class="key-quote">"让工具具备<strong>'自描述'</strong>能力——工具自带说明书，AI能直接读懂能做什么、需要什么参数、返回什么结果"</p>
+                </div>
+            </div>
+
+            <!-- Skills定义 -->
+            <div class="content-block">
+                <h3 class="block-title">Tools → Skills：AI行为指导</h3>
+                
+                <!-- Skills目录结构说明 -->
+                <div class="skills-structure-intro">
+                    <h4>Skills是目录，不只是文件</h4>
+                    <p>Skills是<strong>包含多个文件的目录</strong>，不只是单个SKILL.md文件：</p>
+                    
+                    <div class="directory-tree">
+                        <div class="tree-line"><span class="tree-icon">📁</span> <span class="tree-name">skill-name/</span></div>
+                        <div class="tree-line tree-indent"><span class="tree-icon">📄</span> <span class="tree-name">SKILL.md</span> <span class="tree-desc">必需 - 主要指令文件（YAML + Markdown）</span></div>
+                        <div class="tree-line tree-indent"><span class="tree-icon">📁</span> <span class="tree-name">scripts/</span> <span class="tree-desc">可选 - 可执行脚本（Python、Bash等）</span></div>
+                        <div class="tree-line tree-indent2"><span class="tree-icon">🐍</span> <span class="tree-name">api.py</span></div>
+                        <div class="tree-line tree-indent2"><span class="tree-icon">🐍</span> <span class="tree-name">process.py</span></div>
+                        <div class="tree-line tree-indent"><span class="tree-icon">📁</span> <span class="tree-name">references/</span> <span class="tree-desc">可选 - 详细文档、参考资料、示例</span></div>
+                        <div class="tree-line tree-indent2"><span class="tree-icon">📄</span> <span class="tree-name">api-reference.md</span></div>
+                        <div class="tree-line tree-indent2"><span class="tree-icon">📄</span> <span class="tree-name">examples.md</span></div>
+                        <div class="tree-line tree-indent"><span class="tree-icon">📁</span> <span class="tree-name">templates/</span> <span class="tree-desc">可选 - 模板文件</span></div>
+                        <div class="tree-line tree-indent2"><span class="tree-icon">📄</span> <span class="tree-name">report-template.md</span></div>
+                    </div>
+                    
+                    <div class="progressive-disclosure">
+                        <h5>渐进式披露（Progressive Disclosure）</h5>
+                        <div class="disclosure-levels">
+                            <div class="disclosure-item">
+                                <span class="level-badge">L1</span>
+                                <span class="level-content">Metadata（~100 words）</span>
+                                <span class="level-status">始终在上下文中</span>
+                            </div>
+                            <div class="disclosure-arrow">↓</div>
+                            <div class="disclosure-item">
+                                <span class="level-badge">L2</span>
+                                <span class="level-content">SKILL.md Body（&lt;200行）</span>
+                                <span class="level-status">触发时加载</span>
+                            </div>
+                            <div class="disclosure-arrow">↓</div>
+                            <div class="disclosure-item">
+                                <span class="level-badge">L3</span>
+                                <span class="level-content">references/scripts/</span>
+                                <span class="level-status">按需加载</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Skills JSON示例1 -->
+                <div class="code-block">
+                    <div class="code-header">
+                        <span class="code-title">Skills定义示例 - 投资效益分析</span>
+                        <span class="code-lang">YAML</span>
+                        <button class="code-toggle" onclick="toggleCode(this)">
+                            <span>展开</span>
+                        </button>
+                    </div>
+                    <pre class="code-content collapsed"><code class="language-yaml">---
+name: investment-analyzer
+description: "投资效益分析专家，计算项目ROI并生成评估报告。当用户询问'分析投资效益'、'计算ROI'时使用。"
+trigger: on_demand
+tags: investment, roi, analysis
+---
+
+你是一位电力行业投资效益分析专家。你的任务是帮助用户分析投资项目的效益情况。
+
+## 分析流程
+1. 首先了解用户要分析的项目范围和目标
+2. 使用query_investment_data工具查询相关项目数据
+3. 使用execute_code工具进行ROI计算和数据处理
+4. 根据计算结果评估项目等级（优秀/良好/需关注）
+5. 使用generate_chart工具生成可视化图表
+6. 生成包含图表和文字说明的完整分析报告
+
+## 评估标准
+- ROI > 15%: 优秀
+- ROI 8-15%: 良好
+- ROI < 8%: 需关注
+
+## 详细参考（按需加载）
+- 计算公式详解: references/roi_formula.md
+- 行业基准数据: references/industry_benchmarks.md
+- 示例报告: references/example_reports/
+
+## 可执行脚本（按需调用）
+- 复杂ROI计算: scripts/roi_calculator.py
+- 数据验证: scripts/data_validator.py
+
+## 注意事项
+- 始终验证数据的完整性和准确性
+- 如果发现异常数据，主动向用户确认
+- 报告要包含具体的改进建议，不只是数据罗列
+
+## 输出格式
+你的回复应该包含：
+1. 执行摘要（关键发现）
+2. 详细分析（数据+解释）
+3. 可视化图表
+4. 改进建议</code></pre>
+                </div>
+                
+                <!-- Skills JSON示例2 -->
+                <div class="code-block">
+                    <div class="code-header">
+                        <span class="code-title">Skills定义示例 - 项目进度追踪</span>
+                        <span class="code-lang">YAML</span>
+                        <button class="code-toggle" onclick="toggleCode(this)">
+                            <span>展开</span>
+                        </button>
+                    </div>
+                    <pre class="code-content collapsed"><code class="language-yaml">---
+name: project-tracker
+description: "追踪项目进度，识别延期风险。当用户询问'项目进度如何'、'检查延期风险'时使用。"
+trigger: on_demand
+tags: project, tracking, management
+---
+
+你是一位项目管理专家，专门负责追踪和监控项目进度。你的任务是帮助用户了解项目当前状态、识别潜在风险并提供改进建议。
+
+## 工作流程
+1. 了解用户要监控的项目范围和关注点
+2. 使用get_project_status工具查询项目当前状态
+3. 使用calculate_delay_risk工具评估延期风险
+4. 识别关键里程碑的完成情况
+5. 如果发现延期风险，使用send_notification发送预警
+6. 生成包含进度图表和风险分析的报告
+
+## 风险等级定义
+- 正常：进度在计划范围内
+- 延期风险：预计延期7天内
+- 已延期：已经延期超过7天
+- 提前完成：进度超前于计划
+
+## 详细参考（按需加载）
+- 项目状态定义: references/status_definitions.md
+- 风险管理指南: references/risk_management.md
+
+## 可执行脚本（按需调用）
+- 进度计算: scripts/progress_calculator.py
+- 风险预测: scripts/risk_predictor.py
+
+## 输出内容
+1. 项目整体进度百分比
+2. 关键里程碑完成情况
+3. 识别的风险项及等级
+4. 具体的改进建议
+5. 进度趋势图表</code></pre>
+                </div>
+                
+                <!-- Skills JSON示例3 -->
+                <div class="code-block">
+                    <div class="code-header">
+                        <span class="code-title">Skills定义示例 - 智能工单处理</span>
+                        <span class="code-lang">YAML</span>
+                        <button class="code-toggle" onclick="toggleCode(this)">
+                            <span>展开</span>
+                        </button>
+                    </div>
+                    <pre class="code-content collapsed"><code class="language-yaml">---
+name: workorder-processor
+description: "智能处理故障工单，自动分类、诊断、推荐解决方案。当用户提交工单、询问'处理工单'时使用。"
+trigger: on_demand
+tags: workorder, diagnosis, support
+---
+
+你是一位智能工单处理专家。你的任务是自动识别工单类型、智能分配给合适的处理人、跟踪处理进度并提供自动回复。
+
+## 处理流程
+1. 接收工单内容，分析工单描述和附件
+2. 使用classify_workorder工具识别工单类型（故障/咨询/投诉/建议）
+3. 根据工单类型和紧急程度，使用find_best_handler工具找到最合适的处理人
+4. 使用generate_reply工具生成专业的自动回复
+5. 使用create_workorder工具创建正式工单并分配
+6. 持续跟踪处理进度，超时自动升级
+
+## 工单优先级定义
+- urgent：紧急故障，影响业务运行
+- high：重要问题，需要尽快处理
+- medium：一般问题，按正常流程处理
+- low：咨询建议类，可延后处理
+
+## 分配原则
+- 根据工单类型匹配专业技能
+- 考虑处理人当前工作负荷
+- 优先分配给历史处理效率高的员工
+
+## 详细参考（按需加载）
+- 工单分类标准: references/workorder_classification.md
+- 处理人技能矩阵: references/skill_matrix.md
+
+## 可执行脚本（按需调用）
+- 智能分类: scripts/auto_classifier.py
+- 负载均衡: scripts/workload_balancer.py
+
+## 输出内容
+1. 识别的工单类型和子类型
+2. 分配的处理人及理由
+3. 自动回复内容
+4. 预计处理时长
+5. 工单编号和跟踪链接</code></pre>
                 </div>
             </div>
 
@@ -509,7 +1270,7 @@
                         <div class="layer-content">
                             <h4>Skills</h4>
                             <p>查询投资效益 | 生成报告 | 分析ROI</p>
-                            <span class="layer-role">业务语义封装</span>
+                            <span class="layer-role">AI行为指导</span>
                         </div>
                     </div>
                     <div class="stack-layer layer-tools">
@@ -591,14 +1352,14 @@
                     <div class="keypoint-card">
                         <span class="kp-number">3</span>
                         <h4>工具演进</h4>
-                        <p>API→MCP→Skills，让AI能理解和使用</p>
+                        <p>API→MCP→Tools→Skills，让AI能理解、执行并按指导工作</p>
                     </div>
                 </div>
             </div>
 
             <div class="summary-quote">
                 <blockquote>
-                    "完整的Agentic AI = <strong>RPAR大脑</strong> + <strong>Skills能力</strong> + <strong>MCP标准</strong> + <strong>API手脚</strong>"
+                    "完整的Agentic AI = <strong>RPAR大脑</strong> + <strong>Skills行为指导</strong> + <strong>MCP标准</strong> + <strong>API手脚</strong>"
                 </blockquote>
             </div>
 
@@ -625,6 +1386,9 @@
         </button>
     </footer>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-json.min.js"></script>
     <script src="js/interactive.js"></script>
 </body>
 </html>

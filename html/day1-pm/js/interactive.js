@@ -8,24 +8,22 @@ document.addEventListener('DOMContentLoaded', function() {
     initNavigation();
     initScrollProgress();
     initTabSwitching();
-    initRparAnimation();
+    initStepContainer();
     initScrollAnimations();
-    initQuadrantInteractions();
     initStairAnimations();
+    initCodeBlocks();
+    initConceptCards();
+    initParticles();
 });
 
 /**
  * 导航功能
- * - 平滑滚动
- * - 当前章节高亮
- * - 导航栏显隐
  */
 function initNavigation() {
     const navLinks = document.querySelectorAll('.nav-link');
     const sections = document.querySelectorAll('.section, .hero');
     const navbar = document.querySelector('.navbar');
     
-    // 点击导航链接平滑滚动
     navLinks.forEach(link => {
         link.addEventListener('click', function(e) {
             e.preventDefault();
@@ -42,7 +40,6 @@ function initNavigation() {
         });
     });
     
-    // 滚动时更新当前章节
     let lastScrollY = window.scrollY;
     
     window.addEventListener('scroll', function() {
@@ -90,11 +87,28 @@ function initScrollProgress() {
 }
 
 /**
- * Tab切换功能
+ * Tab切换增强版
  */
 function initTabSwitching() {
-    const tabButtons = document.querySelectorAll('.tab-btn');
+    const tabHeader = document.querySelector('.tab-header');
+    if (!tabHeader) return;
+    
+    const tabButtons = tabHeader.querySelectorAll('.tab-btn');
+    const tabIndicator = tabHeader.querySelector('.tab-indicator');
     const tabContents = document.querySelectorAll('.tab-content');
+    
+    // 初始化指示器位置
+    function updateIndicator(activeBtn) {
+        if (!activeBtn || !tabIndicator) return;
+        tabIndicator.style.width = activeBtn.offsetWidth + 'px';
+        tabIndicator.style.left = activeBtn.offsetLeft + 'px';
+    }
+    
+    // 初始化第一个tab
+    const firstActiveBtn = tabHeader.querySelector('.tab-btn.active');
+    if (firstActiveBtn) {
+        setTimeout(() => updateIndicator(firstActiveBtn), 100);
+    }
     
     tabButtons.forEach(button => {
         button.addEventListener('click', function() {
@@ -106,69 +120,256 @@ function initTabSwitching() {
             
             // 添加active类到当前tab
             this.classList.add('active');
-            document.getElementById(targetTab).classList.add('active');
-        });
-    });
-}
-
-/**
- * RPAR循环动画
- */
-function initRparAnimation() {
-    const rparPhases = document.querySelectorAll('.rpar-phase');
-    
-    // 点击高亮
-    rparPhases.forEach(phase => {
-        phase.addEventListener('click', function() {
-            rparPhases.forEach(p => p.classList.remove('active'));
-            this.classList.add('active');
-        });
-    });
-}
-
-/**
- * RPAR循环播放动画
- * 全局函数，供HTML调用
- */
-function animateRparCycle() {
-    const phases = document.querySelectorAll('#rparCycle .rpar-phase');
-    const statusText = document.querySelector('.rpar-status');
-    const phaseNames = ['思考', '规划', '执行', '反思'];
-    
-    let currentIndex = 0;
-    
-    // 重置所有phase
-    phases.forEach(phase => phase.classList.remove('active'));
-    
-    // 播放动画
-    const interval = setInterval(() => {
-        // 移除之前的高亮
-        phases.forEach(phase => phase.classList.remove('active'));
-        
-        // 高亮当前phase
-        if (currentIndex < phases.length) {
-            phases[currentIndex].classList.add('active');
-            statusText.textContent = `当前阶段: ${phaseNames[currentIndex]}`;
-            currentIndex++;
-        } else {
-            // 完成一轮循环
-            clearInterval(interval);
-            statusText.textContent = 'RPAR循环完成 ✓';
+            const targetContent = document.getElementById(targetTab);
+            if (targetContent) {
+                targetContent.classList.add('active');
+            }
             
-            // 显示循环箭头动画
-            setTimeout(() => {
-                phases.forEach(phase => phase.classList.remove('active'));
-                statusText.textContent = '点击播放查看RPAR循环';
-            }, 2000);
+            // 更新指示器位置
+            updateIndicator(this);
+            
+            // 保存到localStorage
+            localStorage.setItem('activeTab', targetTab);
+        });
+    });
+    
+    // 恢复之前选中的tab
+    const savedTab = localStorage.getItem('activeTab');
+    if (savedTab) {
+        const savedBtn = tabHeader.querySelector(`[data-tab="${savedTab}"]`);
+        if (savedBtn) {
+            savedBtn.click();
         }
-    }, 1000);
+    }
+}
+
+/**
+ * Tab切换函数（全局调用）
+ */
+function switchTab(tabId) {
+    const tabBtn = document.querySelector(`.tab-btn[data-tab="${tabId}"]`);
+    if (tabBtn) {
+        tabBtn.click();
+    }
+}
+
+/**
+ * 步骤展示组件初始化
+ */
+function initStepContainer() {
+    const container = document.getElementById('rparStepContainer');
+    if (!container) return;
+    
+    // 默认激活第一个步骤
+    activateStep(1);
+}
+
+/**
+ * 激活步骤
+ */
+function activateStep(stepNumber) {
+    const stepItems = document.querySelectorAll('.step-item');
+    const detailPanels = document.querySelectorAll('.detail-panel');
+    const connectors = document.querySelectorAll('.step-connector');
+    const statusText = document.querySelector('.step-status');
+    
+    stepItems.forEach(item => {
+        const itemStep = parseInt(item.getAttribute('data-step'));
+        item.classList.remove('active');
+        if (itemStep === stepNumber) {
+            item.classList.add('active');
+        }
+    });
+    
+    detailPanels.forEach(panel => {
+        const panelStep = parseInt(panel.getAttribute('data-panel'));
+        panel.classList.remove('active');
+        if (panelStep === stepNumber) {
+            panel.classList.add('active');
+        }
+    });
+    
+    // 更新连接器状态
+    connectors.forEach((connector, index) => {
+        connector.classList.remove('active');
+        if (index < stepNumber) {
+            connector.classList.add('active');
+        }
+    });
+    
+    if (statusText) {
+        const stepNames = ['思考', '规划', '执行', '反思'];
+        statusText.textContent = `当前步骤: ${stepNames[stepNumber - 1]}`;
+    }
+    
+    // 保存状态
+    localStorage.setItem('activeStep', stepNumber);
+}
+
+/**
+ * RPAR动画播放
+ */
+let animationInterval = null;
+
+function playRparAnimation() {
+    const statusText = document.querySelector('.step-status');
+    
+    if (animationInterval) {
+        clearInterval(animationInterval);
+        animationInterval = null;
+        if (statusText) {
+            statusText.textContent = '点击步骤查看详情或播放动画';
+        }
+        return;
+    }
+    
+    let currentStep = 1;
+    const stepNames = ['思考', '规划', '执行', '反思'];
+    
+    if (statusText) {
+        statusText.textContent = '▶ 播放中...';
+    }
+    
+    activateStep(currentStep);
+    
+    animationInterval = setInterval(() => {
+        currentStep++;
+        if (currentStep > 4) {
+            clearInterval(animationInterval);
+            animationInterval = null;
+            if (statusText) {
+                statusText.textContent = '✓ RPAR循环完成';
+            }
+            setTimeout(() => {
+                if (statusText) {
+                    statusText.textContent = '点击步骤查看详情或播放动画';
+                }
+            }, 2000);
+        } else {
+            activateStep(currentStep);
+            if (statusText) {
+                statusText.textContent = `▶ ${stepNames[currentStep - 1]}...`;
+            }
+        }
+    }, 1500);
+}
+
+/**
+ * 重置RPAR步骤
+ */
+function resetRparSteps() {
+    if (animationInterval) {
+        clearInterval(animationInterval);
+        animationInterval = null;
+    }
+    activateStep(1);
+    localStorage.removeItem('activeStep');
+}
+
+/**
+ * 代码折叠组件初始化
+ */
+function initCodeBlocks() {
+    const codeBlocks = document.querySelectorAll('.code-block');
+    
+    codeBlocks.forEach(block => {
+        const content = block.querySelector('.code-content');
+        const toggle = block.querySelector('.code-toggle');
+        
+        if (!content || !toggle) return;
+        
+        // 检查行数，超过20行默认折叠
+        const lines = content.textContent.split('\n').length;
+        if (lines > 20 && !content.classList.contains('expanded')) {
+            content.classList.add('collapsed');
+            toggle.querySelector('span').textContent = '展开';
+        }
+    });
+}
+
+/**
+ * 代码折叠/展开
+ */
+function toggleCode(button) {
+    const codeBlock = button.closest('.code-block');
+    const content = codeBlock.querySelector('.code-content');
+    const span = button.querySelector('span');
+    
+    if (content.classList.contains('collapsed')) {
+        content.classList.remove('collapsed');
+        content.classList.add('expanded');
+        span.textContent = '收起';
+        
+        // 保存展开状态
+        const codeId = codeBlock.querySelector('code').className;
+        localStorage.setItem(`code_${codeId}`, 'expanded');
+    } else {
+        content.classList.add('collapsed');
+        content.classList.remove('expanded');
+        span.textContent = '展开';
+        
+        // 移除展开状态
+        const codeId = codeBlock.querySelector('code').className;
+        localStorage.removeItem(`code_${codeId}`);
+    }
+}
+
+/**
+ * 概念详情卡片初始化
+ */
+function initConceptCards() {
+    const cards = document.querySelectorAll('.concept-card');
+    
+    cards.forEach(card => {
+        const conceptId = card.getAttribute('data-concept');
+        const detail = card.querySelector('.concept-detail');
+        
+        // 恢复展开状态
+        if (localStorage.getItem(`concept_${conceptId}`) === 'expanded') {
+            detail.classList.add('expanded');
+            const toggle = card.querySelector('.concept-toggle');
+            if (toggle) {
+                toggle.classList.add('expanded');
+                toggle.querySelector('.toggle-text').textContent = '收起详情';
+                toggle.querySelector('.toggle-icon').textContent = '×';
+            }
+        }
+    });
+}
+
+/**
+ * 概念卡片展开/收起
+ */
+function toggleConcept(button) {
+    const card = button.closest('.concept-card');
+    const detail = card.querySelector('.concept-detail');
+    const conceptId = card.getAttribute('data-concept');
+    const icon = button.querySelector('.toggle-icon');
+    const text = button.querySelector('.toggle-text');
+    
+    if (detail.classList.contains('expanded')) {
+        detail.classList.remove('expanded');
+        button.classList.remove('expanded');
+        icon.textContent = '+';
+        text.textContent = '了解详情';
+        localStorage.removeItem(`concept_${conceptId}`);
+    } else {
+        detail.classList.add('expanded');
+        button.classList.add('expanded');
+        icon.textContent = '×';
+        text.textContent = '收起详情';
+        localStorage.setItem(`concept_${conceptId}`, 'expanded');
+        
+        // 滚动到卡片位置
+        card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
 }
 
 /**
  * 滚动触发动画
  */
 function initScrollAnimations() {
-    const animatedElements = document.querySelectorAll('.content-block, .card, .workflow-item, .stair, .quadrant-item');
+    const animatedElements = document.querySelectorAll('.content-block, .card, .workflow-item, .stair, .quadrant-item, .code-block');
     
     const observerOptions = {
         root: null,
@@ -194,22 +395,6 @@ function initScrollAnimations() {
 }
 
 /**
- * Acting四象限交互
- */
-function initQuadrantInteractions() {
-    const quadrants = document.querySelectorAll('.quadrant-item');
-    
-    quadrants.forEach(quadrant => {
-        quadrant.addEventListener('mouseenter', function() {
-            const actingType = this.getAttribute('data-acting');
-            console.log(`Acting类型: ${actingType}`);
-            
-            // 可以在这里添加更多交互，如显示详细信息
-        });
-    });
-}
-
-/**
  * 演进阶梯动画
  */
 function initStairAnimations() {
@@ -224,26 +409,64 @@ function initStairAnimations() {
     const observer = new IntersectionObserver((entries) => {
         entries.forEach((entry, index) => {
             if (entry.isIntersecting) {
-                // 依次显示阶梯
                 setTimeout(() => {
                     entry.target.style.opacity = '1';
                     entry.target.style.transform = 'translateX(0)';
-                }, index * 200);
+                }, index * 150);
             }
         });
     }, observerOptions);
     
     stairs.forEach(stair => {
         stair.style.opacity = '0';
-        stair.style.transform = 'translateX(-50px)';
+        stair.style.transform = 'translateX(-30px)';
         stair.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
         observer.observe(stair);
     });
 }
 
 /**
+ * 粒子背景效果
+ */
+function initParticles() {
+    const particlesContainer = document.querySelector('.particles');
+    if (!particlesContainer) return;
+    
+    // 清除现有粒子
+    particlesContainer.innerHTML = '';
+    
+    // 创建粒子
+    for (let i = 0; i < 15; i++) {
+        const particle = document.createElement('div');
+        particle.style.cssText = `
+            position: absolute;
+            width: ${Math.random() * 3 + 1}px;
+            height: ${Math.random() * 3 + 1}px;
+            background: rgba(88, 166, 255, ${Math.random() * 0.3 + 0.1});
+            border-radius: 50%;
+            left: ${Math.random() * 100}%;
+            top: ${Math.random() * 100}%;
+            animation: floatParticle ${Math.random() * 10 + 10}s infinite ease-in-out;
+            animation-delay: ${Math.random() * 5}s;
+        `;
+        particlesContainer.appendChild(particle);
+    }
+}
+
+// 添加粒子动画样式
+const style = document.createElement('style');
+style.textContent = `
+    @keyframes floatParticle {
+        0%, 100% { transform: translateY(0) translateX(0); opacity: 0.3; }
+        25% { transform: translateY(-30px) translateX(10px); opacity: 0.6; }
+        50% { transform: translateY(-20px) translateX(-10px); opacity: 0.4; }
+        75% { transform: translateY(-40px) translateX(5px); opacity: 0.5; }
+    }
+`;
+document.head.appendChild(style);
+
+/**
  * 回到顶部
- * 全局函数，供HTML调用
  */
 function scrollToTop() {
     window.scrollTo({
@@ -251,45 +474,6 @@ function scrollToTop() {
         behavior: 'smooth'
     });
 }
-
-/**
- * 粒子背景效果（简化版）
- */
-function initParticles() {
-    const particlesContainer = document.querySelector('.particles');
-    if (!particlesContainer) return;
-    
-    // 创建粒子
-    for (let i = 0; i < 20; i++) {
-        const particle = document.createElement('div');
-        particle.style.cssText = `
-            position: absolute;
-            width: ${Math.random() * 4 + 2}px;
-            height: ${Math.random() * 4 + 2}px;
-            background: rgba(102, 126, 234, ${Math.random() * 0.5 + 0.2});
-            border-radius: 50%;
-            left: ${Math.random() * 100}%;
-            top: ${Math.random() * 100}%;
-            animation: float ${Math.random() * 10 + 10}s infinite ease-in-out;
-        `;
-        particlesContainer.appendChild(particle);
-    }
-}
-
-// 添加浮动动画样式
-const style = document.createElement('style');
-style.textContent = `
-    @keyframes float {
-        0%, 100% { transform: translateY(0) translateX(0); }
-        25% { transform: translateY(-20px) translateX(10px); }
-        50% { transform: translateY(-10px) translateX(-10px); }
-        75% { transform: translateY(-30px) translateX(5px); }
-    }
-`;
-document.head.appendChild(style);
-
-// 初始化粒子
-initParticles();
 
 /**
  * 键盘快捷键
@@ -318,7 +502,20 @@ document.addEventListener('keydown', function(e) {
             });
         }
     }
+    
+    // 空格键播放/暂停RPAR动画
+    if (e.key === ' ' && document.querySelector('.step-container:hover')) {
+        e.preventDefault();
+        playRparAnimation();
+    }
 });
+
+/**
+ * RPAR循环动画（兼容旧版）
+ */
+function animateRparCycle() {
+    playRparAnimation();
+}
 
 /**
  * 打印当前学习进度
@@ -329,20 +526,38 @@ function printProgress() {
     const docHeight = document.documentElement.scrollHeight - window.innerHeight;
     const progress = Math.round((scrollY / docHeight) * 100);
     
-    console.log(`学习进度: ${progress}%`);
+    console.log(`📊 学习进度: ${progress}%`);
     
-    sections.forEach((section, index) => {
+    sections.forEach((section) => {
         const sectionTop = section.offsetTop - 100;
         const sectionBottom = sectionTop + section.offsetHeight;
         
         if (scrollY >= sectionTop && scrollY < sectionBottom) {
-            console.log(`当前章节: ${section.querySelector('.section-title')?.textContent || '未知'}`);
+            const title = section.querySelector('.section-title')?.textContent || '未知';
+            console.log(`📍 当前章节: ${title}`);
         }
     });
 }
 
-// 每30秒打印一次进度（调试用）
-// setInterval(printProgress, 30000);
+// 导出全局函数
+window.toggleCode = toggleCode;
+window.toggleConcept = toggleConcept;
+window.activateStep = activateStep;
+window.playRparAnimation = playRparAnimation;
+window.resetRparSteps = resetRparSteps;
+window.switchTab = switchTab;
+window.scrollToTop = scrollToTop;
+window.animateRparCycle = animateRparCycle;
 
+// 控制台提示
 console.log('🤖 Day 1 PM Content - 交互功能已加载');
-console.log('快捷键: 1-4跳转到对应课时, ESC回到顶部');
+console.log('💡 快捷键提示:');
+console.log('   1-4: 跳转到对应课时');
+console.log('   ESC: 回到顶部');
+console.log('   空格: 播放RPAR动画（当鼠标在步骤组件上时）');
+console.log('📚 组件清单:');
+console.log('   ✓ 代码折叠组件');
+console.log('   ✓ 概念详情卡片');
+console.log('   ✓ 代码语法高亮（Prism.js）');
+console.log('   ✓ 步骤展示组件');
+console.log('   ✓ Tab切换增强');
