@@ -1,0 +1,168 @@
+/* PDF样式配置 */
+
+body {
+  font-family: "Segoe UI", "Microsoft YaHei", "微软雅黑", sans-serif;
+  font-size: 11pt;
+  line-height: 1.6;
+  color: #333;
+}
+
+/* 标题样式 */
+h1 {
+  font-size: 22pt;
+  color: #1890ff;
+  border-bottom: 3px solid #1890ff;
+  padding-bottom: 10px;
+  margin-top: 30px;
+  page-break-before: always;
+}
+
+h1:first-of-type {
+  page-break-before: avoid;
+}
+
+h2 {
+  font-size: 16pt;
+  color: #333;
+  border-left: 4px solid #1890ff;
+  padding-left: 12px;
+  margin-top: 25px;
+}
+
+h3 {
+  font-size: 13pt;
+  color: #555;
+  margin-top: 20px;
+}
+
+h4 {
+  font-size: 12pt;
+  color: #666;
+}
+
+/* 代码块样式 */
+code {
+  font-family: "Consolas", "Monaco", monospace;
+  background: #f5f5f5;
+  padding: 2px 5px;
+  border-radius: 3px;
+  font-size: 10pt;
+}
+
+pre {
+  background: #f8f8f8;
+  border: 1px solid #e8e8e8;
+  border-radius: 5px;
+  padding: 12px;
+  overflow-x: auto;
+  font-size: 9pt;
+  line-height: 1.4;
+}
+
+pre code {
+  background: none;
+  padding: 0;
+}
+
+/* 表格样式 */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 15px 0;
+  font-size: 10pt;
+}
+
+th, td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+
+th {
+  background: #fafafa;
+  font-weight: bold;
+  color: #333;
+}
+
+tr:nth-child(even) {
+  background: #fafafa;
+}
+
+/* 引用块样式 */
+blockquote {
+  border-left: 4px solid #1890ff;
+  margin: 15px 0;
+  padding: 10px 15px;
+  background: #f6f8fa;
+  color: #555;
+}
+
+/* 列表样式 */
+ul, ol {
+  margin: 10px 0;
+  padding-left: 25px;
+}
+
+li {
+  margin: 5px 0;
+}
+
+/* 链接样式 */
+a {
+  color: #1890ff;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* 分隔线 */
+hr {
+  border: none;
+  border-top: 2px solid #e8e8e8;
+  margin: 25px 0;
+}
+
+/* 注释样式 */
+.comment {
+  color: #999;
+  font-style: italic;
+}
+
+/* ASCII图容器 */
+pre code.language-ascii {
+  font-size: 8pt;
+  line-height: 1.2;
+}
+
+/* 分页控制 */
+.page-break {
+  page-break-before: always;
+}
+
+/* 避免在元素内部分页 */
+h1, h2, h3, h4 {
+  page-break-after: avoid;
+}
+
+table, pre, blockquote {
+  page-break-inside: avoid;
+}
+
+/* 页眉页脚 */
+@page {
+  margin: 2cm;
+  
+  @top-center {
+    content: "国网四川电力 AI种子团队培训";
+    font-size: 9pt;
+    color: #999;
+  }
+  
+  @bottom-center {
+    content: counter(page);
+    font-size: 9pt;
+    color: #999;
+  }
+}
