@@ -1,6 +1,6 @@
 # AI种子团队培训
 
-国网四川电力人工智能种子团队系列培训课程
+人工智能种子团队系列培训课程
 
 **在线课程**：https://sonnet0524.github.io/AI-Lesson-Training/
 
@@ -84,7 +84,7 @@
 
 ## 培训对象
 
-国网四川电力人工智能种子团队成员（约80人）
+人工智能种子团队成员（约80人）
 
 ## 分组协作
 
@@ -103,30 +103,9 @@
 
 本仓库用于管理AI种子团队系列培训的课程内容和相关资料。
 
-## 内容更新
-
-- **课程内容**：编辑 `content/` 目录，运行 `npm run sync` 同步
-- **平台指南**：直接编辑 `docs/platform-guide/` 目录
-- **详细规范**：查看 `CONTENT-GUIDE.md`
-
-## 本地开发
-
-```bash
-npm install          # 安装依赖
-npm run sync         # 同步内容
-npm run dev          # 本地预览
-npm run build        # 构建站点
-```
-
-## 部署
-
-推送到 GitHub 后自动部署到 GitHub Pages
-
-**在线课程**：https://sonnet0524.github.io/AI-Lesson-Training/
-
 ## 联系方式
 
-培训组织方：国网四川电力
+培训组织方：Sonnet0524
 
 ---
 
